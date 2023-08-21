@@ -1,6 +1,7 @@
 package com.grupo18.nocountry.greenpoint.jwt;
 
 import com.grupo18.nocountry.greenpoint.user.User;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -12,11 +13,12 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY="cbREVw5s6QySciOCQlSI-AS0z0KyLI8ubVU4O6qoRjA";
+    private static final String SECRET_KEY="cbREVw5s6QySciOCQlSILAS0z0KyLI8ubVU4O6qoRjA";
     public String getToken(UserDetails user) {
         return getToken(new HashMap<>(), user);
     }
@@ -32,6 +34,33 @@ public class JwtService {
                 .compact();
     }
 
+    public <T> T getClaim(String token, Function<Claims, T> claimsTFunction){
+        Claims claims = extractAllClaims(token);
+        return claimsTFunction.apply(claims);
+    }
+
+    public String extractUsername(String token){
+        return getClaim(token, Claims::getSubject);
+    }
+    public Date extractExpiration(String token) {
+        return getClaim(token, Claims::getExpiration);
+    }
+
+    public Claims extractAllClaims(String token){
+        return Jwts.parserBuilder()
+                .setSigningKey(getKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    private boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+    public boolean isTokenValid(String token, UserDetails userDetails) {
+        final String username = extractUsername(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
     private Key getKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);

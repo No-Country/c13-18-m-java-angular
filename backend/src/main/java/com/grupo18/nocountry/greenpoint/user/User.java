@@ -21,13 +21,15 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @GeneratedValue
-    Integer id;
+    private Integer id;
     @Column(nullable = false)
-    String username;
-    String lastname;
-    String firstname;
-    String country;
-    String password;
+    private String username;
+    private String lastname;
+    private String firstname;
+    private String country;
+    private String password;
+    private Boolean isEnabled;
+    private Long points;
     @Enumerated(EnumType.STRING)
     Role role;
 
@@ -53,6 +55,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
-    }
+        return this.isEnabled;
+
+                    }
 }
