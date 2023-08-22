@@ -49,8 +49,6 @@ public class AuthService {
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .firstname(request.getFirstname())
-                .lastname(request.getLastname())
-                .country(request.getCountry())
                 .isEnabled(false)
                 .points(0L)
                 .role(Role.USER)

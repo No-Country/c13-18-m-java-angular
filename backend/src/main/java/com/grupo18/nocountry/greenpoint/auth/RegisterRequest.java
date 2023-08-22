@@ -20,8 +20,5 @@ public class RegisterRequest {
     String password;
     @NotBlank
     String firstname;
-    @NotBlank
-    String lastname;
-    @NotBlank
-    String country;
+
 }
