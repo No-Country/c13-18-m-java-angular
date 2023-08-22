@@ -1,16 +1,28 @@
-<h2>Ingresar</h2>
-<form>
-  <div class="mb-3">
-    <label for="InputEmail1" class="form-label">Dirección de Correo Electrónico</label>
-    <input type="email" class="form-control" id="Email" aria-describedby="emailHelp">
+<section>
+  <h2 class="m-3 d-flex justify-content-center">Ingresar</h2>
+  <div class="container-fluid d-flex align-items-center justify-content-center">
+    <form [formGroup]="formLogin">
+      <div class="mb-3">
+        <label for="InputEmail1" class="form-label">Dirección de Correo Electrónico</label>
+        <input type="email" formControlName="email" class="form-control" id="Email" [class.is-invalid]="Email" placeholder="ejemplo@mail.com" aria-describedby="emailHelp">
+        <div>
+          <p *ngIf="Email" class="text-danger">El formato del email debe ser válido</p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="InputPassword" class="form-label">Contraseña</label>
+        <input type="password" formControlName="password" class="form-control" id="Password" [class.is-invalid]="Password" placeholder="contraseña">
+        <div>
+          <p *ngIf="Password" class="text-danger">La contraseña debe ser de 6 caracteres o más</p>
+        </div>
+      </div>
+      <p>¿olvidate tu contraseña? recuperala haciendo click acá <a href="#">Recuperar Contraseña</a></p>
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">Ingresar</button>
+      <p>Todavía no tenes tu cuenta de Green Point? <button type="button" routerLink="/registro" class="btn btn-success registro">Registrate ahora</button></p>
+    </form>
   </div>
-  <div class="mb-3">
-    <label for="InputPassword" class="form-label">Contraseña</label>
-    <input type="password" class="form-control" id="Password">
-  </div>
-  <button type="submit" class="btn btn-primary">Ingresar</button>
-
-  <!-- <hr>
+</section>
+<hr>
   <h3 class="nt-5">Formulario</h3>
   <pre>Estado formulario:{{formLogin.valid}}
     <br>
@@ -18,5 +30,4 @@
   </pre>
   <pre>
     {{formLogin.value | json}}
-  </pre> -->
-</form>
+  </pre>
