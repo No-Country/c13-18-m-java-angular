@@ -1,6 +1,8 @@
 package com.grupo18.nocountry.greenpoint.auth;
 
 
+import com.grupo18.nocountry.greenpoint.auth.token.RegisterTokenResponse;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class AuthController {
     }
 
     @PostMapping(value = "register")
-    public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
+    public ResponseEntity<RegisterTokenResponse> register(@Valid @RequestBody RegisterRequest request) throws MessagingException {
         return ResponseEntity.ok(authService.register(request));
     }
 }
