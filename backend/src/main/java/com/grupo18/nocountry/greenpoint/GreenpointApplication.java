@@ -12,5 +12,3 @@ public class GreenpointApplication {
 		PropertyConfigurator.configure("log4j.properties");
 		SpringApplication.run(GreenpointApplication.class, args);
 	}
-
-}
