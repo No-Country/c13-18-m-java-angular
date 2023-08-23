@@ -23,12 +23,6 @@ public class RegisterTokenController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @PostMapping("/confirm-reset")
-    public ResponseEntity<HttpStatus> confirmPasswordReset(@RequestBody ConfirmTokenRequest tokenRequest) throws Exception {
-        tokenService.confirmToken(tokenRequest);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
 
 
 }

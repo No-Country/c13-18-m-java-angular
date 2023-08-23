@@ -1,5 +1,6 @@
 package com.grupo18.nocountry.greenpoint.email;
 
+import com.grupo18.nocountry.greenpoint.auth.PasswordReset.PasswordResetToken;
 import com.grupo18.nocountry.greenpoint.auth.token.RegisterToken;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -26,7 +27,7 @@ public class EmailService implements EmailSender {
 
     @Override
     public void send(RegisterToken token) throws MessagingException {
-        String clientUrl = "htpp://localhost:4200/";
+        String clientUrl = "http://localhost:4200/";
         String name = token.getUser().getFirstname();
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper mime = new MimeMessageHelper(message, true, "UTF-8");
@@ -109,7 +110,7 @@ public class EmailService implements EmailSender {
         return email.replace("{{token}}", token).replace("{{name}}", name);
     }
 
-    public void sendPasswordResetEmail(RegisterToken token) throws MessagingException {
+    public void sendPasswordResetEmail(PasswordResetToken token) throws MessagingException {
         String resetUrl = "http://localhost:8080/token/confirm-reset?token=" + token.getToken();
         String name = token.getUser().getFirstname();
         MimeMessage message = mailSender.createMimeMessage();
@@ -117,33 +118,113 @@ public class EmailService implements EmailSender {
 
         mime.setTo(token.getUser().getUsername());
         mime.setFrom(email);
-        mime.setSubject("Password Reset - Green Point");
-        mime.setText(this.createMessage(resetUrl, name), true);
+        mime.setSubject("Reinicio de contraseña - Green Point");
+        mime.setText(this.createPasswordResetMessage(resetUrl, name), true);
         mailSender.send(message);
     }
 
     private String createPasswordResetMessage(String resetUrl, String name) {
-        String email = "<!DOCTYPE html>\n" +
-                "<html>\n" +
+        String emailContent = "<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
                 "<head>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
                 "    <title>Password Reset - Green Point</title>\n" +
+                "    <style>\n" +
+                "        body {\n" +
+                "            font-family: Arial, sans-serif;\n" +
+                "            margin: 0;\n" +
+                "            padding: 0;\n" +
+                "            background-color: #f2f3f8;\n" +
+                "        }\n" +
+                "        .container {\n" +
+                "            max-width: 670px;\n" +
+                "            margin: 0 auto;\n" +
+                "            background: #fff;\n" +
+                "            border-radius: 3px;\n" +
+                "            text-align: center;\n" +
+                "            box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.06);\n" +
+                "        }\n" +
+                "        .header {\n" +
+                "            height: 80px;\n" +
+                "        }\n" +
+                "        .spacer-20 {\n" +
+                "            height: 20px;\n" +
+                "        }\n" +
+                "        .content {\n" +
+                "            padding: 0 35px;\n" +
+                "        }\n" +
+                "        .title {\n" +
+                "            color: #1e1e2d;\n" +
+                "            font-weight: 500;\n" +
+                "            margin: 0;\n" +
+                "            font-size: 32px;\n" +
+                "            font-family: 'Rubik', sans-serif;\n" +
+                "        }\n" +
+                "        .divider {\n" +
+                "            display: inline-block;\n" +
+                "            vertical-align: middle;\n" +
+                "            margin: 29px 0 26px;\n" +
+                "            border-bottom: 1px solid #cecece;\n" +
+                "            width: 100px;\n" +
+                "        }\n" +
+                "        .message {\n" +
+                "            color: #455056;\n" +
+                "            font-size: 15px;\n" +
+                "            line-height: 24px;\n" +
+                "            margin: 0;\n" +
+                "        }\n" +
+                "        .button {\n" +
+                "            background: #20e277;\n" +
+                "            text-decoration: none !important;\n" +
+                "            font-weight: 500;\n" +
+                "            margin-top: 35px;\n" +
+                "            color: #fff;\n" +
+                "            text-transform: uppercase;\n" +
+                "            font-size: 14px;\n" +
+                "            padding: 10px 24px;\n" +
+                "            display: inline-block;\n" +
+                "            border-radius: 50px;\n" +
+                "        }\n" +
+                "        .footer {\n" +
+                "            text-align: center;\n" +
+                "        }\n" +
+                "        .footer-text {\n" +
+                "            font-size: 14px;\n" +
+                "            color: rgba(69, 80, 86, 0.7411764705882353);\n" +
+                "            line-height: 18px;\n" +
+                "            margin: 0;\n" +
+                "        }\n" +
+                "        .footer-text strong {\n" +
+                "            color: #000;\n" +
+                "        }\n" +
+                "        .footer-space {\n" +
+                "            height: 80px;\n" +
+                "        }\n" +
+                "    </style>\n" +
                 "</head>\n" +
-                "<body style=\"font-family: Arial, sans-serif;\">\n" +
-                "    <h2>Hola {{name}}!</h2>\n" +
-                "    <p>Recibimos una petición para reestrablecer tu contraseña en tu cuenta deGreen Point. Si no fuiste vos, ignorá.</p>\n" +
-                "    <p>Para reestablecer tu contraseña, hacé click en el link de debajo:</p>\n" +
-                "    <a href=\"{{resetUrl}}\">Reestablecer contraseña</a>\n" +
-                "    <p>Este link expirará en 15 minutos.</p>\n" +
-                "    <p>Si tienes preguntas, por favor contacta a nuesto soporte.</p>\n" +
-                "    <p>Que tenga buen día, <br>Green Point Team</p>\n" +
+                "<body>\n" +
+                "    <div class=\"container\">\n" +
+                "        <div class=\"header\"></div>\n" +
+                "        <div class=\"spacer-20\"></div>\n" +
+                "        <div class=\"content\">\n" +
+                "            <h1 class=\"title\">Hola " + name + "!</h1>\n" +
+                "            <div class=\"divider\"></div>\n" +
+                "            <p class=\"message\">\n" +
+                "                Recibimos una petición para reestablecer tu contraseña en tu cuenta de Green Point. Si no fuiste vos, ignorá este mensaje.\n" +
+                "            </p>\n" +
+                "            <a href=\"" + resetUrl + "\" class=\"button\">Reestablecer contraseña</a>\n" +
+                "        </div>\n" +
+                "        <div class=\"spacer-20\"></div>\n" +
+                "        <div class=\"footer\">\n" +
+                "            <p class=\"footer-text\">&copy; <strong>Green Point</strong></p>\n" +
+                "        </div>\n" +
+                "        <div class=\"footer-space\"></div>\n" +
+                "    </div>\n" +
                 "</body>\n" +
                 "</html>";
 
-        email = email.replace("{{name}}", name);
-        email = email.replace("{{resetUrl}}", resetUrl);
-
-        return email;
+        return emailContent;
     }
 
 }

@@ -47,21 +47,5 @@ public class RegisterTokenService {
 
     }
 
-    public void confirmPasswordReset(ConfirmTokenRequest confirmToken) throws Exception {
-        UUID tokenValue = UUID.fromString(confirmToken.getToken());
-        var token = findByToken(tokenValue).orElseThrow(() -> new Exception("Token not found"));
-
-        if (LocalDateTime.now().isBefore(token.getExpiresAt())) {
-            // Process password reset here
-            User user = token.getUser();
-            user.setPassword(passwordEncoder.encode("new_password")); // Set the new password
-            userRepository.save(user);
-            tokenRepository.deleteById(token.getId());
-        } else {
-            tokenRepository.deleteById(token.getId());
-            throw new Exception("Token has expired.");
-        }
-    }
-
 
 }
