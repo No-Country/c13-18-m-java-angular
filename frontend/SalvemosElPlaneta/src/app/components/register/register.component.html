@@ -1,7 +1,7 @@
 <section>
   <h2 class="m-3 d-flex justify-content-center">Registrate ahora</h2>
   <div class="container-fluid d-flex align-items-center justify-content-center">
-    <form [formGroup]="formRegister"> 
+    <form [formGroup]="formRegister" (ngSubmit)="submit()"> 
       <div class="mb-3">
         <label for="InputEmail1" class="form-label">Dirección de Correo Electrónico</label>
         <input type="email" formControlName="email" class="form-control" id="email" [class.is-invalid]="Email" placeholder="ejemplo@mail.com" aria-describedby="emailHelp">
@@ -34,7 +34,7 @@
           <p *ngIf="Password2" class="text-danger">Las contraseñas deben ser iguales</p>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary" (click)="submit()">Registrarse</button>
+      <button type="submit" class="btn btn-primary">Registrarse</button>
     </form>
   </div>
 </section>

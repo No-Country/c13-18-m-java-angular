@@ -10,18 +10,19 @@ export class LoginService {
   url = '';
 
   constructor(
+    
     private router: Router) {}
 
 // login({email, password}: any) {
-// this.http.put(this.url + '/login', {email: email,password: password})
-// .subscribe((resp: any) => {
-// console.log(resp);
+//  this.http.put(this.url + '/login', {email: email,password: password})
+//  .subscribe((resp: any) => {
+//  console.log(resp);
 // if (resp) {
 //   sessionStorage.setItem('token', resp);
 // }
 // //this.router.navigate(['sobre-mi']);
 // location.reload();
-// });
+//  });
 // }
 
 // logout() {
@@ -29,7 +30,6 @@ export class LoginService {
 // sessionStorage.removeItem('token');
 // location.reload();
 // }
-
 }
 
-// private http: HttpClient
+// private http: HttpClient,
