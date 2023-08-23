@@ -70,4 +70,25 @@ public class AuthService {
                 .confirmationUrl(CLIENT_URL +token.getToken())
                 .build();
     }
+
+    public RegisterTokenResponse requestPasswordReset(String username) throws MessagingException {
+        User user = userRepository.findByUsername(username).orElseThrow();
+
+        RegisterToken token = RegisterToken.builder()
+                .user(user)
+                .token(UUID.randomUUID())
+                .expiresAt(LocalDateTime.now().plusMinutes(15))
+                .build();
+
+        tokenRepository.save(token);
+        emailService.send(token);
+
+        String CLIENT_URL = "http://localhost:4200/reset-password"; // Cambiar a Front PasswordReset url
+        return RegisterTokenResponse.builder()
+                .token(token.getToken().toString())
+                .confirmationUrl(CLIENT_URL + "?token=" + token.getToken())
+                .build();
+    }
+
+
 }

@@ -1,8 +1,10 @@
 package com.grupo18.nocountry.greenpoint.auth.token;
 
+import com.grupo18.nocountry.greenpoint.user.User;
 import com.grupo18.nocountry.greenpoint.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.NotFound;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,6 +21,7 @@ public class RegisterTokenService {
     public void save(RegisterToken token){
         tokenRepository.save(token);
     }
+    private final PasswordEncoder passwordEncoder;
 
     public Optional<RegisterToken> findByToken(UUID token){
         return tokenRepository.findByToken(token);
@@ -43,5 +46,22 @@ public class RegisterTokenService {
         }
 
     }
+
+    public void confirmPasswordReset(ConfirmTokenRequest confirmToken) throws Exception {
+        UUID tokenValue = UUID.fromString(confirmToken.getToken());
+        var token = findByToken(tokenValue).orElseThrow(() -> new Exception("Token not found"));
+
+        if (LocalDateTime.now().isBefore(token.getExpiresAt())) {
+            // Process password reset here
+            User user = token.getUser();
+            user.setPassword(passwordEncoder.encode("new_password")); // Set the new password
+            userRepository.save(user);
+            tokenRepository.deleteById(token.getId());
+        } else {
+            tokenRepository.deleteById(token.getId());
+            throw new Exception("Token has expired.");
+        }
+    }
+
 
 }

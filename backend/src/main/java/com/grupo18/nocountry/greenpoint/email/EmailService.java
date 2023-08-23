@@ -108,4 +108,42 @@ public class EmailService implements EmailSender {
 
         return email.replace("{{token}}", token).replace("{{name}}", name);
     }
+
+    public void sendPasswordResetEmail(RegisterToken token) throws MessagingException {
+        String resetUrl = "http://localhost:8080/token/confirm-reset?token=" + token.getToken();
+        String name = token.getUser().getFirstname();
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper mime = new MimeMessageHelper(message, true, "UTF-8");
+
+        mime.setTo(token.getUser().getUsername());
+        mime.setFrom(email);
+        mime.setSubject("Password Reset - Green Point");
+        mime.setText(this.createMessage(resetUrl, name), true);
+        mailSender.send(message);
+    }
+
+    private String createPasswordResetMessage(String resetUrl, String name) {
+        String email = "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "    <meta charset=\"UTF-8\">\n" +
+                "    <title>Password Reset - Green Point</title>\n" +
+                "</head>\n" +
+                "<body style=\"font-family: Arial, sans-serif;\">\n" +
+                "    <h2>Hola {{name}}!</h2>\n" +
+                "    <p>Recibimos una petición para reestrablecer tu contraseña en tu cuenta deGreen Point. Si no fuiste vos, ignorá.</p>\n" +
+                "    <p>Para reestablecer tu contraseña, hacé click en el link de debajo:</p>\n" +
+                "    <a href=\"{{resetUrl}}\">Reestablecer contraseña</a>\n" +
+                "    <p>Este link expirará en 15 minutos.</p>\n" +
+                "    <p>Si tienes preguntas, por favor contacta a nuesto soporte.</p>\n" +
+                "    <p>Que tenga buen día, <br>Green Point Team</p>\n" +
+                "</body>\n" +
+                "</html>";
+
+        email = email.replace("{{name}}", name);
+        email = email.replace("{{resetUrl}}", resetUrl);
+
+        return email;
+    }
+
 }
