@@ -1,7 +1,7 @@
 package com.grupo18.nocountry.greenpoint.user;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<HttpStatus> update(@RequestBody UserUpdateRequest request,@PathVariable Long id) throws Exception{
+    public ResponseEntity<HttpStatus> update(@Valid @RequestBody UserUpdateRequest request, @PathVariable Long id) throws Exception{
         userService.update(request,id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
