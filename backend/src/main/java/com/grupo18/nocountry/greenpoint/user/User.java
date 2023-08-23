@@ -33,11 +33,11 @@ public class User implements UserDetails {
     private Boolean isEnabled;
     private Long points;
     @Enumerated(EnumType.STRING)
-    Role role;
+    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority((role.name())));
+        return List.of(new SimpleGrantedAuthority("ROLE_"+(role.name())));
     }
 
     @Override
@@ -60,4 +60,6 @@ public class User implements UserDetails {
         return this.isEnabled;
 
                     }
+
+
 }
