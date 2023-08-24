@@ -2,11 +2,10 @@ package com.grupo18.nocountry.greenpoint.recyclable;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,5 +48,44 @@ public class RecyclableController {
                 ).toList();
 
         return ResponseEntity.ok(recyclableDTOS);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<?> save(@RequestBody RecyclableDTO recyclableDTO) throws URISyntaxException {
+
+        if (recyclableDTO.getRecyclableType().toString().isBlank()){
+            return ResponseEntity.badRequest().build();
+        }
+
+        // al guardar un reciclable solo me interesa saber su tipo, ya que el id y los puntos lo maneja el sistema
+        recyclableService.save(new Recyclable(recyclableDTO.getRecyclableType()));
+
+        return ResponseEntity.created(new URI("/api/v1/recyclable/save")).build();
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateRecyclable(@PathVariable Long id, @RequestBody RecyclableDTO recyclableDTO) {
+
+        Optional<Recyclable> recyclableOptional = recyclableService.getById(id);
+
+        if (recyclableOptional.isPresent()){
+            Recyclable recyclable = recyclableOptional.get();
+            recyclable.setRecyclableType(recyclableDTO.getRecyclableType());
+            recyclableService.save(recyclable);
+            return ResponseEntity.ok("Registro Actualizado");
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+
+        if (id != null) {
+            recyclableService.deleteById(id);
+            return ResponseEntity.ok("Registro Eliminado");
+        }
+
+        return ResponseEntity.badRequest().build();
     }
 }
