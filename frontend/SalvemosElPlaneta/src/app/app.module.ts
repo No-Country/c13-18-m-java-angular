@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     FooterComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
