@@ -33,7 +33,7 @@ public class RecyclingPointController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> modifyRecyclingPoint(@PathVariable Long id, @RequestBody RecyclingPoint recyclingPoint) {
-        recyclingPoint.setId(id);  // Assuming you have a setId method in RecyclingPoint
+        recyclingPoint.setId(id);
         recyclingService.modifyRecyclingPoint(recyclingPoint);
         return ResponseEntity.ok(HttpStatus.OK);
     }
