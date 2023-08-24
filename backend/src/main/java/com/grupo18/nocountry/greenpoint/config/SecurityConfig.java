@@ -1,9 +1,11 @@
 package com.grupo18.nocountry.greenpoint.config;
 
 import com.grupo18.nocountry.greenpoint.jwt.JwtAuthenticationFilter;
+import com.grupo18.nocountry.greenpoint.user.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,10 +30,22 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authRequest->
                         authRequest
-                                .requestMatchers("/auth/**").permitAll()
-                                .requestMatchers("/token").permitAll()
-                                .anyRequest().authenticated()
+                                .requestMatchers("/auth/**","/token").permitAll()
                         )
+                .authorizeHttpRequests(authRequest->
+                        authRequest
+                        .requestMatchers(HttpMethod.PUT,"/api/v1/users/**").hasAnyRole("USER","ADMIN")
+                        .requestMatchers(HttpMethod.GET,"/api/v1/users/**").hasAnyRole("USER","ADMIN")
+                )
+                .authorizeHttpRequests(authRequest ->
+                        authRequest
+                                .requestMatchers(HttpMethod.POST,"/api/v1/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE,"/api/v1/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET,"/api/v1/**").hasRole("ADMIN")
+                )
+                .authorizeHttpRequests(
+                        authRequest -> authRequest.anyRequest().authenticated()
+                )
                 .sessionManagement(sessionManager ->
                         sessionManager
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

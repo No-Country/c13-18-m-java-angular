@@ -1,18 +1,9 @@
 package com.grupo18.nocountry.greenpoint.user;
 
+public interface UserService {
+    void update(UserUpdateRequest userRequest,Long id)  throws Exception;
+    UserResponse getByUsername(String username) throws Exception;
+    UserResponse getByID(Long id) throws Exception;
+    void delete(Long id) throws Exception;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-
-@Service
-@RequiredArgsConstructor
-public class UserService {
-
-    private final UserRepository userRepository;
-
-    public void create(){
-
-    }
 }

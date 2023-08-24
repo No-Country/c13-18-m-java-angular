@@ -2,6 +2,7 @@ package com.grupo18.nocountry.greenpoint.config;
 
 import com.grupo18.nocountry.greenpoint.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,5 +42,9 @@ public class ApplicationConfig {
     public UserDetailsService userDetailService() {
         return username -> userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+    @Bean
+    ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 }
