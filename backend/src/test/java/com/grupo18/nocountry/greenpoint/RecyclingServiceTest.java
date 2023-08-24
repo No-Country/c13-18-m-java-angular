@@ -33,7 +33,7 @@ public class RecyclingServiceTest {
     public void testCreateRecyclingPoint() {
         RecyclingPoint recyclingPoint = new RecyclingPoint();
         recyclingPoint.setId(1L);
-        recyclingPoint.setDireccion("Sample Address");
+        recyclingPoint.setAddress("Sample Address");
         recyclingPoint.setTotalPoints(100);
         recyclingPoint.setCode("XYZ");
 

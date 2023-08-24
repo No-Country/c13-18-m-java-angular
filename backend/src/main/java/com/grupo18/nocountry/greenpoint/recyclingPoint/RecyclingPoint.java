@@ -24,7 +24,7 @@ public class RecyclingPoint {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
 private long id ;
     @Column(length = 255)
-private String direccion;
+private String address;
 private int totalPoints;
     @Column(unique = true)
 private String code;
