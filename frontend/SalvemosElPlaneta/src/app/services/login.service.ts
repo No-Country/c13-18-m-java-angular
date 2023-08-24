@@ -51,7 +51,7 @@ export class LoginService {
   }
 
   getUserByUsername(username:string):Observable<any>{
-    return this.http.get(this.url + 'users/username/' + username);
+    return this.http.get(this.url + 'api/v1/users/username/' + username);
   }
 
   logout(){
