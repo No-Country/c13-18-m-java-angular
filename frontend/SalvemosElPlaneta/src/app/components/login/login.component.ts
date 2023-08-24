@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginRequest } from 'src/app/models/login-request';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -10,6 +11,8 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent {
 
   formLogin!:FormGroup
+
+  loginRequest!:LoginRequest
 
   constructor (
     private fb:FormBuilder,
@@ -22,7 +25,7 @@ export class LoginComponent {
     this.formLogin = this.fb.group(
       {
         email:['',[Validators.required,Validators.email]],
-        password: ['',[Validators.required,Validators.minLength(6)]]
+        password: ['',[Validators.required,Validators.minLength(8)]]
       }
     );
   }
@@ -36,15 +39,24 @@ export class LoginComponent {
   }
 
   onSubmit(){
-    console.log(this.formLogin);
     if (this.formLogin.invalid) {
       return Object.values(this.formLogin.controls).forEach(control => {
         control.markAllAsTouched();
       });
     }
-      //    else {
-    //   this.loginservice.login(this.formLogin.value);
-    // }
+    const loginRequest:LoginRequest={username: this.formLogin.get('email')?.value, password: this.formLogin.get('password')?.value}
+    console.log(loginRequest);
+    this.loginservice.login(loginRequest).subscribe({
+      next:(resp)=>{
+        console.log(resp);
+      },
+      error:()=>{
+        console.log("error");
+      },
+      complete:()=>{
+        location.reload();
+      }
+    });
   }
 
 }

@@ -28,8 +28,8 @@ export class RegisterComponent {
       {
         email:['',[Validators.required,Validators.email]],
         username:['',[Validators.required,Validators.minLength(5)]],
-        password1: ['',[Validators.required,Validators.minLength(6)]],
-        password2: ['',[Validators.required,Validators.minLength(6)]]
+        password1: ['',[Validators.required,Validators.minLength(8)]],
+        password2: ['',[Validators.required,Validators.minLength(8)]]
       },{
         validators:this.passwordIguales('password1','password2')
       }
@@ -84,12 +84,12 @@ export class RegisterComponent {
   }
 
   submit(){
-    // this.passNoValido();
-    // if (this.formRegister.invalid) {
-    //   return Object.values(this.formRegister.controls).forEach(control=>{
-    //     control.markAllAsTouched();
-    //   })
-    // }
+     this.passNoValido();
+     if (this.formRegister.invalid) {
+       return Object.values(this.formRegister.controls).forEach(control=>{
+         control.markAllAsTouched();
+       })
+    }
     this.registerRequest= {username: this.formRegister.get('email')?.value, firstname: this.formRegister.get('username')?.value,password: this.formRegister.get('password1')?.value}
     console.log(this.registerRequest);
     this.service.register(this.registerRequest).subscribe({

@@ -13,10 +13,10 @@
         <label for="InputPassword" class="form-label">Contraseña</label>
         <input type="password" formControlName="password" class="form-control" id="Password" [class.is-invalid]="Password" placeholder="contraseña">
         <div>
-          <p *ngIf="Password" class="text-danger">La contraseña debe ser de 6 caracteres o más</p>
+          <p *ngIf="Password" class="text-danger">La contraseña debe ser de 8 caracteres o más</p>
         </div>
       </div>
-      <p>¿olvidate tu contraseña? recuperala haciendo click acá <a href="#">Recuperar Contraseña</a></p>
+      <p>¿olvidaste tu contraseña? recuperala haciendo click acá <a href="#">Recuperar Contraseña</a></p>
       <button type="submit" class="btn btn-primary" (click)="onSubmit()">Ingresar</button>
       <p>Todavía no tenes tu cuenta de Green Point? <button type="button" routerLink="/registro" class="btn btn-success registro">Registrate ahora</button></p>
     </form>
