@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RecyclableRepository extends JpaRepository<Long, Recyclable> {
-    Recyclable findById(Long id);
+public interface RecyclableRepository extends JpaRepository<Recyclable, Long> {
+
 }
