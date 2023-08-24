@@ -64,7 +64,7 @@ public class AuthService {
                 token
         );
         emailService.send(token);
-        String CLIENT_URL = "http://localhost:4200/";
+        String CLIENT_URL = "http://190.124.144.225/";
         return RegisterTokenResponse.builder()
                 .token(token.getToken().toString())
                 .confirmationUrl(CLIENT_URL +token.getToken())
