@@ -35,7 +35,7 @@ public class PasswordResetService {
                     .build();
             resetTokenRepository.save(token);
 
-            emailService.sendPasswordResetEmail(token); // Send email with reset token link
+            emailService.sendPasswordResetEmail(token); // Envia el email con el token de reinicio
         }
     }
 
