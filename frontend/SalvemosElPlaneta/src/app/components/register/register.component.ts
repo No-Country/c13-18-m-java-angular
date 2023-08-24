@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegisterRequest } from 'src/app/models/register-request';
+import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +13,12 @@ export class RegisterComponent {
 
   formRegister!:FormGroup
 
+  registerRequest!: RegisterRequest
+
   constructor (
     private formbuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private service: RegisterService
   ){
     this.crearForm();
   }
@@ -23,8 +28,8 @@ export class RegisterComponent {
       {
         email:['',[Validators.required,Validators.email]],
         username:['',[Validators.required,Validators.minLength(5)]],
-        password1: ['',[Validators.required,Validators.minLength(6)]],
-        password2: ['',[Validators.required,Validators.minLength(6)]]
+        password1: ['',[Validators.required,Validators.minLength(8)]],
+        password2: ['',[Validators.required,Validators.minLength(8)]]
       },{
         validators:this.passwordIguales('password1','password2')
       }
@@ -79,13 +84,19 @@ export class RegisterComponent {
   }
 
   submit(){
-    console.log(this.formRegister);
-    this.passNoValido();
-    if (this.formRegister.invalid) {
-      return Object.values(this.formRegister.controls).forEach(control=>{
-        control.markAllAsTouched();
-      })
+     this.passNoValido();
+     if (this.formRegister.invalid) {
+       return Object.values(this.formRegister.controls).forEach(control=>{
+         control.markAllAsTouched();
+       })
     }
+    this.registerRequest= {username: this.formRegister.get('email')?.value, firstname: this.formRegister.get('username')?.value,password: this.formRegister.get('password1')?.value}
+    console.log(this.registerRequest);
+    this.service.register(this.registerRequest).subscribe({
+      next:(resp)=>{
+        console.log(resp);
+      }
+    });
   }
 
 }
