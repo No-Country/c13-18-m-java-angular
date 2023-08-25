@@ -1,7 +1,7 @@
 package com.grupo18.nocountry.greenpoint.recyclingPoint;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +13,7 @@ public class RecyclingPointService implements IRecyclingPointService {
 
     private static final Logger logger = LogManager.getLogger(RecyclingPointService.class);
 
+
     @Autowired
     private RecyclingPointRepository recyclingPointRepository;
 
@@ -23,10 +24,11 @@ public class RecyclingPointService implements IRecyclingPointService {
             recyclingPointRepository.save(recyclingPoint);
             logger.info("Recycling point created");
         } catch (Exception e) {
-            logger.error("Error while creating recycling point: {}");
+            logger.error("Error while creating recycling point: {}", e);
             throw new RuntimeException("Failed to create recycling point", e);
         }
         logger.trace("Exiting createRecyclingPoint()");
+
     }
 
     @Override
@@ -37,7 +39,7 @@ public class RecyclingPointService implements IRecyclingPointService {
             logger.info("Exiting searchRecyclingPoint()");
             return recyclingPoint;
         } catch (Exception e) {
-            logger.error("Error while searching for recycling point: {}");
+            logger.error("Error while searching for recycling point: {}", e);
             throw new RuntimeException("Failed to search for recycling point", e);
         }
     }
@@ -49,7 +51,7 @@ public class RecyclingPointService implements IRecyclingPointService {
             recyclingPointRepository.save(recyclingPoint);
             logger.info("Recycling point modified");
         } catch (Exception e) {
-            logger.error("Error while modifying recycling point: {}");
+            logger.error("Error while modifying recycling point: {}", e);
             throw new RuntimeException("Failed to modify recycling point", e);
         }
         logger.info("Exiting modifyRecyclingPoint()");
@@ -62,7 +64,7 @@ public class RecyclingPointService implements IRecyclingPointService {
             recyclingPointRepository.deleteById(id);
             logger.info("Recycling point deleted");
         } catch (Exception e) {
-            logger.error("Error while deleting recycling point: {}");
+            logger.error("Error while deleting recycling point: {}", e);
             throw new RuntimeException("Failed to delete recycling point", e);
         }
         logger.info("Exiting deleteRecyclingPoint()");
@@ -76,7 +78,7 @@ public class RecyclingPointService implements IRecyclingPointService {
             logger.info("Exiting searchAll()");
             return recyclingPoints;
         } catch (Exception e) {
-            logger.error("Error while searching for all recycling points: {}");
+            logger.error("Error while searching for all recycling points: {}", e);
             throw new RuntimeException("Failed to retrieve recycling points", e);
         }
     }

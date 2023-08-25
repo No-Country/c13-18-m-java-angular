@@ -45,6 +45,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.POST,"/api/v1/redeem").hasAnyRole("USER","ADMIN")
                                 .requestMatchers(HttpMethod.GET,"/api/v1/transactions/**").hasAnyRole("USER","ADMIN")
                                 .requestMatchers(HttpMethod.GET,"/api/v1/recyclable/**").hasAnyRole("USER","ADMIN")
+                                .requestMatchers(HttpMethod.GET,"/api/v1/RecyclingPoint/**").hasAnyRole("USER", "ADMIN")
                 )
                 .authorizeHttpRequests(authRequest ->
                         authRequest

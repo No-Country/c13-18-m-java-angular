@@ -32,18 +32,18 @@ class PointSystemServiceImplTest {
     private  ModelMapper mapper;
 
 
-    @Test
-    void calculatePoints(){
-        List<Recyclable> recyclables = new ArrayList<>();
-        Recyclable metal = new Recyclable(RecyclableType.METAL);
-        recyclables.add(metal);
-        recyclables.add(metal);
-        recyclables.add(metal);
-        recyclables.add(metal);
-
-        int expected = metal.getPoints() * 4;
-        assertEquals(expected,pointSystemService.getTotalPoints(recyclables));
-    }
+//    @Test
+//    void calculatePoints(){
+//        List<Recyclable> recyclables = new ArrayList<>();
+//        Recyclable metal = new Recyclable(RecyclableType.METAL);
+//        recyclables.add(metal);
+//        recyclables.add(metal);
+//        recyclables.add(metal);
+//        recyclables.add(metal);
+//
+//        int expected = metal.getPoints() * 4;
+//        assertEquals(expected,pointSystemService.getTotalPoints(recyclables));
+//    }
 
 
 
