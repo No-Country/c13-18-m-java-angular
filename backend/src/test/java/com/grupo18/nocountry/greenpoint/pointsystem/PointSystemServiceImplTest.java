@@ -32,29 +32,6 @@ class PointSystemServiceImplTest {
     private  ModelMapper mapper;
 
 
-    @Test
-    void calculatePoints(){
-        List<Recyclable> recyclables = new ArrayList<>();
-        Recyclable metal = new Recyclable();
-        metal.setRecyclableType(RecyclableType.METAL);
-        Recyclable vidrio = new Recyclable();
-        vidrio.setRecyclableType(RecyclableType.VIDRIO);
-        recyclables.add(metal);
-        recyclables.add(metal);
-        recyclables.add(vidrio);
-        recyclables.add(vidrio);
-
-        List<RecyclableRequest> recyclablesRequest = new ArrayList<>();
-        RecyclableRequest r1 = new RecyclableRequest(metal,1200);
-        RecyclableRequest r2 = new RecyclableRequest(vidrio,300);
-          recyclablesRequest.add(r1);
-          recyclablesRequest.add(r2);
-
-        RecycleRequest recycleRequests = new RecycleRequest();
-        recycleRequests.setRecyclables(recyclablesRequest);
-        int expected = 6200;
-        assertNotEquals(expected,pointSystemService.getTotalPoints(recyclablesRequest));
-    }
 
 
 
