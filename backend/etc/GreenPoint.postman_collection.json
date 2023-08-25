@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"sfede330@gmail.com\",\r\n    \"password\":\"contraseña\",\r\n    \"firstname\":\"fede\"\r\n}",
+							"raw": "{\r\n    \"username\":\"fedes12@hotmail.com\",\r\n    \"password\":\"contraseña\",\r\n    \"firstname\":\"fede\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -44,7 +44,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"fedes7777@gmail.com\",\r\n    \"password\":\"contraseña\"\r\n}",
+							"raw": "{\r\n    \"username\":\"fedes12@hotmail.com\",\r\n    \"password\":\"contraseña\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,7 +72,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"token\": \"e3936d3b-c7ba-46f1-b6ba-b9c67d286727\"\r\n}",
+							"raw": "{\r\n    \"token\": \"03a8cb8e-d959-4781-bdc6-46da7b0e4596\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -100,7 +100,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczc3NzdAZ21haWwuY29tIiwiaWF0IjoxNjkyODEzODE5LCJleHAiOjE2OTI4MTUyNTl9.P6-m5sY3HkPaEaxvMdiQ7qdr6h3iLDzNjsqBm9sFB_M",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczc3NzdAZ21haWwuY29tIiwiaWF0IjoxNjkyODI3ODYyLCJleHAiOjE2OTI5MTQyNjJ9.aRhaNi3eyZqyn_A8WF-_Jcd4wnlHgyzx7qVib6oPntA",
 									"type": "string"
 								}
 							]
@@ -131,7 +131,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczc3NzdAZ21haWwuY29tIiwiaWF0IjoxNjkyODEzODE5LCJleHAiOjE2OTI4MTUyNTl9.P6-m5sY3HkPaEaxvMdiQ7qdr6h3iLDzNjsqBm9sFB_M",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyODI3Nzg0LCJleHAiOjE2OTI5MTQxODR9.aKpZjYPhIwbXfZI6veisjD5crp3tSDr7XPue2BW3ilA",
 									"type": "string"
 								}
 							]
@@ -157,10 +157,20 @@
 				{
 					"name": "get by username",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyODQ1NDM3LCJleHAiOjE2OTI5MzE4Mzd9.vQRLGD-G4qUzs8J5VHqti5EnM9RSmrFFqt1RNLzeYbg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/users/username/7",
+							"raw": "localhost:8080/api/v1/users/username/fedes7777@gmail.com",
 							"host": [
 								"localhost"
 							],
@@ -170,20 +180,30 @@
 								"v1",
 								"users",
 								"username",
-								"7"
+								"fedes7777@gmail.com"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "user",
+					"name": "update user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyODI3Nzg0LCJleHAiOjE2OTI5MTQxODR9.aKpZjYPhIwbXfZI6veisjD5crp3tSDr7XPue2BW3ilA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstname\":\"Alan\",\r\n    \"lastname\":\"Silva\",\r\n    \"country\":\"Chile\"\r\n}",
+							"raw": "{\r\n    \"country\":\"Chile\",\r\n    \"firstname\":\"Aasdasdlan\",\r\n    \"lastname\":\"asdadsdsa\"\r\n\r\n}\r\n\r\n//pueden ir los 3 juntos, 2 o 1",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -191,7 +211,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/users/7",
+							"raw": "localhost:8080/api/v1/users/8",
 							"host": [
 								"localhost"
 							],
@@ -200,7 +220,7 @@
 								"api",
 								"v1",
 								"users",
-								"7"
+								"8"
 							]
 						}
 					},
@@ -209,14 +229,159 @@
 			]
 		},
 		{
-			"name": "sample",
+			"name": "Recyclable",
+			"item": [
+				{
+					"name": "recycle",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyOTIwNTk0LCJleHAiOjE2OTMwMDY5OTR9.7Q_-lVpkKVVx9eP3367z6-sse_eWEN-sj7vCuReWwyg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"recyclables\":[\r\n        {\"id\":1},\r\n        {\"id\":1},\r\n        {\"id\":1},\r\n        {\"id\":2},\r\n        {\"id\":1}\r\n        \r\n    ]\r\n}\r\n//colocar solo el id del reciclable, pueden ir todos loscampos pero no es necesario",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/recycle",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"recycle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "redeem code",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyOTIwNTk0LCJleHAiOjE2OTMwMDY5OTR9.7Q_-lVpkKVVx9eP3367z6-sse_eWEN-sj7vCuReWwyg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"userId\":1,\r\n    \"code\":\"GZTQD1r4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/redeem",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"redeem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user transactions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyOTIzODY1LCJleHAiOjE2OTMwMTAyNjV9.kfAqZEjyiyP392hvR2Zawhbkoh1hCwLGlWg2D97z_ps",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/transactions/user/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all transactions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyOTIzODY1LCJleHAiOjE2OTMwMTAyNjV9.kfAqZEjyiyP392hvR2Zawhbkoh1hCwLGlWg2D97z_ps",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Request",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczc3NzdAZ21haWwuY29tIiwiaWF0IjoxNjkyOTIwODMyLCJleHAiOjE2OTMwMDcyMzJ9.gWDDLh8-JCiQe0z7UKHDdJHBhY0hT4UIYVQiAAc9DBQ",
 							"type": "string"
 						}
 					]
