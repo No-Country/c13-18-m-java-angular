@@ -239,7 +239,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyOTIwNTk0LCJleHAiOjE2OTMwMDY5OTR9.7Q_-lVpkKVVx9eP3367z6-sse_eWEN-sj7vCuReWwyg",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyOTk4OTMwLCJleHAiOjE2OTMwODUzMzB9.rO-6SoXFkRrrzvR2O9iZZkWISCWQiMSmMhelvvH8AQI",
 									"type": "string"
 								}
 							]
@@ -248,7 +248,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"recyclables\":[\r\n        {\"id\":1},\r\n        {\"id\":1},\r\n        {\"id\":1},\r\n        {\"id\":2},\r\n        {\"id\":1}\r\n        \r\n    ]\r\n}\r\n//colocar solo el id del reciclable, pueden ir todos loscampos pero no es necesario",
+							"raw": "{\r\n    \"recyclables\":[\r\n        {\"recyclableId\":1,\r\n        \"grams\":254\r\n        },\r\n        {\"recyclableId\":2,\r\n        \"grams\":1200\r\n        }\r\n    ]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -278,7 +278,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyOTIwNTk0LCJleHAiOjE2OTMwMDY5OTR9.7Q_-lVpkKVVx9eP3367z6-sse_eWEN-sj7vCuReWwyg",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyOTk4OTMwLCJleHAiOjE2OTMwODUzMzB9.rO-6SoXFkRrrzvR2O9iZZkWISCWQiMSmMhelvvH8AQI",
 									"type": "string"
 								}
 							]
@@ -287,7 +287,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \r\n    \"userId\":1,\r\n    \"code\":\"GZTQD1r4\"\r\n}",
+							"raw": "{   \r\n    \"userId\":9,\r\n    \"code\":\"QjDvL8Jy\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -317,7 +317,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyOTIzODY1LCJleHAiOjE2OTMwMTAyNjV9.kfAqZEjyiyP392hvR2Zawhbkoh1hCwLGlWg2D97z_ps",
+									"value": "iJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyOTc2MTI2LCJleHAiOjE2OTMwNjI1MjZ9.RSF87s2fyqJrzmwlFCZiRZDpj5QwRb0xS_aXjVrV_0s",
 									"type": "string"
 								}
 							]
@@ -349,7 +349,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyOTIzODY1LCJleHAiOjE2OTMwMTAyNjV9.kfAqZEjyiyP392hvR2Zawhbkoh1hCwLGlWg2D97z_ps",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczEyQGhvdG1haWwuY29tIiwiaWF0IjoxNjkyOTk4OTMwLCJleHAiOjE2OTMwODUzMzB9.rO-6SoXFkRrrzvR2O9iZZkWISCWQiMSmMhelvvH8AQI",
 									"type": "string"
 								}
 							]
@@ -372,36 +372,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZWRlczc3NzdAZ21haWwuY29tIiwiaWF0IjoxNjkyOTIwODMyLCJleHAiOjE2OTMwMDcyMzJ9.gWDDLh8-JCiQe0z7UKHDdJHBhY0hT4UIYVQiAAc9DBQ",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/api/v1/sample",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"sample"
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }
