@@ -4,7 +4,6 @@ import com.grupo18.nocountry.greenpoint.recyclable.Recyclable;
 import com.grupo18.nocountry.greenpoint.recyclable.RecyclableRepository;
 import com.grupo18.nocountry.greenpoint.recyclable.RecyclableType;
 import com.grupo18.nocountry.greenpoint.user.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,9 +17,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-class PointSystemServiceTest {
+class PointSystemServiceImplTest {
     @InjectMocks
-    private PointSystemService pointSystemService;
+    private PointSystemServiceImpl pointSystemService;
     @Mock
     private  RecyclableDetailsRepository detailsRepository;
     @Mock
