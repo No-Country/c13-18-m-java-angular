@@ -35,7 +35,7 @@ public class RecyclableController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/findAll")
+    @GetMapping
     public ResponseEntity<?> findAll() {
 
         List<RecyclableDTO> recyclableDTOS = recyclableService.findAll()
@@ -50,20 +50,22 @@ public class RecyclableController {
         return ResponseEntity.ok(recyclableDTOS);
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public ResponseEntity<?> save(@RequestBody RecyclableDTO recyclableDTO) throws URISyntaxException {
 
         if (recyclableDTO.getRecyclableType().toString().isBlank()){
             return ResponseEntity.badRequest().build();
         }
 
-        // al guardar un reciclable solo me interesa saber su tipo, ya que el id y los puntos lo maneja el sistema
-        recyclableService.save(new Recyclable(recyclableDTO.getRecyclableType()));
+        recyclableService.save(Recyclable.builder()
+                .recyclableType(recyclableDTO.getRecyclableType())
+                .points(recyclableDTO.getPoints())
+                .build());
 
         return ResponseEntity.created(new URI("/api/v1/recyclable/save")).build();
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateRecyclable(@PathVariable Long id, @RequestBody RecyclableDTO recyclableDTO) {
 
         Optional<Recyclable> recyclableOptional = recyclableService.getById(id);
@@ -71,6 +73,7 @@ public class RecyclableController {
         if (recyclableOptional.isPresent()){
             Recyclable recyclable = recyclableOptional.get();
             recyclable.setRecyclableType(recyclableDTO.getRecyclableType());
+            recyclable.setPoints(recyclableDTO.getPoints());
             recyclableService.save(recyclable);
             return ResponseEntity.ok("Registro Actualizado");
         }
@@ -78,7 +81,7 @@ public class RecyclableController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id) {
 
         if (id != null) {
