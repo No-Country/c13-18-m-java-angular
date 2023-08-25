@@ -34,8 +34,6 @@ public class RecyclingServiceTest {
         RecyclingPoint recyclingPoint = new RecyclingPoint();
         recyclingPoint.setId(1L);
         recyclingPoint.setAddress("Sample Address");
-        recyclingPoint.setTotalPoints(100);
-        recyclingPoint.setCode("XYZ");
 
 
         recyclingService.createRecyclingPoint(recyclingPoint);
