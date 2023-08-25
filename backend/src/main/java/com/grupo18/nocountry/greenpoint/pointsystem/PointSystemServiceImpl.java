@@ -31,16 +31,21 @@ public class PointSystemServiceImpl implements PointSystemService{
 
 
     @Override
-    public RecycleResponse recycle(RecycleRequest request){
-        List<Recyclable> recyclable = new ArrayList<>();
-        for (Recyclable r : request.getRecyclables()) {
-            recyclable.add(recyclableRepository.findById(r.getId()).orElseThrow());
+    public RecycleResponse recycle(RecycleRequest request) throws Exception{
+        List<Recyclable> recyclables = new ArrayList<>();
+        int totalPoints = 0;
+        for (RecyclableRequest r : request.getRecyclables()) {
+            Recyclable recyclable = recyclableRepository.findById(r.getRecyclableId()).orElseThrow(
+                    ()-> new Exception("El reciclable no existe")
+            );
+            totalPoints += recyclable.getPoints()*Math.round((double)r.getGrams()/100);
+            recyclables.add(recyclable);
         }
         RecyclableDetails details = RecyclableDetails
                 .builder()
                 .code(RandomString.make())
-                .recyclables(recyclable)
-                .totalPoints(getTotalPoints(recyclable))
+                .recyclables(recyclables)
+                .totalPoints(totalPoints)
                 .build();
 
         detailsRepository.save(details);
@@ -108,12 +113,8 @@ public class PointSystemServiceImpl implements PointSystemService{
     }
 
 
-    @Override
-    public Integer getTotalPoints(List<Recyclable> recyclables) {
-        return recyclables.stream()
-                .mapToInt(Recyclable::getPoints)
-                .sum();
-    }
+
+
 
 
 }

@@ -6,14 +6,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RecycleRequest {
-
-    private List<RecyclableRequest> recyclables;
+public class RecyclableRequest {
+    private Long recyclableId;
+    private int grams;
 
 }

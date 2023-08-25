@@ -16,7 +16,7 @@ public class PointSystemController {
 
 
     @PostMapping("/recycle")
-    public ResponseEntity<RecycleResponse> recycle(@RequestBody RecycleRequest request){
+    public ResponseEntity<RecycleResponse> recycle(@RequestBody RecycleRequest request) throws Exception{
 
         return ResponseEntity.status(HttpStatus.CREATED).body(service.recycle(request));
 

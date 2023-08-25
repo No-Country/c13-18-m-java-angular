@@ -7,11 +7,10 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface PointSystemService {
-    RecycleResponse recycle(RecycleRequest request);
+    RecycleResponse recycle(RecycleRequest request) throws Exception;
     void redeem(RedeemRequest request) throws Exception;
     Page<TransactionHistory> getUserTransactionHistory(Pageable pageable, Long id);
     Page<TransactionHistory> getAllTransactions(Pageable pageable);
-    Integer getTotalPoints(List<Recyclable> recyclables);
 
 
 }
