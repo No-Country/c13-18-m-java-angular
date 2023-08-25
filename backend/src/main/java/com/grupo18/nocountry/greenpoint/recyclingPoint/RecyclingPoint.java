@@ -1,6 +1,8 @@
 package com.grupo18.nocountry.greenpoint.recyclingPoint;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +14,6 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @DynamicUpdate
 @ToString
@@ -24,9 +25,6 @@ public class RecyclingPoint {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
 private long id ;
     @Column(length = 255)
+    @NotNull
 private String address;
-private int totalPoints;
-    @Column(unique = true)
-private String code;
-private LocalDate timeStamp;
 }

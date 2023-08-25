@@ -40,36 +40,56 @@ public class RecyclingPointController {
     @Operation(summary = "Create a RecyclingPoint")
     @PostMapping
     public ResponseEntity<?> createRecyclingPoint(@RequestBody RecyclingPoint recyclingPoint) {
-        recyclingService.createRecyclingPoint(recyclingPoint);
-        return ResponseEntity.ok(HttpStatus.OK);
+        try {
+            recyclingService.createRecyclingPoint(recyclingPoint);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @Operation(summary = "Get a RecyclingPoint by its ID")
     @GetMapping("/{id}")
-    public ResponseEntity<?> searchRecyclingPoint(@Parameter(description = "ID of RecyclingPoint to be searched")@PathVariable long id) {
-        Optional<RecyclingPoint> recyclingPoint = recyclingService.searchRecyclingPoint(id);
-        return recyclingPoint.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> searchRecyclingPoint(@Parameter(description = "ID of RecyclingPoint to be searched") @PathVariable long id) {
+        try {
+            Optional<RecyclingPoint> recyclingPoint = recyclingService.searchRecyclingPoint(id);
+            return recyclingPoint.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @Operation(summary = "Modify a RecyclingPoint")
     @PutMapping("/{id}")
     public ResponseEntity<?> modifyRecyclingPoint(@PathVariable Long id, @RequestBody RecyclingPoint recyclingPoint) {
-        recyclingPoint.setId(id);
-        recyclingService.modifyRecyclingPoint(recyclingPoint);
-        return ResponseEntity.ok(HttpStatus.OK);
+        try {
+            recyclingPoint.setId(id);
+            recyclingService.modifyRecyclingPoint(recyclingPoint);
+            return ResponseEntity.ok(HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @Operation(summary = "Delete a RecyclingPoint by its ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteRecyclingPoint(@PathVariable Long id) {
-        recyclingService.deleteRecyclingPoint(id);
-        return ResponseEntity.ok(HttpStatus.OK);
+        try {
+            recyclingService.deleteRecyclingPoint(id);
+            return ResponseEntity.ok(HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @Operation(summary = "Get all the RecyclingPoints")
     @GetMapping
     public ResponseEntity<List<RecyclingPoint>> searchAllRecyclingPoints() {
-        List<RecyclingPoint> recyclingPoints = recyclingService.searchAll();
-        return ResponseEntity.ok(recyclingPoints);
+        try {
+            List<RecyclingPoint> recyclingPoints = recyclingService.searchAll();
+            return ResponseEntity.ok(recyclingPoints);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }

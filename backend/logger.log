@@ -1,9 +1,4 @@
 2023-08-21 16:09:51 ERROR GlobalExceptionHandler:18 - Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "l"
 2023-08-24 18:51:46 INFO  RecyclingPointService:53 - Entering deleteRecyclingPoint()
 2023-08-24 18:51:46 INFO  RecyclingPointService:56 - Recycling point deleted
-2023-08-24 18:51:46 INFO  RecyclingPointService:60 - Exiting deleteRecyclingPoint()
-2023-08-24 18:51:46 INFO  RecyclingPointService:33 - Entering searchRecyclingPoint()
-2023-08-24 18:51:46 INFO  RecyclingPointService:35 - Exiting searchRecyclingPoint()
-2023-08-24 18:51:46 INFO  RecyclingPointService:21 - Entering createRecyclingPoint()
-2023-08-24 18:51:46 INFO  RecyclingPointService:24 - Recycling point created
-2023-08-24 18:51:46 INFO  RecyclingPointService:28 - Exiting createRecyclingPoint()
+
