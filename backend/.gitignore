@@ -1,4 +1,6 @@
 HELP.md
+errores.log
+greenpoint.log
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
