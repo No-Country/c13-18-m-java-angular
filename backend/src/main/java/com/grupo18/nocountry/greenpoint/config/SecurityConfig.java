@@ -39,14 +39,22 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT,"/api/v1/users/**").hasAnyRole("USER","ADMIN")
                         .requestMatchers(HttpMethod.GET,"/api/v1/users/**").hasAnyRole("USER","ADMIN")
                 )
+                .authorizeHttpRequests(authRequest->
+                        authRequest
+                                .requestMatchers(HttpMethod.POST,"/api/v1/recycle").hasAnyRole("USER","ADMIN")
+                                .requestMatchers(HttpMethod.POST,"/api/v1/redeem").hasAnyRole("USER","ADMIN")
+                                .requestMatchers(HttpMethod.GET,"/api/v1/transactions/**").hasAnyRole("USER","ADMIN")
+                                .requestMatchers(HttpMethod.GET,"/api/v1/recyclable/**").hasAnyRole("USER","ADMIN")
+                )
                 .authorizeHttpRequests(authRequest ->
                         authRequest
-                                .requestMatchers(HttpMethod.POST,"/api/v1/**").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.DELETE,"/api/v1/**").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.GET,"/api/v1/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST).hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET).hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.PUT).hasRole("ADMIN")
                 )
                 .authorizeHttpRequests(
-                        authRequest -> authRequest.anyRequest().authenticated()
+                        authRequest -> authRequest.anyRequest().permitAll()
                 )
                 .sessionManagement(sessionManager ->
                         sessionManager
