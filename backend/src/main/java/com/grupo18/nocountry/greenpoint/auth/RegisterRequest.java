@@ -17,7 +17,7 @@ public class RegisterRequest {
     @NotBlank
     @Size(min = 3,max = 65)
     String username;
-    @Size(min = 3,max = 65)
+    @Size(min = 8,max = 65)
     String password;
     @NotBlank
     @Size(min = 3,max = 65)

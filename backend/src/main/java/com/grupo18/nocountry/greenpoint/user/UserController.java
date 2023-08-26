@@ -33,25 +33,25 @@ public class UserController {
 
     @Operation(summary = "Search an User by its ID")
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> getById(@PathVariable Long id) throws Exception{
+    public ResponseEntity<UserResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok().body(userService.getByID(id));
     }
     @Operation(summary = "Search an User by its Username(email)")
     @GetMapping("/username/{username}")
-    public ResponseEntity<UserResponse> getByUsername(@PathVariable String username) throws Exception {
+    public ResponseEntity<UserResponse> getByUsername(@PathVariable String username)  {
         return ResponseEntity.ok().body(userService.getByUsername(username));
     }
 
     @Operation(summary = "Modify an user")
     @PutMapping("/{id}")
-    public ResponseEntity<HttpStatus> update(@Valid @RequestBody UserUpdateRequest request, @PathVariable Long id) throws Exception{
+    public ResponseEntity<HttpStatus> update(@Valid @RequestBody UserUpdateRequest request, @PathVariable Long id) {
         userService.update(request,id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Operation(summary = "Delete an User by its ID")
     @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> delete(@PathVariable Long id) throws Exception{
+    public ResponseEntity<HttpStatus> delete(@PathVariable Long id) {
         userService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

@@ -1,5 +1,8 @@
 package com.grupo18.nocountry.greenpoint.pointsystem;
 
+import com.grupo18.nocountry.greenpoint.exceptions.IdNotFoundException;
+import com.grupo18.nocountry.greenpoint.exceptions.InvalidRecycleCode;
+import com.grupo18.nocountry.greenpoint.exceptions.RecyclableNotFound;
 import com.grupo18.nocountry.greenpoint.recyclable.Recyclable;
 import com.grupo18.nocountry.greenpoint.recyclable.RecyclableRepository;
 import com.grupo18.nocountry.greenpoint.user.User;
@@ -31,12 +34,12 @@ public class PointSystemServiceImpl implements PointSystemService{
 
 
     @Override
-    public RecycleResponse recycle(RecycleRequest request) throws Exception{
+    public RecycleResponse recycle(RecycleRequest request) {
         List<Recyclable> recyclables = new ArrayList<>();
         int totalPoints = 0;
         for (RecyclableRequest r : request.getRecyclables()) {
             Recyclable recyclable = recyclableRepository.findById(r.getRecyclableId()).orElseThrow(
-                    ()-> new Exception("El reciclable no existe")
+                    ()-> new RecyclableNotFound("El reciclable con el id" + r.getRecyclableId() + " no existe.")
             );
             totalPoints += recyclable.getPoints()*Math.round((double)r.getGrams()/100);
             recyclables.add(recyclable);
@@ -53,14 +56,14 @@ public class PointSystemServiceImpl implements PointSystemService{
         return mapper.map(details,RecycleResponse.class);
     }
 
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(rollbackFor = RuntimeException.class)
     @Override
-    public void redeem(RedeemRequest request) throws Exception{
+    public void redeem(RedeemRequest request) {
         RecyclableDetails details = detailsRepository.findByCodeAndRedeemedFalse(request.getCode()).orElseThrow(
-                ()-> new Exception("El código es inválido.")
+                ()-> new InvalidRecycleCode("El código es inválido.")
         );
         User user = userRepository.findById(request.getUserId()).orElseThrow(
-                ()-> new Exception("El usuario con el id "+ request.getUserId() +" no existe."));
+                ()-> new IdNotFoundException("El usuario con el id "+ request.getUserId() +" no existe."));
         details.setRedeemed(true);
         detailsRepository.save(details);
         user.setPoints(user.getPoints()+details.getTotalPoints());

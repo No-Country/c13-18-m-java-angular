@@ -1,10 +1,12 @@
 package com.grupo18.nocountry.greenpoint.pointsystem;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,7 +18,7 @@ public class PointSystemController {
 
 
     @PostMapping("/recycle")
-    public ResponseEntity<RecycleResponse> recycle(@RequestBody RecycleRequest request) throws Exception{
+    public ResponseEntity<RecycleResponse> recycle(@Valid @RequestBody RecycleRequest request) throws Exception{
 
         return ResponseEntity.status(HttpStatus.CREATED).body(service.recycle(request));
 

@@ -17,7 +17,7 @@ public class RegisterTokenController {
     private final RegisterTokenService tokenService;
 
     @PostMapping
-    public ResponseEntity<HttpStatus> confirmToken(@RequestBody ConfirmTokenRequest token) throws Exception {
+    public ResponseEntity<HttpStatus> confirmToken(@RequestBody ConfirmTokenRequest token) {
         tokenService.confirmToken(token);
 
         return ResponseEntity.status(HttpStatus.OK).build();

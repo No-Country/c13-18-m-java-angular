@@ -4,6 +4,7 @@ import com.grupo18.nocountry.greenpoint.auth.token.RegisterToken;
 import com.grupo18.nocountry.greenpoint.auth.token.RegisterTokenRepository;
 import com.grupo18.nocountry.greenpoint.auth.token.RegisterTokenResponse;
 import com.grupo18.nocountry.greenpoint.email.EmailService;
+import com.grupo18.nocountry.greenpoint.exceptions.UserAlreadyExists;
 import com.grupo18.nocountry.greenpoint.jwt.JwtService;
 import com.grupo18.nocountry.greenpoint.user.Role;
 import com.grupo18.nocountry.greenpoint.user.User;
@@ -45,6 +46,9 @@ public class AuthService {
     }
 
     public RegisterTokenResponse register(RegisterRequest request) throws MessagingException {
+        if(userRepository.findByUsername(request.getUsername()).isPresent()){
+            throw new UserAlreadyExists("El email ya se encuentra registrado.");
+        }
         User user = User.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
