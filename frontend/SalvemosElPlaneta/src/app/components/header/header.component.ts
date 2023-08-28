@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
     {}
 
     ngOnInit(): void {
+      this.logservice.initializeCurrentUser();
       this.logservice.getCurrentUser().subscribe(
         {
           next:(response:any)=>{
