@@ -1,11 +1,13 @@
 package com.grupo18.nocountry.greenpoint.user;
 
 
+import com.grupo18.nocountry.greenpoint.exceptions.IdNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.Condition;
 import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,8 +20,8 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public void update(UserUpdateRequest userRequest,Long id) throws Exception {
-        User user = userRepository.findById(id).orElseThrow(() -> new Exception("El usuario con el id " + id + " no existe"));
+    public void update(UserUpdateRequest userRequest,Long id)  {
+        User user = userRepository.findById(id).orElseThrow(() -> new IdNotFoundException("El usuario con el id " + id + " no existe"));
         log.info(user.getAuthorities().toString());
 
         if (userRequest.getLastname() != null) {
@@ -36,19 +38,19 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserResponse getByUsername(String username) throws Exception {
-        return  mapper.map(userRepository.findByUsername(username).orElseThrow(()->new Exception("El usuario " +username+ " no existe")),UserResponse.class);
+    public UserResponse getByUsername(String username) {
+        return  mapper.map(userRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("El usuario " +username+ " no existe")),UserResponse.class);
     }
 
     @Override
-    public UserResponse getByID(Long id) throws Exception {
-        return mapper.map(userRepository.findById(id).orElseThrow(()->new Exception("El usuario con el id " +id+ " no existe")),UserResponse.class);
+    public UserResponse getByID(Long id)  {
+        return mapper.map(userRepository.findById(id).orElseThrow(()->new IdNotFoundException("El usuario con el id " +id+ " no existe")),UserResponse.class);
     }
 
     @Override
-    public void delete(Long id) throws Exception {
+    public void delete(Long id) {
         User user = userRepository.findById(id).orElseThrow(
-                ()-> new Exception("El usuario con el id " +id+ " no existe")
+                ()-> new IdNotFoundException("El usuario con el id " +id+ " no existe")
         );
 
         user.setIsEnabled(false);

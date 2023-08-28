@@ -18,7 +18,6 @@ public class TransactionHistory {
     private UserResponse user;
     private int pointsEarned;
     private int recycledItems;
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime timestamp;
 
 }

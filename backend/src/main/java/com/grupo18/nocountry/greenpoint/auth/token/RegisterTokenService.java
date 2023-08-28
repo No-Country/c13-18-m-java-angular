@@ -1,8 +1,11 @@
 package com.grupo18.nocountry.greenpoint.auth.token;
 
+import com.grupo18.nocountry.greenpoint.exceptions.ConfirmationTokenException;
 import com.grupo18.nocountry.greenpoint.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.NotFound;
+import org.springframework.dao.ConcurrencyFailureException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,21 +28,21 @@ public class RegisterTokenService {
     }
 
 
-    public void confirmToken(ConfirmTokenRequest confirmToken) throws Exception {
+    public void confirmToken(ConfirmTokenRequest confirmToken) {
 
         var token = findByToken(UUID.fromString(confirmToken.getToken()))
-                .orElseThrow(() -> new Exception("El token ingresado no existe"));
+                .orElseThrow(() -> new ConfirmationTokenException("El token ingresado no existe"));
         if(LocalDateTime.now().isBefore(token.getExpiresAt())){
             //busca el usuario que contiene el token en la base de datos
             var user = userRepository.findByUsername(token.getUser().getUsername())
-                    .orElseThrow(() -> new Exception("El usuario " + token.getUser().getUsername() + " no existe"));
+                    .orElseThrow(() -> new UsernameNotFoundException("El usuario " + token.getUser().getUsername() + " no existe"));
             user.setIsEnabled(true);
             tokenRepository.deleteById(token.getId());
 
         }
         else {
             tokenRepository.deleteById(token.getId());
-            throw new Exception("El token ha expirado.");
+            throw new ConfirmationTokenException("El token ha expirado.");
         }
 
     }
