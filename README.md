@@ -14,13 +14,13 @@ Green Point es una aplicación de reciclaje que busca abordar la necesidad inmed
 * Testing: Postman.
 
 ### Integrantes 👩‍🔬
-* Project Manager: Enmillyn Araujo | [LinkedIn]() | [GitHub]()
-* Diseño UX/UI: Fernanda Flores | [LinkedIn]() | [GitHub]()
-* Desarrollador Frontend: Pablo Gutierrez | [LinkedIn]() | [GitHub]()
-* Desarrollador Backend: Ramiro Ormachea | [LinkedIn]() | [GitHub]()
-* Desarrollador Backend: Federico Silva | [LinkedIn]() | [GitHub]()
-* DevOps: Bruno Sturniolo | [LinkedIn]() | [GitHub]()
-* Testing: Irina Sovenko | [LinkedIn]() | [GitHub]()
+* Project Manager: Enmillyn Araujo | [LinkedIn](https://www.linkedin.com/in/enmiaraujo) | [GitHub](https://github.com/earaujos)
+* Diseño UX/UI: Fernanda Flores | [LinkedIn](https://www.linkedin.com/in/ferffloress/) | [GitHub](https://github.com/Fernanda-Flores)
+* Desarrollador Frontend: Pablo Gutierrez | [LinkedIn](https://www.linkedin.com/in/pablo-ra%C3%BAl-guti%C3%A9rrez/) | [GitHub](https://github.com/Pablo2311)
+* Desarrollador Backend: Ramiro Ormachea | [LinkedIn](https://www.linkedin.com/in/ramiroormachea/) | [GitHub](https://github.com/RamaOrmachea)
+* Desarrollador Backend: Federico Silva | [LinkedIn](https://www.linkedin.com/in/federico42o) | [GitHub](https://github.com/federico42o)
+* DevOps: Bruno Sturniolo | [LinkedIn](https://www.linkedin.com/in/bruno-sturniolo-aa8074234/) | [GitHub](https://github.com/SturnioloBruno)
+* Testing: Irina Sovenko | [LinkedIn](https://www.linkedin.com/in/irina-sov) | [GitHub](https://github.com/SIA83)
 
 
 
