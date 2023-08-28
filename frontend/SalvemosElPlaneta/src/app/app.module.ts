@@ -13,6 +13,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { MainComponent } from './components/main/main.component';
+import { CatalogueComponent } from './components/catalogue/catalogue.component';
+import { RedeemComponent } from './components/redeem/redeem.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { MainComponent } from './components/main/main.component';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    MainComponent
+    MainComponent,
+    CatalogueComponent,
+    RedeemComponent
   ],
   imports: [
     BrowserModule,

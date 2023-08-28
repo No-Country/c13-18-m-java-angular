@@ -11976,6 +11976,10 @@ textarea.form-control-lg {
   }
 }
 
+  .main {
+    min-height: 75vh;
+  }
+
   .seccion-titulo {
     text-align: center;
   }
