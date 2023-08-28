@@ -2,6 +2,7 @@ package com.grupo18.nocountry.greenpoint.pointsystem;
 
 import com.grupo18.nocountry.greenpoint.recyclable.Recyclable;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +16,7 @@ import java.util.List;
 @Builder
 public class RecycleRequest {
     @Valid
+    @NotEmpty
     private List<RecyclableRequest> recyclables;
 
 }
