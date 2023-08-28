@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/models/login-request';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -16,7 +17,8 @@ export class LoginComponent {
 
   constructor (
     private fb:FormBuilder,
-    private loginservice: LoginService
+    private loginservice: LoginService,
+    private routes: Router
   ) {
     this.crearForm();
   }
@@ -48,13 +50,13 @@ export class LoginComponent {
     console.log(loginRequest);
     this.loginservice.login(loginRequest).subscribe({
       next:(resp)=>{
-        console.log(resp);
+        this.routes.navigate(['/home']);
       },
       error:()=>{
         console.log("error");
       },
       complete:()=>{
-        location.reload();
+        
       }
     });
   }
