@@ -11976,6 +11976,10 @@ textarea.form-control-lg {
   }
 }
 
+  .seccion-titulo {
+    text-align: center;
+  }
+
   /* Barra de Navegación */
 
   .logo {
@@ -11984,27 +11988,74 @@ textarea.form-control-lg {
   .barra {
     float: right;
   }
+
+  /* Home */
+
+  .home {
+    padding: 40px 40px 60px 40px;
+    position: relative;
+  }
+
+  .home .columna {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .home .columna-boton {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .columna img {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    display: block;
+  }
+
   .registro {
-    float: right;
+    justify-content: center;
   }
   .login {
-    float: right;
+    justify-content: center;
+  }
+
+  .entry-link {
+    color: #000;
+    font-size: 1.2rem;
+  }
+
+  /* Register */
+
+  .registro-input {
+    display: block;
+    width: 80%;
+  }
+
+  .registro-boton {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 15px;
   }
 
   /* Footer */
 
   footer {
-    background-color: #242222;
+    background-color: #777;
     min-height: 300px;
     position: relative;
   }
   
-  /* .footer-logo {
-    height: 80px;
-    width: 80px;
-    margin: 10px;
-  } */
-  
+  .footer-titulo {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
   .footer-texto {
     font-size:  1.5rem;
     color: #fff;
