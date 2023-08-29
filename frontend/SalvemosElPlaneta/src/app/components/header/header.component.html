@@ -8,9 +8,13 @@
 <!-- Navegaciones -->
     <div class="barra" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" routerLink="">Cómo funciona</a>
-        <a class="nav-link" routerLink="">Nosotros</a>
-        <ul *ngIf="logged" class="navbar-nav me-auto mb-2 mb-lg-0">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-toggler">
+          <a class="nav-link" routerLink="">Cómo funciona</a>
+          <a class="nav-link" routerLink="">Nosotros</a>
+          <ul *ngIf="logged" class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{userAct.username}}
@@ -19,8 +23,8 @@
                 <li><a class="dropdown-item" (click)="logout()">cerrar sesion</a></li>
               </ul>
             </li>
-        </ul>
-        
+          </ul>
+        </div>
         <!-- <a class="nav-link" href="#">Preguntas Frecuentes</a> -->
         <!-- <button type="button" routerLink="/registro" class="btn btn-warning registro">Registrarse</button>
         <button type="button" routerLink="/login" class="btn btn-light login">Ingresar</button> -->
