@@ -16,6 +16,9 @@ public class RecyclableService {
     public Optional<Recyclable> getById(Long id) {
         return recyclableRepository.findById(id);
     }
+    public Optional<Recyclable> getByType(RecyclableType type) {
+        return recyclableRepository.findByRecyclableType(type);
+    }
 
     public List<Recyclable> findAll() {
         return recyclableRepository.findAll();
