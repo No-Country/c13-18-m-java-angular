@@ -1,4 +1,4 @@
-package com.grupo18.nocountry.greenpoint.Swagger;
+package com.grupo18.nocountry.greenpoint.config;
 
 
 import io.swagger.v3.oas.models.Components;
