@@ -1,5 +1,8 @@
 package com.grupo18.nocountry.greenpoint.recyclable;
 
+import com.grupo18.nocountry.greenpoint.exceptions.RecyclableAlreadyExist;
+import com.grupo18.nocountry.greenpoint.exceptions.RecyclableNotFound;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +34,9 @@ public class RecyclableController {
                     .build();
 
             return ResponseEntity.ok(recyclableDTO);
+        }else{
+            throw new RecyclableNotFound("EL reciclable con el id "+id+" no existe.");
         }
-        return ResponseEntity.notFound().build();
     }
 
     @GetMapping
@@ -51,11 +55,12 @@ public class RecyclableController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody RecyclableDTO recyclableDTO) throws URISyntaxException {
+    public ResponseEntity<?> save(@Valid @RequestBody RecyclableDTO recyclableDTO) throws URISyntaxException {
 
-        if (recyclableDTO.getRecyclableType().toString().isBlank()){
-            return ResponseEntity.badRequest().build();
+        if (recyclableService.getByType(recyclableDTO.getRecyclableType()).isPresent()){
+            throw new RecyclableAlreadyExist("Este reciclable ya se encuentra registrado.");
         }
+
 
         recyclableService.save(Recyclable.builder()
                 .recyclableType(recyclableDTO.getRecyclableType())
@@ -76,9 +81,11 @@ public class RecyclableController {
             recyclable.setPoints(recyclableDTO.getPoints());
             recyclableService.save(recyclable);
             return ResponseEntity.ok("Registro Actualizado");
+        }else{
+            throw new RecyclableNotFound("EL reciclable con el id "+id+" no existe.");
         }
 
-        return ResponseEntity.notFound().build();
+
     }
 
     @DeleteMapping("/{id}")
