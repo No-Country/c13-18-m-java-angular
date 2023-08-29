@@ -20,6 +20,27 @@ export class LoginService {
     private cookie: CookieService,
     private router: Router) {}
 
+    initializeCurrentUser(): void {
+      const tokenKey = 'token';
+      const usernameKey = 'sub';
+      
+      if (this.cookie.check(tokenKey)) {
+        const token = this.cookie.get(tokenKey);
+        const decoded: any = jwt_decode(token);
+        const username = decoded[usernameKey];
+  
+        this.getUserByUsername(username).subscribe({
+          next: (user: any) => {
+            this.setCurrentUser(user);
+          },
+          error: (err: any) => {
+  
+            this.cookie.deleteAll();
+          }
+        });
+      }
+    }
+
   setCurrentUser(user:any){
     this.currentUserSubject.next(user);
   }
