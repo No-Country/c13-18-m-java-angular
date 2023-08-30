@@ -15,6 +15,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { MainComponent } from './components/main/main.component';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { RedeemComponent } from './components/redeem/redeem.component';
+import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.component';
+import { ResetpassComponent } from './components/resetpass/resetpass.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { RedeemComponent } from './components/redeem/redeem.component';
     HomeComponent,
     MainComponent,
     CatalogueComponent,
-    RedeemComponent
+    RedeemComponent,
+    ConfirmMailComponent,
+    ResetpassComponent
   ],
   imports: [
     BrowserModule,
