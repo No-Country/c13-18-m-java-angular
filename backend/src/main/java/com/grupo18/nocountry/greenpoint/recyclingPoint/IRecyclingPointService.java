@@ -1,5 +1,6 @@
 package com.grupo18.nocountry.greenpoint.recyclingPoint;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,4 +15,7 @@ public interface IRecyclingPointService {
     void deleteRecyclingPoint(Long id);
 
     List<RecyclingPoint> searchAll();
+
+    List<RecyclingPoint> filterByTime(LocalTime openingTime, LocalTime closingTime);
+
 }

@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
                                 .timestamp(LocalDateTime.now())
                                 .build()))
                 ;
-
+        logger.error(response);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
@@ -53,6 +53,7 @@ public class GlobalExceptionHandler {
                 .timestamp(LocalDateTime.now())
                 .build();
 
+        logger.error(response);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
@@ -65,6 +66,7 @@ public class GlobalExceptionHandler {
                 .timestamp(LocalDateTime.now())
                 .build();
 
+        logger.error(response);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
@@ -79,14 +81,14 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<String> handleNotFoundException(RuntimeException ex) {
         logger.error(ex.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error " + ex.getMessage());
     }
 
     @ExceptionHandler(ConversionFailedException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<String> handleConversion(RuntimeException ex) {
         logger.error(ex.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erros " +ex.getMessage());
     }
 
 }
