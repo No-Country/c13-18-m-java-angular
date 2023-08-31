@@ -1,1 +1,13 @@
-<p>resetpass works!</p>
+<section>
+    <h2 class="m-3 d-flex justify-content-center">Reestablecer contraseña</h2>
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+      <form [formGroup]="formReset">
+        <div class="mb-3">
+          <label for="InputEmail1" class="form-label">Dirección de Correo Electrónico</label>
+          <input type="email" formControlName="email" class="form-control" id="Email" [class.is-invalid]="Email" placeholder="ejemplo@mail.com" aria-describedby="emailHelp">
+          <span *ngIf="Email" class="text-danger">El formato del email debe ser válido</span>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Enviar correo de reestablecimiento</button>
+      </form>
+    </div>
+  </section>

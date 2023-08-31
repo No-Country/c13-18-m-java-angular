@@ -50,10 +50,12 @@ export class LoginComponent {
     console.log(loginRequest);
     this.loginservice.login(loginRequest).subscribe({
       next:(resp)=>{
+        alert("Ingreso realizado correctamente.")
         this.routes.navigate(['/home']);
       },
       error:()=>{
         console.log("error");
+        alert("No ha podido loguearse correctamente.")
       },
       complete:()=>{
         
