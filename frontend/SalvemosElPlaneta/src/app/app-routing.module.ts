@@ -8,6 +8,7 @@ import { RedeemComponent } from './components/redeem/redeem.component';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.component';
 import { ResetpassComponent } from './components/resetpass/resetpass.component';
+import { NewPassComponent } from './components/new-pass/new-pass.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch:'full'},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'canjear', component: RedeemComponent},
   {path: 'catalogo', component: CatalogueComponent},
   {path: 'reestablecer', component: ResetpassComponent},
+  {path: 'token/confirm-reset', component: NewPassComponent},
   {path: ':token', component: ConfirmMailComponent},
   
 ];
