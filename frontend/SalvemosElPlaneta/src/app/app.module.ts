@@ -17,6 +17,7 @@ import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { RedeemComponent } from './components/redeem/redeem.component';
 import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.component';
 import { ResetpassComponent } from './components/resetpass/resetpass.component';
+import { NewPassComponent } from './components/new-pass/new-pass.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ResetpassComponent } from './components/resetpass/resetpass.component';
     CatalogueComponent,
     RedeemComponent,
     ConfirmMailComponent,
-    ResetpassComponent
+    ResetpassComponent,
+    NewPassComponent
   ],
   imports: [
     BrowserModule,

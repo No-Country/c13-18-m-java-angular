@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.time.LocalTime;
+
 
 @Data
 @NoArgsConstructor
@@ -19,8 +21,16 @@ public class RecyclingPoint {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-private long id ;
+    private long id ;
     @Column(length = 255)
     @NotNull
-private String address;
+    private String address;
+
+    @Column(name = "opening_time")
+    @NotNull
+    private LocalTime openingTime;
+
+    @Column(name = "closing_time")
+    @NotNull
+    private LocalTime closingTime;
 }

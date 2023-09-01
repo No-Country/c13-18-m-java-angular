@@ -11977,6 +11977,7 @@ textarea.form-control-lg {
 }
 
   .main {
+    background-color: #fafdfb;
     min-height: 75vh;
   }
 
@@ -11986,11 +11987,22 @@ textarea.form-control-lg {
 
   /* Barra de Navegación */
 
+  .barraNav {
+    background-color: #006a66;
+    color: #ffffff;
+  }
+
   .logo {
+    color: #ffffff;
     float: left;
   }
   .barra {
+    color: #ffffff;
     float: right;
+  }
+
+  .barra a {
+    color: #ffffff;
   }
 
   /* Home */
@@ -12049,13 +12061,13 @@ textarea.form-control-lg {
   /* Footer */
 
   footer {
-    background-color: #777;
+    background-color: #00201e;
     min-height: 250px;
     position: relative;
   }
   
   .footer-titulo {
-    color: #000;
+    color: #fff;
     align-items: center;
     text-align: center;
     margin-bottom: 0.5rem;
@@ -12075,7 +12087,7 @@ textarea.form-control-lg {
   }
 
   .footer-link {
-    color: #000;
+    color: #fff;
     font-size: 1.1rem;
     margin-bottom: 0.75rem;
     margin-left: 2rem;

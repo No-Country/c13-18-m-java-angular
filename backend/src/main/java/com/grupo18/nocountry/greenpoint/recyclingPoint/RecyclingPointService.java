@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,6 +81,19 @@ public class RecyclingPointService implements IRecyclingPointService {
         } catch (Exception e) {
             logger.error("Error while searching for all recycling points: {}", e);
             throw new RuntimeException("Failed to retrieve recycling points", e);
+        }
+    }
+
+    @Override
+    public List<RecyclingPoint> filterByTime(LocalTime openingTime, LocalTime closingTime) {
+        logger.info("Entering filterByTime() with openingTime: {} and closingTime: {}", openingTime, closingTime);
+        try {
+            List<RecyclingPoint> filteredRecyclingPoints = recyclingPointRepository.findByOpeningAndClosingTime(openingTime, closingTime);
+            logger.info("Exiting filterByTime() with {} filtered recycling points", filteredRecyclingPoints.size());
+            return filteredRecyclingPoints;
+        } catch (Exception e) {
+            logger.error("Error while filtering recycling points by time: {}", e);
+            throw new RuntimeException("Failed to filter recycling points by time", e);
         }
     }
 }
