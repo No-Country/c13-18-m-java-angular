@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
@@ -38,5 +40,10 @@ public class PointSystemController {
     @GetMapping("/transactions")
     public ResponseEntity<Page<TransactionHistory>> getAllTransactions(Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getAllTransactions(pageable));
+    }
+
+    @GetMapping("/details")
+    public ResponseEntity<List<RecycledItemDTO>> getReciclyngDetails(@RequestParam String code ) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.getDetailsByCode(code));
     }
 }

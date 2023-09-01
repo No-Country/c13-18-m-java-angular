@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class TransactionHistory {
     private UserResponse user;
     private int pointsEarned;
-    private int recycledItems;
+    private int totalWeight;
     private LocalDateTime timestamp;
 
 }
