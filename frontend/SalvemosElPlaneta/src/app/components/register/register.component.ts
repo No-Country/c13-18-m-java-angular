@@ -95,6 +95,10 @@ export class RegisterComponent {
     this.service.register(this.registerRequest).subscribe({
       next:(resp)=>{
         console.log(resp);
+        alert("Registrado correctamente.")
+      },
+      error:()=>{
+        alert("No se ha podido realizar el registro.")
       }
     });
   }
