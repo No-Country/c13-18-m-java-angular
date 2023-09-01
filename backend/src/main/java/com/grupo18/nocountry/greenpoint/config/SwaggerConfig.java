@@ -26,10 +26,10 @@ public class SwaggerConfig {
                         addList("Bearer Authentication"))
                 .components(new Components().addSecuritySchemes
                         ("Bearer Authentication", createAPIKeyScheme()))
-                .info(new Info().title("My REST API")
+                .info(new Info().title("GreenPoint REST API")
                         .description("GreenPoint Aplication API.")
                         .version("1.0").contact(new Contact().name("GreenPoint Team")
-                                .email("www.GreenPoint.com").url("salloszraj@gmail.com"))
+                                .email("www.GreenPoint.com").url("http://190.124.144.225/"))
                         .license(new License().name("License of API")
                                 .url("API license URL")));
     }

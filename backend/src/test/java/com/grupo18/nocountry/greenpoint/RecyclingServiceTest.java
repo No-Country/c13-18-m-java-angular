@@ -10,8 +10,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.*;
 
@@ -34,6 +38,8 @@ public class RecyclingServiceTest {
         RecyclingPoint recyclingPoint = new RecyclingPoint();
         recyclingPoint.setId(1L);
         recyclingPoint.setAddress("Sample Address");
+        recyclingPoint.setOpeningTime(LocalTime.parse("08:00"));
+        recyclingPoint.setClosingTime(LocalTime.parse("18:00"));
 
 
         recyclingService.createRecyclingPoint(recyclingPoint);
@@ -41,6 +47,22 @@ public class RecyclingServiceTest {
         verify(recyclingPointRepository, times(1)).save(recyclingPoint);
     }
 
+    @Test
+    public void testFilterRecyclingPointsByTime() {
+        LocalTime openingTime = LocalTime.of(8, 0);
+        LocalTime closingTime = LocalTime.of(14, 0);
+        List<RecyclingPoint> filteredRecyclingPoints = new ArrayList<>();
+        filteredRecyclingPoints.add(new RecyclingPoint());
+        filteredRecyclingPoints.add(new RecyclingPoint());
+
+        when(recyclingPointRepository.findByOpeningAndClosingTime(openingTime, closingTime))
+                .thenReturn(filteredRecyclingPoints);
+
+        List<RecyclingPoint> foundRecyclingPoints =
+                recyclingService.filterByTime(openingTime, closingTime);
+
+        assertEquals(2, foundRecyclingPoints.size());
+    }
     @Test
     public void testDeleteRecyclingPoint() {
         recyclingService.deleteRecyclingPoint(1L);
