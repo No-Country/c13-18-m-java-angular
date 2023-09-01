@@ -1,5 +1,6 @@
 package com.grupo18.nocountry.greenpoint.inventory;
 
+import com.grupo18.nocountry.greenpoint.exceptions.RewardNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,10 @@ public class InventoryServiceImpl implements InventoryService{
     @Override
     public void updateStock(Long rewardId,StockUpdateDTO dto) {
         Inventory inventory = inventoryRepository.findById(rewardId).orElseThrow(
-                ()->new RuntimeException("El premio con id "+rewardId+" no existe.")
+                ()->new RewardNotFoundException("El premio con id "+rewardId+" no existe.")
         );
         if(dto.getNewStock()<0){
-            throw new RuntimeException("Ingrese una cantidad mayor a cero.");
+            throw new IllegalArgumentException();
         }
         inventory.setStock(dto.getNewStock());
         inventoryRepository.save(inventory);

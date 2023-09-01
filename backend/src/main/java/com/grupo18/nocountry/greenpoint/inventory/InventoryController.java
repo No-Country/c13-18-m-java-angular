@@ -1,7 +1,7 @@
 package com.grupo18.nocountry.greenpoint.inventory;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ public class InventoryController {
 
 
     @PutMapping("/reward/{id}")
-    public ResponseEntity<HttpStatus> update(@RequestBody StockUpdateDTO request, @PathVariable Long id){
+    public ResponseEntity<HttpStatus> update(@Valid @RequestBody StockUpdateDTO request, @PathVariable Long id){
             service.updateStock(id,request);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

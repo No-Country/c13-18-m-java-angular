@@ -1,11 +1,13 @@
 package com.grupo18.nocountry.greenpoint.redeemreward;
 
-import com.grupo18.nocountry.greenpoint.inventory.InventoryRepository;
+import com.grupo18.nocountry.greenpoint.exceptions.InsufficientPointsException;
+import com.grupo18.nocountry.greenpoint.exceptions.RewardNotFoundException;
 import com.grupo18.nocountry.greenpoint.reward.Reward;
 import com.grupo18.nocountry.greenpoint.reward.RewardRepository;
 import com.grupo18.nocountry.greenpoint.user.User;
 import com.grupo18.nocountry.greenpoint.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,20 +20,22 @@ public class RedeemRewardServiceImpl implements RedeemRewardService{
     private final RewardTransactionRepository transactionRepository;
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     public void redeem(RedeemRewardRequest request) {
 
         Reward reward = rewardRepository.findById(request.getRewardId()).orElseThrow(
-                ()->new RuntimeException("El premio con el id "+request.getRewardId()+" no existe.")
+                ()->new RewardNotFoundException("El premio con el id "+request.getRewardId()+" no existe.")
         );
         User user = userRepository.findById(request.getUserId()).orElseThrow(
-                ()-> new RuntimeException("El usuario con el id "+request.getUserId()+" no existe.")
+                ()-> new UsernameNotFoundException("El usuario con el id "+request.getUserId()+" no existe.")
         );
+        int requiredPoints= reward.getPrice();
+        Long userPoints = user.getPoints();
 
-        if(user.getPoints()< reward.getPrice()){
-            throw new RuntimeException("Puntos insuficientes");
+        if(userPoints< requiredPoints){
+            throw new InsufficientPointsException("Puntos insuficientes");
         }
-        user.setPoints(user.getPoints()- reward.getPrice());
+        user.setPoints(userPoints-requiredPoints);
         userRepository.save(user);
         int actualStock = reward.getInventory().getStock();
         reward.getInventory().setStock(actualStock-1);

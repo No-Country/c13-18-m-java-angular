@@ -29,6 +29,7 @@ public class User implements UserDetails {
     private String lastname;
     private String firstname;
     private String country;
+    @Column(nullable = false)
     private String password;
     private Boolean isEnabled;
     private Long points;

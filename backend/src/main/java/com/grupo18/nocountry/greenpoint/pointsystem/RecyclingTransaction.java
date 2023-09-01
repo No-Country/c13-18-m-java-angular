@@ -1,6 +1,5 @@
 package com.grupo18.nocountry.greenpoint.pointsystem;
 
-import com.grupo18.nocountry.greenpoint.pointsystem.RecyclableDetails;
 import com.grupo18.nocountry.greenpoint.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

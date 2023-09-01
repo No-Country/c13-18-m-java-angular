@@ -1,6 +1,7 @@
 package com.grupo18.nocountry.greenpoint.redeemreward;
 
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class RedeemRewardController {
 
 
     @PostMapping
-    public ResponseEntity<HttpStatus> redeem(@RequestBody RedeemRewardRequest request){
+    public ResponseEntity<HttpStatus> redeem(@Valid @RequestBody RedeemRewardRequest request){
         service.redeem(request);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -9,8 +9,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.cglib.core.Local;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 

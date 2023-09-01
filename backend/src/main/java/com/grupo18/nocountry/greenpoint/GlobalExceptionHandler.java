@@ -1,27 +1,20 @@
 package com.grupo18.nocountry.greenpoint;
 
 import com.grupo18.nocountry.greenpoint.exceptions.*;
-import io.jsonwebtoken.MalformedJwtException;
-import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.cglib.core.Local;
 import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -56,7 +49,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({UserAlreadyExists.class, InvalidRecycleCode.class, ConfirmationTokenException.class,RecyclableAlreadyExist.class})
+    @ExceptionHandler({UserAlreadyExists.class, InvalidRecycleCode.class, ConfirmationTokenException.class,RecyclableAlreadyExist.class, RewardNotFoundException.class, InsufficientPointsException.class})
     public ResponseEntity<ErrorResponse> badRequest(RuntimeException ex) {
 
         ErrorResponse response = ErrorResponse.builder()
