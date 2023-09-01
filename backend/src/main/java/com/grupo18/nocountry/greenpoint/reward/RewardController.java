@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/product")
+@RequestMapping("/api/v1/rewards")
 public class RewardController {
 
     private final RewardService rewardService;
