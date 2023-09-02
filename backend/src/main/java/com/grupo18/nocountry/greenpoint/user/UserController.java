@@ -1,6 +1,5 @@
 package com.grupo18.nocountry.greenpoint.user;
 
-import com.grupo18.nocountry.greenpoint.recyclingPoint.RecyclingPoint;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

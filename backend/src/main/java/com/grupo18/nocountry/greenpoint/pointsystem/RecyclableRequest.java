@@ -1,6 +1,5 @@
 package com.grupo18.nocountry.greenpoint.pointsystem;
 
-import com.grupo18.nocountry.greenpoint.recyclable.Recyclable;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

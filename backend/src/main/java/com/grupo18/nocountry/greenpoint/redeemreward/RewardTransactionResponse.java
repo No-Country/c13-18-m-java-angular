@@ -1,5 +1,6 @@
-package com.grupo18.nocountry.greenpoint.pointsystem;
+package com.grupo18.nocountry.greenpoint.redeemreward;
 
+import com.grupo18.nocountry.greenpoint.reward.RewardDTO;
 import com.grupo18.nocountry.greenpoint.user.UserResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,13 +10,12 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class TransactionHistory {
-    private UserResponse user;
-    private int pointsEarned;
-    private int totalWeight;
-    private LocalDateTime timestamp;
+public class RewardTransactionResponse {
 
+    private UserResponse user;
+    private RewardDTO reward;
+    private LocalDateTime timestamp;
 }

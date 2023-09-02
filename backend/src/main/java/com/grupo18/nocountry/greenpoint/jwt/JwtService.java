@@ -1,6 +1,5 @@
 package com.grupo18.nocountry.greenpoint.jwt;
 
-import com.grupo18.nocountry.greenpoint.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

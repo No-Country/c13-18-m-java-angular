@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,13 +24,20 @@ public class RecyclableDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany
-    private List<Recyclable> recyclables;
+    @OneToMany(mappedBy = "recyclableDetails", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RecycledItem> recycledItems;
 
     private String code;
     private Integer totalPoints;
     private boolean redeemed;
 
-
+    public int getTotalWeight(){
+        if(!recycledItems.isEmpty()) {
+            return recycledItems.stream()
+                    .mapToInt(RecycledItem::getGrams)
+                    .sum();
+        }
+        return 0;
+    }
 
 }

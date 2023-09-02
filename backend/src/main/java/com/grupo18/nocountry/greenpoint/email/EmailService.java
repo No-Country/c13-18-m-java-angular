@@ -1,7 +1,7 @@
 package com.grupo18.nocountry.greenpoint.email;
 
-import com.grupo18.nocountry.greenpoint.auth.token.RegisterToken;
 import com.grupo18.nocountry.greenpoint.auth.PasswordReset.PasswordResetToken;
+import com.grupo18.nocountry.greenpoint.auth.token.RegisterToken;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;

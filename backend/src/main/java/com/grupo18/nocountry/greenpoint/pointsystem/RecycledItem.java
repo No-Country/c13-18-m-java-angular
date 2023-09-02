@@ -1,31 +1,31 @@
 package com.grupo18.nocountry.greenpoint.pointsystem;
 
-import com.grupo18.nocountry.greenpoint.user.User;
+import com.grupo18.nocountry.greenpoint.recyclable.Recyclable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class RecyclingTransaction {
+public class RecycledItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private int grams;
+
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
-    private User user;
+    @JoinColumn(name = "recyclable_id")
+    private Recyclable recyclable;
+
     @ManyToOne
-    @JoinColumn(name="details_id", nullable=false)
+    @JoinColumn(name = "recyclable_details_id")
     private RecyclableDetails recyclableDetails;
-    @CreationTimestamp
-    private LocalDateTime timestamp;
+
 }

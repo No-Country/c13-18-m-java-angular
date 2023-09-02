@@ -1,6 +1,5 @@
 package com.grupo18.nocountry.greenpoint.recyclableInfo;
 
-import com.grupo18.nocountry.greenpoint.exceptions.RecyclableNotFound;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

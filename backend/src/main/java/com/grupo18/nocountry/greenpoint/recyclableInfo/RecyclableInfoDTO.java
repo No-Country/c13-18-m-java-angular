@@ -1,7 +1,6 @@
 package com.grupo18.nocountry.greenpoint.recyclableInfo;
 
 import com.grupo18.nocountry.greenpoint.recyclable.RecyclableType;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

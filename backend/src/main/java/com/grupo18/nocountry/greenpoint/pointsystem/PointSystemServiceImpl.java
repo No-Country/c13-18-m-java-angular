@@ -30,26 +30,33 @@ public class PointSystemServiceImpl implements PointSystemService{
     private final RecyclingTransactionRepository transactionRepository;
     private final RecyclableRepository recyclableRepository;
     private final UserRepository userRepository;
+    private final RecycledItemRepository recycledItemRepository;
     private final ModelMapper mapper;
 
 
     @Override
     public RecycleResponse recycle(RecycleRequest request) {
-        List<Recyclable> recyclables = new ArrayList<>();
+        List<RecycledItem> recycledItems = new ArrayList<>();
         int totalPoints = 0;
+        RecyclableDetails details = RecyclableDetails
+                .builder()
+                .code(RandomString.make())
+                .build();
         for (RecyclableRequest r : request.getRecyclables()) {
             Recyclable recyclable = recyclableRepository.findById(r.getRecyclableId()).orElseThrow(
                     ()-> new RecyclableNotFound("El reciclable con el id" + r.getRecyclableId() + " no existe.")
             );
             totalPoints += recyclable.getPoints()*Math.round((double)r.getGrams()/100);
-            recyclables.add(recyclable);
+            recycledItems.add(RecycledItem.builder()
+                            .grams(r.getGrams())
+                            .recyclable(recyclable)
+                            .recyclableDetails(details)
+                            .build());
+            log.info(recyclable.toString());
         }
-        RecyclableDetails details = RecyclableDetails
-                .builder()
-                .code(RandomString.make())
-                .recyclables(recyclables)
-                .totalPoints(totalPoints)
-                .build();
+
+        details.setRecycledItems(recycledItems);
+        details.setTotalPoints(totalPoints);
 
         detailsRepository.save(details);
 
@@ -88,7 +95,7 @@ public class PointSystemServiceImpl implements PointSystemService{
                transactionHistories.add(TransactionHistory
                        .builder()
                        .user(mapper.map(transaction.getUser(), UserResponse.class))
-                       .recycledItems(details.getRecyclables().size())
+                       .totalWeight(details.getTotalWeight())
                        .pointsEarned(details.getTotalPoints())
                        .timestamp(transaction.getTimestamp())
                        .build());
@@ -105,7 +112,7 @@ public class PointSystemServiceImpl implements PointSystemService{
                 transactionHistories.add(TransactionHistory
                         .builder()
                         .user(mapper.map(transaction.getUser(), UserResponse.class))
-                        .recycledItems(details.getRecyclables().size())
+                        .totalWeight(details.getTotalWeight())
                         .pointsEarned(details.getTotalPoints())
                         .timestamp(transaction.getTimestamp())
                         .build());
@@ -115,9 +122,25 @@ public class PointSystemServiceImpl implements PointSystemService{
         return new PageImpl<>(transactionHistories,pageable,transactionHistories.size());
     }
 
+    @Override
+    public List<RecycledItemDTO> getDetailsByCode(String code) {
+        RecyclableDetails details = detailsRepository.findByCodeAndRedeemedFalse(code).orElseThrow(
+                ()->new InvalidRecycleCode("El código es inválido o ya ha sido canjeado.")
+        );
+        List<RecycledItemDTO> recycledItemDTOS = new ArrayList<>();
+        List<RecycledItem> recycledItems = recycledItemRepository.findAllByRecyclableDetailsId(details.getId());
+        for (RecycledItem ri : recycledItems) {
+            recycledItemDTOS.add(RecycledItemDTO
+                    .builder()
+                            .recyclableType(ri.getRecyclable().getRecyclableType())
+                            .pointsEarned(ri.getRecyclableDetails().getTotalPoints())
+                            .totalGrams(ri.getGrams())
 
+                    .build());
+        }
 
-
+        return recycledItemDTOS;
+    }
 
 
 }

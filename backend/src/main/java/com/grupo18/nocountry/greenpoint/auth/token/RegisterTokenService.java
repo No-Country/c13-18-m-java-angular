@@ -3,8 +3,6 @@ package com.grupo18.nocountry.greenpoint.auth.token;
 import com.grupo18.nocountry.greenpoint.exceptions.ConfirmationTokenException;
 import com.grupo18.nocountry.greenpoint.user.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.NotFound;
-import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
