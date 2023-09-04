@@ -111,4 +111,18 @@ public class RecyclingPointController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @Operation(summary = "Filter RecyclingPoints by comuna")
+    @GetMapping("/filterByComuna")
+    public ResponseEntity<List<RecyclingPoint>> filterRecyclingPointsByComuna(
+            @Parameter(description = "Comuna") @RequestParam String comuna){
+        try {
+            List<RecyclingPoint> filteredRecyclingPoints = recyclingService.filterByComuna(comuna);
+            return ResponseEntity.ok(filteredRecyclingPoints);
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+
 }

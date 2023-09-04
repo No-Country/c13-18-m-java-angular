@@ -22,6 +22,11 @@ public class RecyclingPoint {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id ;
+
+    @Column(name = "comuna")
+    @NotNull
+    private String comuna;
+
     @Column(length = 255)
     @NotNull
     private String address;
