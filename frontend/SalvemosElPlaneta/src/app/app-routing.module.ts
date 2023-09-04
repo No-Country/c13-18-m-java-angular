@@ -9,6 +9,8 @@ import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.component';
 import { ResetpassComponent } from './components/resetpass/resetpass.component';
 import { NewPassComponent } from './components/new-pass/new-pass.component';
+import { AboutInfoComponent } from './components/about-info/about-info.component';
+import { RewardDetailsComponent } from './components/catalogue/reward-details/reward-details.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch:'full'},
@@ -16,8 +18,10 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegisterComponent},
   {path: 'main', component: MainComponent},
+  {path: 'about-info', component: AboutInfoComponent},
   {path: 'canjear', component: RedeemComponent},
   {path: 'catalogo', component: CatalogueComponent},
+  {path: 'premio/:id', component: RewardDetailsComponent},
   {path: 'reestablecer', component: ResetpassComponent},
   {path: 'token/confirm-reset', component: NewPassComponent},
   {path: ':token', component: ConfirmMailComponent},

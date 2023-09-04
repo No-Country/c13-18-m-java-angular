@@ -1,38 +1,18 @@
-<section>
+<section class="reward_container">
+    <header class="my-5">
+        <h1 class="fs-1 text-center">Catálogo de recompensas</h1>
+    </header>
     <div class="container">
-        <div class="row">
-            <div class="col-6 col-md-3">
-                <img src="" alt="">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus porro suscipit fugit harum repudiandae consequuntur repellat aut culpa officia! Minima sunt a amet tenetur distinctio sed blanditiis saepe fugit ad.</p>    
-            </div>
-            <div class="col-6 col-md-3">
-                <img src="" alt="">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus porro suscipit fugit harum repudiandae consequuntur repellat aut culpa officia! Minima sunt a amet tenetur distinctio sed blanditiis saepe fugit ad.</p>
-            </div>
-            <div class="col-6 col-md-3">
-                <img src="" alt="">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus porro suscipit fugit harum repudiandae consequuntur repellat aut culpa officia! Minima sunt a amet tenetur distinctio sed blanditiis saepe fugit ad.</p>
-            </div>
-            <div class="col-6 col-md-3">
-                <img src="" alt="">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus porro suscipit fugit harum repudiandae consequuntur repellat aut culpa officia! Minima sunt a amet tenetur distinctio sed blanditiis saepe fugit ad.</p>    
-            </div>
-            <div class="col-6 col-md-3">
-                <img src="" alt="">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus porro suscipit fugit harum repudiandae consequuntur repellat aut culpa officia! Minima sunt a amet tenetur distinctio sed blanditiis saepe fugit ad.</p>    
-            </div>
-            <div class="col-6 col-md-3">
-                <img src="" alt="">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus porro suscipit fugit harum repudiandae consequuntur repellat aut culpa officia! Minima sunt a amet tenetur distinctio sed blanditiis saepe fugit ad.</p>
-            </div>
-            <div class="col-6 col-md-3">
-                <img src="" alt="">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus porro suscipit fugit harum repudiandae consequuntur repellat aut culpa officia! Minima sunt a amet tenetur distinctio sed blanditiis saepe fugit ad.</p>
-            </div>
-            <div class="col-6 col-md-3">
-                <img src="" alt="">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus porro suscipit fugit harum repudiandae consequuntur repellat aut culpa officia! Minima sunt a amet tenetur distinctio sed blanditiis saepe fugit ad.</p>    
-            </div>
+        <div class="row g-3 ">
+            <ng-container *ngIf="getItemsForCurrentPage().length>0">
+            <app-reward-card *ngFor="let reward of getItemsForCurrentPage()" [reward]="reward" [currentUser]="currentUser"
+                (redeem)="handleRedeem($event)" class="col-12 col-md-3 rewardss"></app-reward-card>
+            </ng-container>
         </div>
     </div>
 </section>
+<div class="paginator">
+    <button (click)="prevPage()" [disabled]="currentPage === 1" [class.opacity-5]="currentPage === 1" class="btn btn-light">Anterior</button>
+    <span>{{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages" [class.opacity-5]="currentPage===totalPages" class="btn btn-light">Siguiente</button>
+</div> 
