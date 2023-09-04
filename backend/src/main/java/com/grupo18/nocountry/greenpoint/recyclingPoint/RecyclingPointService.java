@@ -96,4 +96,17 @@ public class RecyclingPointService implements IRecyclingPointService {
             throw new RuntimeException("Failed to filter recycling points by time", e);
         }
     }
+
+    @Override
+    public List<RecyclingPoint> filterByComuna(String comuna) {
+        logger.info("Entering filterByComuna()");
+        try {
+            List<RecyclingPoint> recyclingPoints = recyclingPointRepository.findByComuna(comuna);
+            logger.info("Exiting filterByComuna()");
+            return recyclingPoints;
+        } catch (Exception e) {
+            logger.error("Error while searching for all recycling points: {}", e);
+            throw new RuntimeException("Failed to retrieve recycling points", e);
+        }
+    }
 }

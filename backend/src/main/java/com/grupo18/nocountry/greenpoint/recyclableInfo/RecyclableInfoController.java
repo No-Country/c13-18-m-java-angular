@@ -15,6 +15,7 @@ import java.util.Optional;
 public class RecyclableInfoController {
 
     private final RecyclableInfoService recyclableInfoService;
+    private final RecyclableInfoConverter recyclableInfoConverter;
 
     @GetMapping("/id")
     public ResponseEntity<?> getInfoById(@PathVariable Long id) {
@@ -23,12 +24,7 @@ public class RecyclableInfoController {
         if (recyclableInfoOptional.isPresent()){
             RecyclableInfo recyclableInfo = recyclableInfoOptional.get();
 
-            RecyclableInfoDTO recyclableInfoDTO = RecyclableInfoDTO.builder()
-                    .id(recyclableInfo.getId())
-                    .title(recyclableInfo.getTitle())
-                    .content(recyclableInfo.getContent())
-                    .tag(recyclableInfo.getTag())
-                    .build();
+            RecyclableInfoDTO recyclableInfoDTO = recyclableInfoConverter.convertInfoToInfoDTO(recyclableInfo);
 
             return ResponseEntity.ok(recyclableInfoDTO);
         }
@@ -45,12 +41,7 @@ public class RecyclableInfoController {
 
         List<RecyclableInfoDTO> recyclableInfoDTOS = recyclableInfoService.findAll()
                 .stream()
-                .map(recyclableInfo -> RecyclableInfoDTO.builder()
-                        .id(recyclableInfo.getId())
-                        .title(recyclableInfo.getTitle())
-                        .content(recyclableInfo.getContent())
-                        .tag(recyclableInfo.getTag())
-                        .build()
+                .map(recyclableInfo -> recyclableInfoConverter.convertInfoToInfoDTO(recyclableInfo)
                 ).toList();
         return ResponseEntity.ok(recyclableInfoDTOS);
     }
@@ -58,12 +49,7 @@ public class RecyclableInfoController {
     @PostMapping
     public ResponseEntity<?> save(@Valid @RequestBody RecyclableInfoDTO recyclableInfoDTO) throws URISyntaxException {
 
-        recyclableInfoService.save(RecyclableInfo.builder()
-                        .id(recyclableInfoDTO.getId())
-                        .title(recyclableInfoDTO.getTitle())
-                        .content(recyclableInfoDTO.getContent())
-                        .tag(recyclableInfoDTO.getTag())
-                .build());
+        recyclableInfoService.save(recyclableInfoConverter.convertInfoDTOToInfo(recyclableInfoDTO));
 
         return ResponseEntity.created(new URI("/api/v1/recyclableInfo/save")).build();
     }
@@ -74,11 +60,7 @@ public class RecyclableInfoController {
         Optional<RecyclableInfo> recyclableInfoOptional = recyclableInfoService.getById(id);
 
         if (recyclableInfoOptional.isPresent()) {
-            RecyclableInfo recyclableInfo = recyclableInfoOptional.get();
-            recyclableInfo.setTitle(recyclableInfoDTO.getTitle());
-            recyclableInfo.setContent(recyclableInfo.getContent());
-            recyclableInfo.setTag(recyclableInfoDTO.getTag());
-            recyclableInfoService.save(recyclableInfo);
+            recyclableInfoService.save(recyclableInfoConverter.convertInfoDTOToInfo(recyclableInfoDTO));
             return ResponseEntity.ok("Post Actualizado");
         }
 

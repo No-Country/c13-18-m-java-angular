@@ -18,4 +18,6 @@ public interface IRecyclingPointService {
 
     List<RecyclingPoint> filterByTime(LocalTime openingTime, LocalTime closingTime);
 
+    List<RecyclingPoint> filterByComuna(String comuna);
+
 }

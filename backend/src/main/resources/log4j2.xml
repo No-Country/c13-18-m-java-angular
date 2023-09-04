@@ -14,7 +14,6 @@
             <!-- Define log rolling policy based on file size -->
             <Policies>
                 <SizeBasedTriggeringPolicy size="10 MB"/>
-                <maxHistory>8</maxHistory>
             </Policies>
         </RollingFile>
     </Appenders>

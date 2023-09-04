@@ -18,6 +18,7 @@ import java.util.Optional;
 public class RecyclableController {
 
     private final RecyclableService recyclableService;
+    private final RecyclableDTOConverter recyclableDTOConverter;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getRecyclableById(@PathVariable Long id) {
@@ -26,12 +27,7 @@ public class RecyclableController {
         if (recyclableOptional.isPresent()){
             Recyclable recyclable = recyclableOptional.get();
 
-            // Todo usar libreria de mapeo dto, en vez de hacerlo manual
-            RecyclableDTO recyclableDTO = RecyclableDTO.builder()
-                    .id(recyclable.getId())
-                    .recyclableType(recyclable.getRecyclableType())
-                    .points(recyclable.getPoints())
-                    .build();
+            RecyclableDTO recyclableDTO = recyclableDTOConverter.convertRecyclableToRecyclableDTO(recyclable);
 
             return ResponseEntity.ok(recyclableDTO);
         }else{
@@ -44,11 +40,7 @@ public class RecyclableController {
 
         List<RecyclableDTO> recyclableDTOS = recyclableService.findAll()
                 .stream()
-                .map(recyclable -> RecyclableDTO.builder()
-                        .id(recyclable.getId())
-                        .recyclableType(recyclable.getRecyclableType())
-                        .points(recyclable.getPoints())
-                        .build()
+                .map(recyclable -> recyclableDTOConverter.convertRecyclableToRecyclableDTO(recyclable)
                 ).toList();
 
         return ResponseEntity.ok(recyclableDTOS);
@@ -62,10 +54,7 @@ public class RecyclableController {
         }
 
 
-        recyclableService.save(Recyclable.builder()
-                .recyclableType(recyclableDTO.getRecyclableType())
-                .points(recyclableDTO.getPoints())
-                .build());
+        recyclableService.save(recyclableDTOConverter.convertRecyclableDTOToRecyclable(recyclableDTO));
 
         return ResponseEntity.created(new URI("/api/v1/recyclable/save")).build();
     }
@@ -76,10 +65,7 @@ public class RecyclableController {
         Optional<Recyclable> recyclableOptional = recyclableService.getById(id);
 
         if (recyclableOptional.isPresent()){
-            Recyclable recyclable = recyclableOptional.get();
-            recyclable.setRecyclableType(recyclableDTO.getRecyclableType());
-            recyclable.setPoints(recyclableDTO.getPoints());
-            recyclableService.save(recyclable);
+            recyclableService.save(recyclableDTOConverter.convertRecyclableDTOToRecyclable(recyclableDTO));
             return ResponseEntity.ok("Registro Actualizado");
         }else{
             throw new RecyclableNotFound("EL reciclable con el id "+id+" no existe.");
