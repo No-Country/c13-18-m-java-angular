@@ -24,7 +24,6 @@ export class NewPassComponent implements OnInit{
     this.actRoute.queryParams.subscribe(
       (params)=>{
         this.token=params["token"];
-        console.log(this.token);
       }
     )
     
@@ -85,7 +84,7 @@ export class NewPassComponent implements OnInit{
     }
     this.resetPassService.reset(this.token, this.formResetPass.get('password1')?.value).subscribe({
       next:()=>{
-        console.log("funciona");
+
       },
       error:()=>{
 

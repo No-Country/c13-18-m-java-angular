@@ -44,10 +44,10 @@ export class RedeemComponent implements OnInit{
   validate(){
     this.redeemCode.validateCode(this.formRedeemCode.get('code')?.value).subscribe({
       next:()=>{
-        console.log("validado")
+        
       },
       error:()=>{
-        console.error();
+        
       },
       complete:()=>{
 
@@ -62,13 +62,12 @@ export class RedeemComponent implements OnInit{
       })
     };
     this.redeemCodeRequest= {userId: this.user.id ,code: this.formRedeemCode.get('code')?.value};
-    console.log(this.redeemCodeRequest);
     this.redeemCode.redeemCode(this.redeemCodeRequest).subscribe({
       next:()=>{
-        console.log("código canjeado correctamente.")
+        
       },
       error:()=>{
-        console.log("Error al canjear el código.")
+        
       },
       complete:()=>{
 

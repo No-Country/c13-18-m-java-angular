@@ -21,6 +21,7 @@ import { NewPassComponent } from './components/new-pass/new-pass.component';
 import { AboutInfoComponent } from './components/about-info/about-info.component';
 import { RewardCardComponent } from './components/catalogue/reward-card/reward-card.component';
 import { RewardDetailsComponent } from './components/catalogue/reward-details/reward-details.component';
+import { RecyclingPointsComponent } from './components/recycling-points/recycling-points.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { RewardDetailsComponent } from './components/catalogue/reward-details/re
     AboutInfoComponent,
     RewardCardComponent,
     RewardDetailsComponent,
+    RecyclingPointsComponent,
   ],
   imports: [
     BrowserModule,
