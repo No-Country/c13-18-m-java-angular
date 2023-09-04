@@ -21,14 +21,17 @@ export class RewardDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.actRoute.params.subscribe(
       (params)=>{
-        this.id=params['id'];
+        this.id=!Number.isNaN(parseInt(this.id))?"0":params['id'];
       }
     )
-    this.catalService.getById(this.id).subscribe({
-      next:(resp:RewardDTO)=>{
-        resp = this.reward;
-      },
-    })
+    if (this.id!=="0") {
+      this.catalService.getById(this.id).subscribe({
+        next:(resp:RewardDTO)=>{
+          this.reward = resp;
+        },
+      })
+    }
+    
   }
 
 }
