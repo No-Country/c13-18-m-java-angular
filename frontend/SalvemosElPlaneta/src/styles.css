@@ -11992,8 +11992,21 @@ textarea.form-control-lg {
     color: #ffffff;
   }
 
+  .dropdown-menu {
+    background-color: #006a66;
+    color: #ffffff;
+  }
+
+  .dropdown-item:hover {
+    background-color: #00969181;
+    color: #fff;
+    cursor: pointer;
+  }
+
   .logo {
     color: #ffffff;
+    text-decoration: none;
+    font-size: x-large;
     float: left;
   }
   .barra {
@@ -12056,6 +12069,12 @@ textarea.form-control-lg {
     display: block;
     margin: 0 auto;
     margin-bottom: 15px;
+  }
+
+  /* Redeem */
+
+  .redeemCode {
+    display: flex;
   }
 
   /* Footer */

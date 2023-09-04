@@ -1,7 +1,7 @@
 <section>
-    <h3 class="m-3 d-flex">Reestablecer contraseña</h3>
-    <div class="container d-flex">
-        <form class="container-fluid" [formGroup]="formResetPass" (ngSubmit)="submit()"> 
+    <h3 class="m-3 d-flex align-items-center justify-content-center">Restablecer contraseña</h3>
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        <form [formGroup]="formResetPass" (ngSubmit)="submit()"> 
           <div class="mb-3">
             <label for="InputPassword1" class="form-label"> Nueva Contraseña</label>
             <input type="password" class="form-control" formControlName="password1" id="InputPassword1" [class.is-invalid]="Password" placeholder="Nueva contraseña">

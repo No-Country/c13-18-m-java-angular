@@ -18,6 +18,9 @@ import { RedeemComponent } from './components/redeem/redeem.component';
 import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.component';
 import { ResetpassComponent } from './components/resetpass/resetpass.component';
 import { NewPassComponent } from './components/new-pass/new-pass.component';
+import { AboutInfoComponent } from './components/about-info/about-info.component';
+import { RewardCardComponent } from './components/catalogue/reward-card/reward-card.component';
+import { RewardDetailsComponent } from './components/catalogue/reward-details/reward-details.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { NewPassComponent } from './components/new-pass/new-pass.component';
     RedeemComponent,
     ConfirmMailComponent,
     ResetpassComponent,
-    NewPassComponent
+    NewPassComponent,
+    AboutInfoComponent,
+    RewardCardComponent,
+    RewardDetailsComponent,
   ],
   imports: [
     BrowserModule,

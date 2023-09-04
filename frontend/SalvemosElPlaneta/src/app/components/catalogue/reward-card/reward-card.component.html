@@ -1,0 +1,14 @@
+<article class="">
+            <div class="image_box">
+                <img [src]="reward.photo" [alt]="reward.description" class="img-thumbnail border-0 obe">
+                <span class="price_badge"><span class="price_text">{{reward.price}} GREEN POINTS</span></span>
+            </div>
+            <div class="footer_reward my-4">
+                <div class="title_reward">
+                    <p class="fs-3 m-0">{{reward.name}}</p>    
+                    <button type="button" class="btn btn-primary" [routerLink]="'/premio/'+reward.id ">Canjear</button>     
+                </div>           
+            <p class="fs-5 m-0">{{reward.description}}</p>    
+            <p class="reward_stock m-0">{{reward.inventory?.stock}} disponibles!</p>    
+        </div>
+</article>
