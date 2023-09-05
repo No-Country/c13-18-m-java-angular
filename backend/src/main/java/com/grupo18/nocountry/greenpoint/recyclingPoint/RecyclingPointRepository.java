@@ -13,6 +13,6 @@ public interface RecyclingPointRepository extends JpaRepository<RecyclingPoint, 
     List<RecyclingPoint> findByOpeningAndClosingTime(@Param("openingTime") LocalTime openingTime, @Param("closingTime") LocalTime closingTime);
 
     @Query("SELECT rp FROM RecyclingPoint rp WHERE rp.comuna = :comuna")
-    List<RecyclingPoint> findByComuna(@Param("comuna") String comuna);
+    List<RecyclingPoint> findByComuna(@Param("comuna") int comuna);
 
 }

@@ -42,7 +42,14 @@ public class RecyclingPointController {
 
     @Operation(summary = "Create a new RecyclingPoint")
     @PostMapping
-    public ResponseEntity<?> createRecyclingPoint(@RequestBody RecyclingPoint recyclingPoint) {
+    public ResponseEntity<?> createRecyclingPoint(
+            @RequestBody @Schema(
+                    example = "{\"address\":\"123 Main St\"," +
+                            "\"comuna\": 5," +
+                            "\"openingTime\":\"09:00\"," +
+                            "\"closingTime\":\"17:00\"}"
+            )
+            RecyclingPoint recyclingPoint) {
         try {
             recyclingService.createRecyclingPoint(recyclingPoint);
             return ResponseEntity.status(HttpStatus.CREATED).body(recyclingPoint);
@@ -50,7 +57,6 @@ public class RecyclingPointController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
 
     @Operation(summary = "Get a RecyclingPoint by its ID")
     @GetMapping("/{id}")
@@ -65,7 +71,16 @@ public class RecyclingPointController {
 
     @Operation(summary = "Modify a RecyclingPoint")
     @PutMapping("/{id}")
-    public ResponseEntity<?> modifyRecyclingPoint(@PathVariable Long id, @RequestBody RecyclingPoint recyclingPoint) {
+    public ResponseEntity<?> modifyRecyclingPoint(@PathVariable Long id,
+                                                  @RequestBody @Schema(description = "RecyclingPoint object in the following format",
+                                                          example = "{\"address\":\"123 Main St\"," +
+                                                                  "\"comuna\": 5," +
+                                                                  "\"openingTime\":\"09:00\"," +
+                                                                  "\"closingTime\":\"17:00\"}"
+                                                  ) RecyclingPoint recyclingPoint)
+
+    {
+
         try {
             recyclingPoint.setId(id);
             recyclingService.modifyRecyclingPoint(recyclingPoint);
@@ -115,7 +130,7 @@ public class RecyclingPointController {
     @Operation(summary = "Filter RecyclingPoints by comuna")
     @GetMapping("/filterByComuna")
     public ResponseEntity<List<RecyclingPoint>> filterRecyclingPointsByComuna(
-            @Parameter(description = "Comuna") @RequestParam String comuna){
+            @Parameter(description = "Comuna") @RequestParam int comuna){
         try {
             List<RecyclingPoint> filteredRecyclingPoints = recyclingService.filterByComuna(comuna);
             return ResponseEntity.ok(filteredRecyclingPoints);
