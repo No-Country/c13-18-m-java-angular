@@ -68,7 +68,7 @@ public class AuthService {
                 token
         );
         emailService.send(token);
-        String CLIENT_URL = "http://190.124.144.225/";
+        String CLIENT_URL = "http://greenpoint.zanity.net/token/confirm-mail/";
         return RegisterTokenResponse.builder()
                 .token(token.getToken().toString())
                 .confirmationUrl(CLIENT_URL +token.getToken())

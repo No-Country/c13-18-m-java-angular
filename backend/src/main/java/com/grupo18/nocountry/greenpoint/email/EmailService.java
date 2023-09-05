@@ -73,7 +73,7 @@ public class EmailService implements EmailSender {
                 "                                        <p style=\"color:#455056; font-size:15px;line-height:24px; margin:0;\">\n" +
                 "                                            Verificá tu email y comenzá a ganar puntos con Green Point!\n" +
                 "                                        </p>\n" +
-                "                                        <a href=\"http://190.124.144.225/{{token}}\"\n" +
+                "                                        <a href=\"http://greenpoint.zanity.net/token/confirm-mail/{{token}}\"\n" +
                 "                                            style=\"background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;\">Confirmar email</a>\n" +
                 "                                    </td>\n" +
                 "                                </tr>\n" +
@@ -105,7 +105,7 @@ public class EmailService implements EmailSender {
 
 
     public void sendPasswordResetEmail(PasswordResetToken token) throws MessagingException {
-        String resetUrl = "http://190.124.144.225/token/confirm-reset?token=" + token.getToken();
+        String resetUrl = "http://greenpoint.zanity.net/token/confirm-reset?token=" + token.getToken();
         String name = token.getUser().getFirstname();
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper mime = new MimeMessageHelper(message, true, "UTF-8");
