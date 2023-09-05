@@ -21,6 +21,6 @@ public class Reward {
     private Integer price; // no le pongo BigDecimal, xq son precios de puntos pequeños.
     private String description;
     private String photo;
-    @OneToOne
+    @OneToOne(orphanRemoval = true)
     private Inventory inventory;
 }

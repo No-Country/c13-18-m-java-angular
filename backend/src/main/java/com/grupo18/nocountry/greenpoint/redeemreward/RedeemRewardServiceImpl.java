@@ -1,6 +1,7 @@
 package com.grupo18.nocountry.greenpoint.redeemreward;
 
 import com.grupo18.nocountry.greenpoint.exceptions.InsufficientPointsException;
+import com.grupo18.nocountry.greenpoint.exceptions.OutOfStockException;
 import com.grupo18.nocountry.greenpoint.exceptions.RewardNotFoundException;
 import com.grupo18.nocountry.greenpoint.reward.Reward;
 import com.grupo18.nocountry.greenpoint.reward.RewardRepository;
@@ -38,6 +39,9 @@ public class RedeemRewardServiceImpl implements RedeemRewardService{
         user.setPoints(userPoints-requiredPoints);
         userRepository.save(user);
         int actualStock = reward.getInventory().getStock();
+        if(actualStock<1){
+            throw new OutOfStockException("No hay stock.");
+        }
         reward.getInventory().setStock(actualStock-1);
 
         transactionRepository.save(RewardTransaction.builder()

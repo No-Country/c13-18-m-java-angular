@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({UserAlreadyExists.class, InvalidRecycleCode.class, ConfirmationTokenException.class,RecyclableAlreadyExist.class, RewardNotFoundException.class, InsufficientPointsException.class})
+    @ExceptionHandler({OutOfStockException.class,UserAlreadyExists.class, InvalidRecycleCode.class, ConfirmationTokenException.class,RecyclableAlreadyExist.class, RewardNotFoundException.class, InsufficientPointsException.class})
     public ResponseEntity<ErrorResponse> badRequest(RuntimeException ex) {
 
         ErrorResponse response = ErrorResponse.builder()
