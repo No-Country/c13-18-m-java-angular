@@ -1,5 +1,6 @@
 package com.grupo18.nocountry.greenpoint.recyclableInfo;
 
+import com.grupo18.nocountry.greenpoint.recyclable.RecyclableType;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +13,13 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/api/v1/info")
 public class RecyclableInfoController {
 
     private final RecyclableInfoService recyclableInfoService;
     private final RecyclableInfoConverter recyclableInfoConverter;
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getInfoById(@PathVariable Long id) {
         Optional<RecyclableInfo> recyclableInfoOptional = recyclableInfoService.getById(id);
 
@@ -31,9 +33,9 @@ public class RecyclableInfoController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/{tag}")
+    @GetMapping("getByTag/{tag}")
     public ResponseEntity<?> getInfoByTag(@PathVariable String tag) {
-        return ResponseEntity.ok(recyclableInfoService.getByTag(tag));
+        return ResponseEntity.ok(recyclableInfoService.getByTag(RecyclableType.valueOf(tag)));
     }
 
     @GetMapping
