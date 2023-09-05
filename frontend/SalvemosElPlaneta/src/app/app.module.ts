@@ -22,6 +22,7 @@ import { AboutInfoComponent } from './components/about-info/about-info.component
 import { RewardCardComponent } from './components/catalogue/reward-card/reward-card.component';
 import { RewardDetailsComponent } from './components/catalogue/reward-details/reward-details.component';
 import { RecyclingPointsComponent } from './components/recycling-points/recycling-points.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { RecyclingPointsComponent } from './components/recycling-points/recyclin
     RewardCardComponent,
     RewardDetailsComponent,
     RecyclingPointsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

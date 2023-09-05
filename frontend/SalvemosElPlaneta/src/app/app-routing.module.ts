@@ -14,6 +14,7 @@ import { RewardDetailsComponent } from './components/catalogue/reward-details/re
 import { RecyclingPointsComponent } from './components/recycling-points/recycling-points.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggedGuard } from './guards/logged.guard';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   
@@ -21,9 +22,10 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [LoggedGuard]},
   {path: 'registro', component: RegisterComponent, canActivate: [LoggedGuard]},
   {path: 'home', component: MainComponent},
+  {path: 'perfil', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'about-info', component: AboutInfoComponent},
   {path: 'recy-points', component: RecyclingPointsComponent},
-  {path: 'canjear', component: RedeemComponent, canActivate: [AuthGuard] },
+  {path: 'canjear', component: RedeemComponent, canActivate: [AuthGuard]},
   {path: 'catalogo', component: CatalogueComponent},
   {path: 'premio/:id', component: RewardDetailsComponent},
   {path: 'restablecer', component: ResetpassComponent},
