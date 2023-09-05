@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ResetRequest } from 'src/app/models/reset-request';
 import { ResetpassService } from 'src/app/services/resetpass.service';
 
@@ -17,6 +18,7 @@ export class ResetpassComponent {
   constructor(
     private fb:FormBuilder,
     private resetservice: ResetpassService,
+    private router:Router
   ){
     this.crearForm();
   }
@@ -42,7 +44,7 @@ export class ResetpassComponent {
     const resetRequest:ResetRequest={email:this.formReset.get('email')?.value}
     this.resetservice.request(resetRequest).subscribe({
       next:()=>{
-        alert("Mail de reestablecimiento de contraseña enviado")
+        alert("Mail de reestablecimiento de contraseña enviado");
       },
       error:()=>{
         alert("Mail no encontrado")

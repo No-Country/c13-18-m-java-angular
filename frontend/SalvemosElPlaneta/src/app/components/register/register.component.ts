@@ -91,10 +91,8 @@ export class RegisterComponent {
        })
     }
     this.registerRequest= {username: this.formRegister.get('email')?.value, firstname: this.formRegister.get('username')?.value,password: this.formRegister.get('password1')?.value}
-    console.log(this.registerRequest);
     this.service.register(this.registerRequest).subscribe({
       next:(resp)=>{
-        console.log(resp);
         alert("Registrado correctamente.")
       },
       error:()=>{

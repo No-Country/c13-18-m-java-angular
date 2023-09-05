@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ResetpassService } from 'src/app/services/resetpass.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class NewPassComponent implements OnInit{
   constructor(
     private fb:FormBuilder,
     private actRoute:ActivatedRoute,
-    private resetPassService:ResetpassService
+    private resetPassService:ResetpassService,
+    private router:Router
   ){}
 
   ngOnInit(): void {
@@ -24,7 +25,6 @@ export class NewPassComponent implements OnInit{
     this.actRoute.queryParams.subscribe(
       (params)=>{
         this.token=params["token"];
-        console.log(this.token);
       }
     )
     
@@ -85,10 +85,10 @@ export class NewPassComponent implements OnInit{
     }
     this.resetPassService.reset(this.token, this.formResetPass.get('password1')?.value).subscribe({
       next:()=>{
-        console.log("funciona");
+        this.router.navigate(["/login"]);
       },
       error:()=>{
-
+        alert("No se pudo restablecer la contraseña")
       },
       complete:()=>{
 

@@ -31,7 +31,7 @@ export class ConfirmMailComponent implements OnInit {
           this.sended=true;
         },
         error:(error:any)=>{
-          console.log(error.message);
+          
         },
         complete:()=>{
           this.isSended(this.sended);

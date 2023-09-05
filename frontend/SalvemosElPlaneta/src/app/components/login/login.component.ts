@@ -47,14 +47,12 @@ export class LoginComponent {
       });
     }
     const loginRequest:LoginRequest={username: this.formLogin.get('email')?.value, password: this.formLogin.get('password')?.value}
-    console.log(loginRequest);
     this.loginservice.login(loginRequest).subscribe({
       next:(resp)=>{
         alert("Ingreso realizado correctamente.")
         this.routes.navigate(['/home']);
       },
       error:()=>{
-        console.log("error");
         alert("No ha podido loguearse correctamente.")
       },
       complete:()=>{

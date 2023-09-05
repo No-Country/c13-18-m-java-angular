@@ -12046,6 +12046,10 @@ textarea.form-control-lg {
     display: block;
   }
 
+  .land-img {
+    width: 100%;
+  }
+
   .registro {
     justify-content: center;
   }
@@ -12056,6 +12060,12 @@ textarea.form-control-lg {
   .entry-link {
     color: #000;
     font-size: 1.2rem;
+  }
+
+  /* Main */
+
+  .main-icons {
+    width: 100%;
   }
 
   /* Register */

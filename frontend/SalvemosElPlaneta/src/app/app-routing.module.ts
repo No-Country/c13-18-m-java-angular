@@ -11,20 +11,26 @@ import { ResetpassComponent } from './components/resetpass/resetpass.component';
 import { NewPassComponent } from './components/new-pass/new-pass.component';
 import { AboutInfoComponent } from './components/about-info/about-info.component';
 import { RewardDetailsComponent } from './components/catalogue/reward-details/reward-details.component';
+import { RecyclingPointsComponent } from './components/recycling-points/recycling-points.component';
+import { AuthGuard } from './guards/auth.guard';
+import { LoggedGuard } from './guards/logged.guard';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch:'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'registro', component: RegisterComponent},
-  {path: 'main', component: MainComponent},
+  
+  {path: '', component: HomeComponent},
+  {path: 'login', component: LoginComponent, canActivate: [LoggedGuard]},
+  {path: 'registro', component: RegisterComponent, canActivate: [LoggedGuard]},
+  {path: 'home', component: MainComponent},
+  {path: 'perfil', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'about-info', component: AboutInfoComponent},
-  {path: 'canjear', component: RedeemComponent},
+  {path: 'recy-points', component: RecyclingPointsComponent},
+  {path: 'canjear', component: RedeemComponent, canActivate: [AuthGuard]},
   {path: 'catalogo', component: CatalogueComponent},
   {path: 'premio/:id', component: RewardDetailsComponent},
-  {path: 'reestablecer', component: ResetpassComponent},
+  {path: 'restablecer', component: ResetpassComponent},
   {path: 'token/confirm-reset', component: NewPassComponent},
-  {path: ':token', component: ConfirmMailComponent},
+  {path: 'token/confirm-mail/:token', component: ConfirmMailComponent},
   
 ];
 
