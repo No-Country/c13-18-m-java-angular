@@ -30,6 +30,7 @@ public class RewardController {
                     .description(reward.getDescription())
                     .photo(reward.getPhoto())
                     .inventory(reward.getInventory())
+                    .inventory(reward.getInventory())
                     .build();
 
             return ResponseEntity.ok(rewardDTO);
@@ -48,6 +49,7 @@ public class RewardController {
                         .price(reward.getPrice())
                         .description(reward.getDescription())
                         .photo(reward.getPhoto())
+                        .inventory(reward.getInventory())
                         .build()
                 ).toList();
 
@@ -64,6 +66,7 @@ public class RewardController {
                         .price(reward.getPrice())
                         .description(reward.getDescription())
                         .photo(reward.getPhoto())
+                        .inventory(reward.getInventory())
                         .build()
                 ).toList();
 
