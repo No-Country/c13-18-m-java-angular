@@ -58,15 +58,15 @@ public class RecyclableInfoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateRecyclableInfo(@PathVariable Long id, @RequestBody RecyclableInfoDTO recyclableInfoDTO) {
+        RecyclableInfo updatedRecyclableInfo = recyclableInfoConverter.convertInfoDTOToInfo(recyclableInfoDTO);
 
-        Optional<RecyclableInfo> recyclableInfoOptional = recyclableInfoService.getById(id);
+        RecyclableInfo result = recyclableInfoService.update(updatedRecyclableInfo, id);
 
-        if (recyclableInfoOptional.isPresent()) {
-            recyclableInfoService.save(recyclableInfoConverter.convertInfoDTOToInfo(recyclableInfoDTO));
-            return ResponseEntity.ok("Post Actualizado");
+        if (result != null) {
+            return ResponseEntity.ok("Reciclable actualizado");
+        } else {
+            return ResponseEntity.notFound().build();
         }
-
-        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")

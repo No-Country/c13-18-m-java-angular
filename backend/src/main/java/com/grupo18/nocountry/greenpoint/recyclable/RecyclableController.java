@@ -62,15 +62,15 @@ public class RecyclableController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateRecyclable(@PathVariable Long id, @RequestBody RecyclableDTO recyclableDTO) {
 
-        Optional<Recyclable> recyclableOptional = recyclableService.getById(id);
+        Recyclable updatedRecyclable = recyclableDTOConverter.convertRecyclableDTOToRecyclable(recyclableDTO);
 
-        if (recyclableOptional.isPresent()){
-            recyclableService.save(recyclableDTOConverter.convertRecyclableDTOToRecyclable(recyclableDTO));
-            return ResponseEntity.ok("Registro Actualizado");
-        }else{
-            throw new RecyclableNotFound("EL reciclable con el id "+id+" no existe.");
+        Recyclable result = recyclableService.update(updatedRecyclable, id);
+
+        if (result != null) {
+            return ResponseEntity.ok("Reciclable actualizado");
+        } else {
+            throw new RecyclableNotFound("El reciclable con el ID " + id + " no existe.");
         }
-
 
     }
 
