@@ -14,7 +14,7 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent {
 
   formLogin!:FormGroup
-
+  isLoading=false;
   loginRequest!:LoginRequest
   constructor (
     private fb:FormBuilder,
@@ -48,14 +48,18 @@ export class LoginComponent {
         control.markAllAsTouched();
       });
     }
+    this.isLoading=true;
     const loginRequest:LoginRequest={username: this.formLogin.get('email')?.value, password: this.formLogin.get('password')?.value}
     this.loginservice.login(loginRequest).subscribe({
       next:(resp)=>{
+        this.isLoading=!this.isLoading
         this.routes.navigate(['/home']);
       },
       error:()=>{
+        this.isLoading=!this.isLoading
       },
       complete:()=>{
+        this.isLoading=!this.isLoading
       }
     });
   }

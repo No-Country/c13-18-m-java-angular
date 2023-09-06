@@ -1,4 +1,5 @@
-<section>
+<app-loader></app-loader>
+<section *ngIf="!isLoading && !sended">
   <h3 class="m-3 d-flex">Registro de usuario</h3>
   <div class="container">
     <div class="row">
@@ -37,7 +38,7 @@
                 <p *ngIf="Password2" class="text-danger">Las contraseñas deben ser iguales</p>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary registro-boton">Enviar</button>
+            <app-primary-button type="submit" label="Enviar" class="register_button"></app-primary-button>
           </form>
         </div>
       </div>
@@ -47,3 +48,12 @@
     </div>
   </div>
 </section>
+<div *ngIf="sended" class="sended_message">
+  <img src="/assets/Images/register.png" width="30%">
+  <p>
+    Te enviamos un correo a <strong>{{email}}</strong> para que confirmes tu cuenta!
+  </p>
+
+  <app-primary-button label="Ya la confirme!" type="button" routerLink="/login"></app-primary-button>
+
+</div>

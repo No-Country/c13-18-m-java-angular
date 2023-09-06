@@ -1,5 +1,5 @@
 <app-loader></app-loader>
-<section >
+<section *ngIf="!isLoading">
   <h2 class="m-3 d-flex justify-content-center">Ingresar</h2>
   <div class="container-fluid d-flex align-items-center justify-content-center">
     <form [formGroup]="formLogin">
