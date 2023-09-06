@@ -1,0 +1,14 @@
+.button{
+    border-radius: 15px;
+    border: 2px solid #FBFDFC;
+    background-color: #006A66;
+    color: #FBFDFC;
+    padding: .2rem 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+.button:disabled{
+    background-color: #839B9B;
+
+}

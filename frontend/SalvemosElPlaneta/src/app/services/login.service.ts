@@ -12,7 +12,7 @@ import jwt_decode from 'jwt-decode';
 })
 export class LoginService {
 
-  private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>({})
+  private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null)
   url = environment.authUrl
 
   constructor(

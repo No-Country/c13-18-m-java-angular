@@ -26,6 +26,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { LoaderInterceptor } from './shared/interceptor/loader.interceptor';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { PrimaryButtonComponent } from './shared/components/primary-button/primary-button.component';
+import { FilledButtonComponent } from './shared/components/filled-button/filled-button.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { PrimaryButtonComponent } from './shared/components/primary-button/prima
     ProfileComponent,
     LoaderComponent,
     PrimaryButtonComponent,
+    FilledButtonComponent,
   ],
   imports: [
     BrowserModule,
