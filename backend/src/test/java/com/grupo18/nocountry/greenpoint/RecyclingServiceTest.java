@@ -68,32 +68,32 @@ public class RecyclingServiceTest {
 
     @Test
     public void testFilterRecyclingPointsByComuna() {
-        String comunaToFilter = "2";
+       int comunaToFilter = 2;
 
         RecyclingPoint recyclingPoint2 = new RecyclingPoint();
         recyclingPoint2.setId(3L);
-        recyclingPoint2.setComuna("1");
+        recyclingPoint2.setComuna(1);
         recyclingPoint2.setAddress("Pedro 123");
         recyclingPoint2.setOpeningTime(LocalTime.parse("21:00"));
         recyclingPoint2.setClosingTime(LocalTime.parse("18:00"));
 
         RecyclingPoint recyclingPoint3 = new RecyclingPoint();
         recyclingPoint3.setId(4L);
-        recyclingPoint3.setComuna("2");
+        recyclingPoint3.setComuna(2);
         recyclingPoint3.setAddress("Santo 33");
         recyclingPoint3.setOpeningTime(LocalTime.parse("08:00"));
         recyclingPoint3.setClosingTime(LocalTime.parse("23:00"));
 
         RecyclingPoint recyclingPoint4 = new RecyclingPoint();
         recyclingPoint4.setId(5L);
-        recyclingPoint2.setComuna("2");
+        recyclingPoint2.setComuna(2);
         recyclingPoint4.setAddress("Juancito 23");
         recyclingPoint4.setOpeningTime(LocalTime.parse("06:00"));
         recyclingPoint4.setClosingTime(LocalTime.parse("12:00"));
 
         RecyclingPoint recyclingPoint5 = new RecyclingPoint();
         recyclingPoint5.setId(6L);
-        recyclingPoint2.setComuna("3");
+        recyclingPoint2.setComuna(3);
         recyclingPoint5.setAddress("Julian 48943");
         recyclingPoint5.setOpeningTime(LocalTime.parse("12:00"));
         recyclingPoint5.setClosingTime(LocalTime.parse("14:00"));

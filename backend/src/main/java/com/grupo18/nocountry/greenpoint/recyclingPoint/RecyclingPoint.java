@@ -25,7 +25,7 @@ public class RecyclingPoint {
 
     @Column(name = "comuna")
     @NotNull
-    private String comuna;
+    private int comuna;
 
     @Column(length = 255)
     @NotNull

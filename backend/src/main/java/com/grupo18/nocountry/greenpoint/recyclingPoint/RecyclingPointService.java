@@ -98,7 +98,7 @@ public class RecyclingPointService implements IRecyclingPointService {
     }
 
     @Override
-    public List<RecyclingPoint> filterByComuna(String comuna) {
+    public List<RecyclingPoint> filterByComuna(int comuna) {
         logger.info("Entering filterByComuna()");
         try {
             List<RecyclingPoint> recyclingPoints = recyclingPointRepository.findByComuna(comuna);
