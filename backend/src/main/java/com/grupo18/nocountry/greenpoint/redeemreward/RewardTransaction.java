@@ -27,6 +27,7 @@ public class RewardTransaction {
     private User user;
     @ManyToOne
     private Reward reward;
+    private String code;
     @CreationTimestamp
     private LocalDateTime timestamp;
 

@@ -19,8 +19,7 @@ public class RedeemRewardController {
 
 
     @PostMapping
-    public ResponseEntity<HttpStatus> redeem(@Valid @RequestBody RedeemRewardRequest request){
-        service.redeem(request);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<RedeemResponse> redeem(@Valid @RequestBody RedeemRewardRequest request){
+        return ResponseEntity.status(200).body(service.redeem(request));
     }
 }
