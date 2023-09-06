@@ -30,4 +30,18 @@ public class RecyclableInfoService {
     public void deleteById(Long id) {
         reciclableInfoRepository.deleteById(id);
     }
+
+    public RecyclableInfo update(RecyclableInfo recyclableInfoActualizado, Long id){
+        Optional<RecyclableInfo> recyclableInfoAActualizar = reciclableInfoRepository.findById(id);
+
+        if (recyclableInfoAActualizar.isPresent()){
+            RecyclableInfo recyclableInfo = recyclableInfoAActualizar.get();
+            recyclableInfo.setTitle(recyclableInfoActualizado.getTitle());
+            recyclableInfo.setTag(recyclableInfoActualizado.getTag());
+            recyclableInfo.setContent(recyclableInfoActualizado.getContent());
+
+            return reciclableInfoRepository.save(recyclableInfo);
+        }
+        return null;
+    }
 }
