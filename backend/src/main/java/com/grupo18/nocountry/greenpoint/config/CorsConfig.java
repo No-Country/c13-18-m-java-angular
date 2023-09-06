@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200","http://190.124.144.225","http://localhost","http://greenpoint.zanity.net","http://190.124.144.225:8080/swagger-ui/index.html")
+                        .allowedOrigins("http://localhost:4200","http://190.124.144.225","http://localhost","http://greenpoint.zanity.net")
                         .allowedMethods("*")
                         .allowedHeaders("*")
                         .allowCredentials(true);
