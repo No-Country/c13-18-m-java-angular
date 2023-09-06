@@ -12,8 +12,12 @@ import { RegisterService } from 'src/app/services/register.service';
 export class RegisterComponent {
 
   formRegister!:FormGroup
-
+  showPassword=false;
+  showPassword2=false;
   registerRequest!: RegisterRequest
+  isLoading=false;
+  email="";
+  sended = false;
 
   constructor (
     private formbuilder: FormBuilder,
@@ -90,13 +94,19 @@ export class RegisterComponent {
          control.markAllAsTouched();
        })
     }
+    const username= this.formRegister.get('email')?.value;
+    this.isLoading=true;
     this.registerRequest= {username: this.formRegister.get('email')?.value, firstname: this.formRegister.get('username')?.value,password: this.formRegister.get('password1')?.value}
     this.service.register(this.registerRequest).subscribe({
-      next:(resp)=>{
-        alert("Registrado correctamente.")
+      next:()=>{
+        this.sended = true;
+        this.email = username;
       },
       error:()=>{
-        alert("No se ha podido realizar el registro.")
+        this.isLoading=false;
+      },
+      complete:()=>{
+        this.isLoading=false;
       }
     });
   }

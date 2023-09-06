@@ -1,4 +1,5 @@
-<section>
+<app-loader></app-loader>
+<section *ngIf="!isLoading">
   <h2 class="m-3 d-flex justify-content-center">Ingresar</h2>
   <div class="container-fluid d-flex align-items-center justify-content-center">
     <form [formGroup]="formLogin">
@@ -9,16 +10,24 @@
           <p *ngIf="Email" class="text-danger">El formato del email debe ser válido</p>
         </div>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 password-input">
         <label for="InputPassword" class="form-label">Contraseña</label>
         <input type="password" formControlName="password" class="form-control" id="Password" [class.is-invalid]="Password" placeholder="contraseña">
+        <span  (click)="showPassword=!showPassword" class="eye-password" [class.eye-invalid]="Password"><i [ngClass]="{'bi bi-eye-fill':showPassword,'bi bi-eye-slash-fill':!showPassword}" ></i></span>
         <div>
           <p *ngIf="Password" class="text-danger">La contraseña debe ser de 8 caracteres o más</p>
         </div>
       </div>
-      <p>¿olvidaste tu contraseña? recuperala haciendo click acá <a routerLink="/restablecer">Recuperar Contraseña</a></p>
-      <button type="submit" class="btn btn-primary" (click)="onSubmit()">Ingresar</button>
-      <p>Todavía no tenes tu cuenta de Green Point? <button type="button" routerLink="/registro" class="btn btn-success registro">Registrate ahora</button></p>
+      <app-primary-button type="submit" label="Iniciar Sesión" (click)="onSubmit()"></app-primary-button>
+      <div class="my-3">
+      <p class="forgot">¿Olvidaste tu contraseña? recuperala haciendo click acá <a routerLink="/restablecer" class="link text-black fw-semibold">Recuperar Contraseña</a></p>
+    </div>
+
+      <div class="btn-register">
+      <p>Todavía no tenes tu cuenta de Green Point? 
+      </p>
+        <app-filled-button type="button" routerLink="/registro" label="Registrate ahora"></app-filled-button>
+      </div>
     </form>
   </div>
 </section>

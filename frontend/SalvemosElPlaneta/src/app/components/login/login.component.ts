@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { LoginRequest } from 'src/app/models/login-request';
+import { LoaderService } from 'src/app/services/loader.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -12,13 +14,14 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent {
 
   formLogin!:FormGroup
-
+  isLoading=false;
   loginRequest!:LoginRequest
-
+  showPassword=false;
   constructor (
     private fb:FormBuilder,
     private loginservice: LoginService,
-    private routes: Router
+    private routes: Router,
+    private loaderService:LoaderService
   ) {
     this.crearForm();
   }
@@ -46,17 +49,18 @@ export class LoginComponent {
         control.markAllAsTouched();
       });
     }
+    this.isLoading=true;
     const loginRequest:LoginRequest={username: this.formLogin.get('email')?.value, password: this.formLogin.get('password')?.value}
     this.loginservice.login(loginRequest).subscribe({
       next:(resp)=>{
-        alert("Ingreso realizado correctamente.")
+        this.isLoading=!this.isLoading
         this.routes.navigate(['/home']);
       },
       error:()=>{
-        alert("No ha podido loguearse correctamente.")
+        this.isLoading=!this.isLoading
       },
       complete:()=>{
-        
+        this.isLoading=!this.isLoading
       }
     });
   }

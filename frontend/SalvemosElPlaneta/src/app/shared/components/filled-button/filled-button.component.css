@@ -1,0 +1,18 @@
+.button{
+    border-radius: 15px;
+    border: 2px solid #FBFDFC;
+    background-color: #006A66;
+    color: #FBFDFC;
+    padding: .2rem 1rem;
+    text-align: center;
+    width: 100%;
+}
+.button:hover{
+    background-color: #077773e7;
+    transition: .4s all;
+}
+
+.button:disabled{
+    background-color: #839B9B;
+
+}

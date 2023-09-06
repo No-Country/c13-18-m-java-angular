@@ -23,6 +23,10 @@ import { RewardCardComponent } from './components/catalogue/reward-card/reward-c
 import { RewardDetailsComponent } from './components/catalogue/reward-details/reward-details.component';
 import { RecyclingPointsComponent } from './components/recycling-points/recycling-points.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { LoaderInterceptor } from './shared/interceptor/loader.interceptor';
+import { LoaderComponent } from './shared/components/loader/loader.component';
+import { PrimaryButtonComponent } from './shared/components/primary-button/primary-button.component';
+import { FilledButtonComponent } from './shared/components/filled-button/filled-button.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     RewardDetailsComponent,
     RecyclingPointsComponent,
     ProfileComponent,
+    LoaderComponent,
+    PrimaryButtonComponent,
+    FilledButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +60,16 @@ import { ProfileComponent } from './components/profile/profile.component';
   ],
   providers: [
     CookieService,
-    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}          
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
+    },   
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
+   },       
   ],
   bootstrap: [AppComponent]
 })

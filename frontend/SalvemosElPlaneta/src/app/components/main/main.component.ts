@@ -8,7 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class MainComponent implements OnInit {
 
-
+  isLogged!:boolean;
   user!:any;
   constructor(
     private authService:LoginService,
@@ -17,7 +17,12 @@ export class MainComponent implements OnInit {
 
   ngOnInit():void{
     this.authService.getCurrentUser().subscribe({
-      next:(user)=> this.user = user
+      next:(user)=> {
+        
+        this.user = user
+        
+      }
     });
+    this.isLogged = this.authService.isLogged();
   }
 }

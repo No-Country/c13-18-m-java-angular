@@ -1,34 +1,43 @@
 <section class="main">
-  <h3>Bienvenido a Green Point</h3>
+  <h1 class="m-5" *ngIf="!isLogged">Bienvenido/a a Green Point</h1>
+  <h1 *ngIf="user!==null" class="m-5">{{isLogged ? 'Hola ' + (user.firstname | titlecase):''}}</h1>
   <div class="container">
-    <div class="row">
-      <article class="col-6 col-md-4">
-        <a routerLink="/recy-points"><img class="main-icons" src="/assets/Images/catalogo.png" width="250" alt="puntos de reciclaje"></a>
-        <h4>Puntos de reciclaje</h4>
-      </article>
-      <article class="col-6 col-md-4">
-        <a routerLink=""><img class="main-icons" src="/assets/Images/catalogo.png" width="250" alt="Consejos"></a>
-        <h4>Consejos</h4>
-      </article>
-        <div class="col-0 col-md-4">
+    <div class="row icons">
+      <article class="icono" routerLink="/recy-points">
+        <img class="main-icons" src="/assets/Images/icono-container.png" alt="puntos de reciclaje">
+        
+        <div>
+          <h4>Puntos de reciclaje</h4>
         </div>
+      </article>
+      <article class="icono">
+        <img class="main-icons" src="/assets/Images/icono-botella.png" alt="Consejos">
+        <div>
+          <h4>Consejos</h4>
+        </div>
+      </article>
     </div>
-    </div>
-    <div>
-      <!-- <h4>Tus puntos:</h4> -->
-      <p>Todavía no hay puntos, <a routerLink="/registro">registrate gratis</a></p>
-      <a routerLink="/about-info">ver cómo funciona</a>
-    </div>
+  </div>
+  <div class="container points-container">
+    <div class="row" *ngIf="!isLogged">
+    <h4>Tus puntos</h4>
+    <p>Todavía no hay puntos,
+    <a routerLink="/registro">registrate gratis</a> o <a routerLink="/login">iniciá sesión</a>.</p>
+    <a routerLink="/about-info">Ver cómo funciona.</a>
+  </div>
+  <div class="row user-info" *ngIf="isLogged">
+    <p>Tus puntos</p>
+    <p class="user-points">{{user.points}}</p>
+  </div>
+  </div>
   <div class="container">
-    <div class="row">
-      <div class="col-6 col-md-4">
-        <button routerLink="/canjear">Canjear puntos</button>
-      </div>
-      <div class="col-6 col-md-4">
-        <button routerLink="/catalogo">Catálogo</button>
-      </div>
-      <div class="col-0 col-md-4">
-      </div>
+    <div class="row buttons">
+
+        <app-filled-button class="filled-button" routerLink="/canjear" label="Canjear puntos" type="button" [disabled]="!isLogged"></app-filled-button>
+
+
+        <app-filled-button class="filled-button" routerLink="/catalogo" label="Ver catálogo" type="button"></app-filled-button>
+
     </div>
   </div>
 </section>
