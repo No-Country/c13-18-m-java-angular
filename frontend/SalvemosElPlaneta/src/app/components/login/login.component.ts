@@ -16,6 +16,7 @@ export class LoginComponent {
   formLogin!:FormGroup
   isLoading=false;
   loginRequest!:LoginRequest
+  showPassword=false;
   constructor (
     private fb:FormBuilder,
     private loginservice: LoginService,

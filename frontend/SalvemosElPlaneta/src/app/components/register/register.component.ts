@@ -12,7 +12,8 @@ import { RegisterService } from 'src/app/services/register.service';
 export class RegisterComponent {
 
   formRegister!:FormGroup
-
+  showPassword=false;
+  showPassword2=false;
   registerRequest!: RegisterRequest
   isLoading=false;
   email="";
