@@ -3,34 +3,12 @@
     <div class="row">
       <div class="columna col-12 col-md-7">
         <h3>Gana el planeta, ganás vos</h3>
-        <!-- <div id="carouselExample" class="carousel slide">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="..." class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="..." class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="..." class="d-block w-100" alt="...">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div> -->
         <img class="land-img" src="/assets/Images/gana-el-planeta-ganas-vos.png" alt="Persona reciclando">
       </div>
-      <div class="columna-boton col-12 col-md-5 align-items-center align-self-end">
-        <button type="button" routerLink="/login" class="btn btn-light login">Ingresar a mi cuenta</button>
-        <br>
-        <button type="button" routerLink="/registro" class="btn btn-light registro">Crear cuenta</button>
-        <br>
+      <div class="columna-boton col-12 col-md-5 align-items-center justify-content-center gap-4">
+        <app-primary-button type="button" label="Ingresar a mi cuenta" routerLink="/login" class="buttons"></app-primary-button>
+        <app-primary-button type="button" label="Crear cuenta" routerLink="/registro" class="buttons"></app-primary-button>
+
         <a class="entry-link" routerLink="/home">Ingresar sin iniciar sesión</a>
       </div>
     </div>
@@ -52,15 +30,15 @@
       </div>
     </div>
   </div>
-  <h3 class="seccion-titulo m-3">¡Sumate a esta movida!</h3>
+  <h3 class="seccion-titulo m-3">¡Empezá ahora!</h3>
   <div class="container">
     <div class="row">
       <div class="columna col-12 col-md-6">
         <img class="land-img" src="/assets/Images/sumate-a-esta-movida.jpg" alt="Persona reciclando">
       </div>
-      <div class="columna-boton col-12 col-md-6 align-items-center align-self-end">
-        <button type="button" routerLink="/registro" class="btn btn-light registro">Crear cuenta</button>
-        <br>
+      <div class="columna-boton col-12 col-md-6 align-items-center justify-content-center gap-4">
+        <app-primary-button type="button" label="Ingresar a mi cuenta" routerLink="/login" class="buttons"></app-primary-button>
+        <app-primary-button type="button" label="Crear cuenta" routerLink="/registro" class="buttons"></app-primary-button>
         <a class="entry-link" routerLink="/home">Ingresar sin iniciar sesión</a>
       </div>
     </div>
