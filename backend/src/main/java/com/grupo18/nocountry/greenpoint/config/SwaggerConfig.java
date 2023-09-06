@@ -8,11 +8,8 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
-import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Collections;
 
 @Configuration
 public class SwaggerConfig {
@@ -29,7 +26,6 @@ public class SwaggerConfig {
                         addList("Bearer Authentication"))
                 .components(new Components().addSecuritySchemes
                         ("Bearer Authentication", createAPIKeyScheme()))
-                .servers(Collections.singletonList(new Server().url("http://190.124.144.225")))
                 .info(new Info().title("GreenPoint REST API")
                         .description("GreenPoint Aplication API.")
                         .version("1.0").contact(new Contact().name("GreenPoint Team")
