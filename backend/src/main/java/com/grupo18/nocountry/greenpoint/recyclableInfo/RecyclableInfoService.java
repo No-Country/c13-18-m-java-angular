@@ -1,5 +1,6 @@
 package com.grupo18.nocountry.greenpoint.recyclableInfo;
 
+import com.grupo18.nocountry.greenpoint.recyclable.RecyclableType;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class RecyclableInfoService {
         return reciclableInfoRepository.findById(id);
     }
 
-    public List<RecyclableInfo> getByTag(String tag) {
+    public List<RecyclableInfo> getByTag(RecyclableType tag) {
         return reciclableInfoRepository.findByTag(tag);
     }
     public void save(RecyclableInfo recyclableInfo) {
