@@ -7,3 +7,8 @@
     text-align: center;
     width: 100%;
 }
+
+.button:hover{
+    background-color: #e5e9e7ce;
+    transition: .4s all;
+}
