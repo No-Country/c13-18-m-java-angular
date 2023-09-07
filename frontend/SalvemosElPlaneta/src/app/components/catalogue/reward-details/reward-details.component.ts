@@ -15,7 +15,7 @@ export class RewardDetailsComponent implements OnInit {
   reward!:RewardDTO
   rewardId!:string;
   userId!:string;
-  showModal=true;
+  showModal=false;
   copied=false;
   voucherCode:string="";
   progressWidth="100%";
