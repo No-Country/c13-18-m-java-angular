@@ -15,6 +15,7 @@ import { RecyclingPointsComponent } from './components/recycling-points/recyclin
 import { AuthGuard } from './guards/auth.guard';
 import { LoggedGuard } from './guards/logged.guard';
 import { ProfileComponent } from './components/profile/profile.component';
+import { DialogComponent } from './shared/components/dialog/dialog.component';
 
 const routes: Routes = [
   
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: 'restablecer', component: ResetpassComponent},
   {path: 'token/confirm-reset', component: NewPassComponent},
   {path: 'token/confirm-mail/:token', component: ConfirmMailComponent},
+  {path: 'dialog',component:DialogComponent}
   
 ];
 

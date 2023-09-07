@@ -15,10 +15,34 @@
       </div>
         <div class="details-footer">
         <h4>{{reward.price}} Green Points</h4>
-        <app-filled-button type="button" label="Canjear"></app-filled-button>
+        <app-filled-button type="button" (click)="redeemReward()" label="Canjear"></app-filled-button>
         </div>
       </article>
     </div>
   </div>
+</div>
+<app-dialog dialogTitle="Felicidades! 🥳" *ngIf="showModal">
+  <div class="dialog-content">
+  <p class="dialog-text">
+    Copiá tu código y canjealo en las tiendas más cercanas!
+  </p>
+  <div class="input-div">
+    <input disabled class="code-input" [value]="voucherCode">
+  
+    <button class="copy-btn" type="button" (click)="copyCode()">
+      <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>
+    </button>
   </div>
+
+      <button class="dialog-button" (click)="closeDialog()">Cerrar</button>
+    
+    </div>
+    <div class="copy-alert" *ngIf="copied">
+      <div class="message">Copiado!</div>
+      <div class="progress-bar">
+          <div class="progress" [style.width]="progressWidth"></div>
+      </div>
+  </div>
+
+  </app-dialog>
 </section>
