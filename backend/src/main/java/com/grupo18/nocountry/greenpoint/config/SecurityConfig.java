@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest->
                         authRequest
                                 .requestMatchers("/auth/**","/token","/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/api-docs.yaml").permitAll()
-                                .requestMatchers(HttpMethod.GET,"/api/v1/rewards/**","/api/v1/RecyclingPoint/**").permitAll()
+                                .requestMatchers(HttpMethod.GET,"/api/v1/rewards/**","/api/v1/RecyclingPoint/**","/api/v1/info/**").permitAll()
                         )
                 .authorizeHttpRequests(authRequest->
                         authRequest
