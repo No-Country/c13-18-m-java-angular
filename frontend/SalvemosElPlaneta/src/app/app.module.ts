@@ -29,6 +29,8 @@ import { PrimaryButtonComponent } from './shared/components/primary-button/prima
 import { FilledButtonComponent } from './shared/components/filled-button/filled-button.component';
 import { DialogComponent } from './shared/components/dialog/dialog.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     ReactiveFormsModule,
     HttpClientModule,
     DialogComponent,
-    ClipboardModule
+    ClipboardModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
 
   ],
   providers: [
