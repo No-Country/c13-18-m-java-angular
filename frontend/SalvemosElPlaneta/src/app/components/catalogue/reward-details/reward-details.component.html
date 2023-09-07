@@ -1,17 +1,24 @@
-<section *ngIf="reward" class="main">
-  <h3>Detalles del Producto</h3>
-  <div class="container">
-    <div class="row">
-      <article class="col-12 col-md-6">
-        <h4> {{reward.name}} </h4>
-        <img src="{{reward.photo}}" alt="foto del producto">
+<a role="button" routerLink="/catalogo" class="back-a"><span class="">←</span> Volver al catálogo</a>
+<section *ngIf="reward" class="details">
+  <div class="m-5">
+    <div class="">
+      <div class="details-container">
+      <article class="col-left">
+        <img [src]="reward.photo" [alt]="reward.description">
       </article>
-      <article class="col-12 col-md-6">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore recusandae atque veniam aspernatur voluptatem ea deleniti nam dolores a beatae cupiditate, iure veritatis natus. Soluta minus sunt accusamus sint aut!
+      <article class="col-right">
+        <div>
+        <h1> {{reward.name}} </h1>
+        <p>
           {{reward.description}}
         </p>
-        <h4>${{reward.price}}</h4>
+      </div>
+        <div class="details-footer">
+        <h4>{{reward.price}} Green Points</h4>
+        <app-filled-button type="button" label="Canjear"></app-filled-button>
+        </div>
       </article>
     </div>
+  </div>
   </div>
 </section>
