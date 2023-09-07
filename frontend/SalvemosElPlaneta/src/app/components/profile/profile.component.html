@@ -1,9 +1,27 @@
 <section class="main">
-  <div class="container-fluid">
-    <h3>Mi Cuenta</h3>
-    <p>Nombre:</p>
-    <p>Apellido:</p>
-    <p>Nacionalidad:</p>
+  <div class="container profile-info" *ngIf="isLogged">
+    <h3 class="title">Mi Cuenta</h3>
+    <p>Nombre: {{user.firstname}} </p>
+    <p>Apellido: {{user.lastname}} </p>
+    <p>Nacionalidad: {{user.country}} </p>
     <p>Dirección:</p>
+  </div>
+  <h4 class="act-title">Actualiza tu perfil</h4>
+  <div class="container-fluid d-flex justify-content-center">
+    <form class="" [formGroup]="formProfile" (ngSubmit)="submit()">
+      <div class="mb-3">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text" class="form-control profile-input" formControlName="username" id="username" [class.is-invalid]="Username" placeholder="Nombre">
+      </div>
+      <div class="mb-3">
+        <label for="" class="form-label">Apellido</label>
+        <input type="text" class="form-control profile-input" formControlName="lastname" id="lastname" [class.is-invalid]="Lastname" placeholder="Apellido">
+      </div>
+      <div class="mb-3">
+        <label for="" class="form-label">País</label>
+        <input type="text" class="form-control profile-input" formControlName="country" id="country" [class.is-invalid]="Country" placeholder="País">
+      </div>
+      <app-primary-button type="submit" label="Modificar" class="profile_button"></app-primary-button>
+    </form>
   </div>
 </section>
