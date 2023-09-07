@@ -27,6 +27,8 @@ import { LoaderInterceptor } from './shared/interceptor/loader.interceptor';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { PrimaryButtonComponent } from './shared/components/primary-button/primary-button.component';
 import { FilledButtonComponent } from './shared/components/filled-button/filled-button.component';
+import { DialogComponent } from './shared/components/dialog/dialog.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [
@@ -50,13 +52,17 @@ import { FilledButtonComponent } from './shared/components/filled-button/filled-
     LoaderComponent,
     PrimaryButtonComponent,
     FilledButtonComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DialogComponent,
+    ClipboardModule
+
   ],
   providers: [
     CookieService,

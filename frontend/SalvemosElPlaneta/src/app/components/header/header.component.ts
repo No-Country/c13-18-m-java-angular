@@ -21,8 +21,11 @@ export class HeaderComponent implements OnInit {
       this.logservice.getCurrentUser().subscribe(
         {
           next:(response:any)=>{
-            this.userAct=response
-            this.logged=this.logservice.isLogged();
+            if(response){
+
+              this.userAct=response
+              this.logged=this.logservice.isLogged();
+            }
             }
         }
         )
