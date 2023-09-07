@@ -6,6 +6,7 @@ import { LoginRequest } from '../models/login-request';
 import { BehaviorSubject, Observable, catchError, switchMap, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import jwt_decode from 'jwt-decode';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'

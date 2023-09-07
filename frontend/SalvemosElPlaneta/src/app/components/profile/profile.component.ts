@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfileRequest } from 'src/app/models/profile-request';
+import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -11,9 +12,11 @@ import { LoginService } from 'src/app/services/login.service';
 export class ProfileComponent implements OnInit {
 
   isLogged!:boolean;
-  user!:any;
+  user!:User;
+  userId!:number
   formProfile!:FormGroup
   profileRequest!:ProfileRequest
+  tabActive = 'datos'
 
   constructor(
     private authService:LoginService,
@@ -24,7 +27,10 @@ export class ProfileComponent implements OnInit {
   ngOnInit():void{
     this.authService.getCurrentUser().subscribe({
       next:(user)=> {
-        this.user = user;
+        if (user) {
+          this.user = user
+          this.userId = user.id
+        };
       }
     });
     this.isLogged = this.authService.isLogged();
@@ -41,7 +47,7 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  get Username() {
+  get Firstname() {
     return this.formProfile.get('firstname')?.invalid && this.formProfile.get('firstname')?.touched;
   }
 
@@ -53,7 +59,9 @@ export class ProfileComponent implements OnInit {
     return this.formProfile.get('country')?.invalid && this.formProfile.get('country')?.touched;
   }
 
-
+  setTab(tab:string){
+    this.tabActive = tab;
+  }
 
   submit(){
     if (this.formProfile.invalid) {

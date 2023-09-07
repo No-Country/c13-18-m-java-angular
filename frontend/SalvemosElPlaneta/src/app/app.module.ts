@@ -29,6 +29,9 @@ import { PrimaryButtonComponent } from './shared/components/primary-button/prima
 import { FilledButtonComponent } from './shared/components/filled-button/filled-button.component';
 import { DialogComponent } from './shared/components/dialog/dialog.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { RecyHistorialComponent } from './components/profile/recy-historial/recy-historial.component';
+import { PointsHistorialComponent } from './components/profile/points-historial/points-historial.component';
+import { FaqComponent } from './components/faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     LoaderComponent,
     PrimaryButtonComponent,
     FilledButtonComponent,
+    RecyHistorialComponent,
+    PointsHistorialComponent,
+    FaqComponent,
     
   ],
   imports: [
