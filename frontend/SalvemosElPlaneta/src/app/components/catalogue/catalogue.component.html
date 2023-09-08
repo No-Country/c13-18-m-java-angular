@@ -1,17 +1,19 @@
-<section class="reward_container">
+<section class="reward_container" *ngIf="!isLoading">
+
     <header class="my-5">
-        <h1 class="fs-1 text-center">Catálogo de recompensas</h1>
+        <h1 class="text-center">Catálogo de recompensas</h1>
     </header>
     <div class="container">
         <div class="row g-3 ">
             <ng-container *ngIf="getItemsForCurrentPage().length>0">
-            <app-reward-card *ngFor="let reward of getItemsForCurrentPage()" [reward]="reward" [currentUser]="currentUser"
+                <app-reward-card *ngFor="let reward of getItemsForCurrentPage()" [reward]="reward" [currentUser]="currentUser"
                 (redeem)="handleRedeem($event)" class="col-12 col-md-3 rewardss"></app-reward-card>
             </ng-container>
         </div>
     </div>
 </section>
-<div class="paginator">
+<app-loader></app-loader>
+<div class="paginator" *ngIf="!isLoading">
     <button (click)="prevPage()" [disabled]="currentPage === 1" [class.opacity-5]="currentPage === 1" class="btn btn-light">Anterior</button>
     <span>{{ currentPage }} / {{ totalPages }}</span>
     <button (click)="nextPage()" [disabled]="currentPage === totalPages" [class.opacity-5]="currentPage===totalPages" class="btn btn-light">Siguiente</button>

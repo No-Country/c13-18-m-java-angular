@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { delay } from 'rxjs';
 import { RewardDTO } from 'src/app/models/reward-dto';
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -15,6 +16,7 @@ export class CatalogueComponent implements OnInit{
   currentPage=1;
   itemsPerPage:number = 4;
   rewardsArray:RewardDTO[]=[]
+  isLoading=false;
   constructor(private service:CatalogueService,private authService:LoginService){}
   ngOnInit(): void {
 
@@ -28,10 +30,18 @@ export class CatalogueComponent implements OnInit{
   }
 
   getRewards(){
+    this.isLoading = true;
+    
     this.service.getAllRewards().subscribe({
       next:(response)=>{
         this.rewards = response;
         this.rewardsArray = this.rewards;
+        this.isLoading=false;
+      },error:(err)=> {
+          this.isLoading=false;
+      },
+      complete:()=>{
+        this.isLoading=false;
       }
     });
   }
