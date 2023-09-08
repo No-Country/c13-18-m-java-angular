@@ -1,6 +1,7 @@
 package com.grupo18.nocountry.greenpoint.reward;
 
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class RewardController {
 
     private final RewardService rewardService;
+    private final ModelMapper mapper;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getProductById(@PathVariable Long id) {
@@ -83,19 +85,12 @@ public class RewardController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateProduct( @PathVariable Long id, @RequestBody RewardDTO rewardDTO) {
-        Optional<Reward> productOptional = rewardService.getById(id);
-
-        if (productOptional.isPresent()) {
-            Reward reward = productOptional.get();
-            reward.setName(rewardDTO.getName());
-            reward.setPrice(rewardDTO.getPrice());
-            reward.setDescription(rewardDTO.getDescription());
-            reward.setPhoto(rewardDTO.getPhoto());
-//            rewardService.save(reward);
-            return ResponseEntity.ok("Registro Actualizado");
+        Reward result = rewardService.update(rewardDTO, id);
+        if (result != null) {
+            return ResponseEntity.ok("Recompensa actualizada");
+        } else {
+            return ResponseEntity.notFound().build();
         }
-
-        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")

@@ -4,6 +4,8 @@ import { RewardDTO } from 'src/app/models/reward-dto';
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { LoginService } from 'src/app/services/login.service';
 import {Clipboard} from '@angular/cdk/clipboard';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reward-details',
@@ -24,7 +26,7 @@ export class RewardDetailsComponent implements OnInit {
     private actRoute:ActivatedRoute,
     private service:CatalogueService,
     private authService:LoginService,
-    private clipboard:Clipboard
+    private toastr:ToastrService
   ){}
   router = inject(Router)
   ngOnInit(): void {
@@ -51,14 +53,22 @@ export class RewardDetailsComponent implements OnInit {
     
   }
   redeemReward():void{
+    if(!this.userId){
+      this.router.navigate(["/login"])
+    }
     this.service.redeem(parseInt(this.rewardId),parseInt(this.userId)).subscribe({
       next:(response)=>{
         this.voucherCode = response.voucher
         this.showModal = !this.showModal
         
       },
-      error:(err:any)=>{
-        console.log(err)
+      error:(err:HttpErrorResponse)=>{
+        this.toastr.error(err.error.message,"UPS!",{
+          timeOut:3000,
+          progressBar:true,
+          progressAnimation:'decreasing',
+        
+        })
       }
     });
   }

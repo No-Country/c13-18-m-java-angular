@@ -29,10 +29,15 @@ import { PrimaryButtonComponent } from './shared/components/primary-button/prima
 import { FilledButtonComponent } from './shared/components/filled-button/filled-button.component';
 import { DialogComponent } from './shared/components/dialog/dialog.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+<<<<<<< HEAD
 import { RecyHistorialComponent } from './components/profile/recy-historial/recy-historial.component';
 import { PointsHistorialComponent } from './components/profile/points-historial/points-historial.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { GreenPointInfoComponent } from './components/green-point-info/green-point-info.component';
+=======
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+>>>>>>> 5acd519217d3f58ef43386727c56766c3d0b647d
 
 @NgModule({
   declarations: [
@@ -69,7 +74,9 @@ import { GreenPointInfoComponent } from './components/green-point-info/green-poi
     ReactiveFormsModule,
     HttpClientModule,
     DialogComponent,
-    ClipboardModule
+    ClipboardModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
 
   ],
   providers: [

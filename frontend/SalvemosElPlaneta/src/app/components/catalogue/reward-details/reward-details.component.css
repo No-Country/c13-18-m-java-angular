@@ -1,5 +1,5 @@
 .details{
-    padding-top: 5rem;
+    padding-top: 3rem;
     height: 100%;
 }
 .details-container{
@@ -8,10 +8,12 @@
     gap: 1rem;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 .col-left{
     width: 50%;
+    height: 100%;
 }
 .col-right{
     width: 40%;
@@ -31,6 +33,8 @@ img{
     gap: 1rem;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 2rem;
+    
 }
 .back-a{
     display: flex;
@@ -103,6 +107,12 @@ img{
     
     background-color: #006a67;
 }
+
+.alert{
+    flex: 1;
+    transition: .6s all;
+}
+
 
 
 @media (max-width:728px){
