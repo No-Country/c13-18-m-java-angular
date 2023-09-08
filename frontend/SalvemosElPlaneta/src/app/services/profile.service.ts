@@ -15,8 +15,8 @@ export class ProfileService {
     private http:HttpClient,
   ) { }
 
-  userModif(id:string, request:ProfileRequest):Observable<ProfileRequest>{
-    return this.http.put<ProfileRequest>(this.url + 'users/' + id, request);
+  userModif(id:number, request:ProfileRequest):Observable<any>{
+    return this.http.put(this.url + 'users/' + id, request);
   }
 
 }

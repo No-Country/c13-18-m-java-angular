@@ -8,7 +8,7 @@ import { RecyPointsService } from 'src/app/services/recy-points.service';
 })
 export class RecyclingPointsComponent implements OnInit {
 
-
+  list:any=[];
 
   constructor(
     private recyServ:RecyPointsService,
@@ -18,6 +18,7 @@ export class RecyclingPointsComponent implements OnInit {
     this.recyServ.points().subscribe({
       next:(resp)=>{
         console.log(resp);
+        this.list = resp;
       },
       error:()=>{
 

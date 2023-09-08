@@ -1,29 +1,32 @@
-<section class="container mx-auto main" *ngIf="user">
-  <header class="my-5">
+<section class="container mx-auto profile my-5" *ngIf="user">
+  <header class="">
     <button (click)="setTab('datos')" [class.is-selected]="tabActive==='datos'">Mis datos</button>
     <button (click)="setTab('reciclajes')" [class.is-selected]="tabActive==='reciclajes'">Mis reciclajes</button>
     <button (click)="setTab('canjeos')" [class.is-selected]="tabActive==='canjeos'"> Canjeos</button>
   </header>
-  <div *ngIf="tabActive==='datos'">
-    <h4 class="act-title">Actualiza tu perfil</h4>
-    <div class="container-fluid d-flex justify-content-center">
-      <form class="" [formGroup]="formProfile" (ngSubmit)="submit()">
-        <div class="mb-3">
-          <label for="" class="form-label">Nombre</label>
-          <input type="text" class="form-control profile-input" formControlName="firstname" id="firstname" [class.is-invalid]="Firstname" placeholder="Nombre">
-        </div>
-        <div class="mb-3">
-          <label for="" class="form-label">Apellido</label>
-         <input type="text" class="form-control profile-input" formControlName="lastname" id="lastname" [class.is-invalid]="Lastname" placeholder="Apellido">
-        </div>
-        <div class="mb-3">
-          <label for="" class="form-label">País</label>
-          <input type="text" class="form-control profile-input" formControlName="country" id="country" [class.is-invalid]="Country" placeholder="País">
-        </div>
-        <app-primary-button type="submit" label="Modificar" class="profile_button"></app-primary-button>
-      </form>
+  <div class="content">
+    <div *ngIf="tabActive==='datos'">
+      <div class="container-fluid d-flex">
+        <form class="" [formGroup]="formProfile" (ngSubmit)="submit()">
+          <div class="mb-3">
+            <label for="" class="form-label">Nombre</label>
+            <input type="text" class="form-control profile-input" formControlName="firstname" id="firstname" [class.is-invalid]="Firstname"  placeholder="Nombre">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Apellido</label>
+           <input type="text" class="form-control profile-input" formControlName="lastname" id="lastname" [class.is-invalid]="Lastname"  placeholder="Apellido">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">País</label>
+            <input type="text" class="form-control profile-input" formControlName="country" id="country" [class.is-invalid]="Country"  placeholder="País">
+          </div>
+          <button type="button" class="edit-mode" (click)="editMode()">Editar</button>
+          <app-primary-button *ngIf="isEditMode" type="submit" label="Guardar Cambios" class="profile_button"></app-primary-button>
+          <h4>Tus puntos: {{user.points}}</h4>
+        </form>
+      </div>
     </div>
+    <app-recy-historial *ngIf="tabActive==='reciclajes'" [userId]="userId"></app-recy-historial>
+    <app-points-historial *ngIf="tabActive==='canjeos'"></app-points-historial>
   </div>
-  <app-recy-historial *ngIf="tabActive==='reciclajes'" [userId]="userId"></app-recy-historial>
-  <app-points-historial *ngIf="tabActive==='canjeos'"></app-points-historial>
 </section>
