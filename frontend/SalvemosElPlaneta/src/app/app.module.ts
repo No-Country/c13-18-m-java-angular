@@ -32,6 +32,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { RecyHistorialComponent } from './components/profile/recy-historial/recy-historial.component';
 import { PointsHistorialComponent } from './components/profile/points-historial/points-historial.component';
 import { FaqComponent } from './components/faq/faq.component';
+import { GreenPointInfoComponent } from './components/green-point-info/green-point-info.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { FaqComponent } from './components/faq/faq.component';
     RecyHistorialComponent,
     PointsHistorialComponent,
     FaqComponent,
+    GreenPointInfoComponent,
     
   ],
   imports: [
