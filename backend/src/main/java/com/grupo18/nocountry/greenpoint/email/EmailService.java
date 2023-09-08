@@ -205,9 +205,9 @@ public class EmailService implements EmailSender {
                 "            <h1 class=\"title\">Hola " + name + "!</h1>\n" +
                 "            <div class=\"divider\"></div>\n" +
                 "            <p class=\"message\">\n" +
-                "                Recibimos una solicitud para reestablecer tu contraseña de Green Point. Si no fuiste vos, ignorá este mensaje.\n" +
+                "                Recibimos una solicitud para restablecer tu contraseña de Green Point. Si no fuiste vos, ignorá este mensaje.\n" +
                 "            </p>\n" +
-                "            <a href=\"" + resetUrl + "\" class=\"button\">Reestablecer contraseña</a>\n" +
+                "            <a href=\"" + resetUrl + "\" class=\"button\">Restablecer contraseña</a>\n" +
                 "        </div>\n" +
                 "        <div class=\"spacer-20\"></div>\n" +
                 "        <div class=\"footer\">\n" +
