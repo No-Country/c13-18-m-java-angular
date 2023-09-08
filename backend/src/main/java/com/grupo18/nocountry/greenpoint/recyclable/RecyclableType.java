@@ -5,5 +5,8 @@ public enum RecyclableType {
     PLASTICO,
     MADERA,
     ORGANICO,
-    METAL
+    METAL,
+    PAPEL,
+    CARTON,
+    LATA
 }
