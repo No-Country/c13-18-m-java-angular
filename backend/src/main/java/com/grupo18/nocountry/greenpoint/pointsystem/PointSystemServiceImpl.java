@@ -87,7 +87,7 @@ public class PointSystemServiceImpl implements PointSystemService{
 
     @Override
     public Page<TransactionHistory> getUserTransactionHistory(Pageable pageable, Long id){
-        List<RecyclingTransaction> transactions = transactionRepository.findAllByUserId(id);
+        Page<RecyclingTransaction> transactions = transactionRepository.findAllByUserId(pageable,id);
         List<TransactionHistory> transactionHistories = new ArrayList<>();
         if(!transactions.isEmpty()){
         for (RecyclingTransaction transaction : transactions) {
@@ -102,12 +102,13 @@ public class PointSystemServiceImpl implements PointSystemService{
         }
         }
 
-        return new PageImpl<>(transactionHistories,pageable,transactionHistories.size());
+        return new PageImpl<>(transactionHistories,pageable,transactions.getTotalElements());
     }
     @Override
     public Page<TransactionHistory> getAllTransactions(Pageable pageable){
+        Page<RecyclingTransaction> transactions =  transactionRepository.findAll(pageable);
         List<TransactionHistory> transactionHistories = new ArrayList<>();
-            for (RecyclingTransaction transaction : transactionRepository.findAll(pageable)) {
+            for (RecyclingTransaction transaction : transactions) {
                 RecyclableDetails details = transaction.getRecyclableDetails();
                 transactionHistories.add(TransactionHistory
                         .builder()
@@ -119,7 +120,7 @@ public class PointSystemServiceImpl implements PointSystemService{
             }
 
 
-        return new PageImpl<>(transactionHistories,pageable,transactionHistories.size());
+        return new PageImpl<>(transactionHistories,pageable,transactions.getTotalElements());
     }
 
     @Override
