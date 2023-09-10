@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RewardDTO } from 'src/app/models/reward-dto';
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { LoginService } from 'src/app/services/login.service';
+import { Clipboard } from '@angular/cdk/clipboard';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common'
@@ -15,7 +16,7 @@ export class RewardDetailsComponent implements OnInit {
 
   reward!:RewardDTO
   rewardId!:string;
-  userId!:string;
+  userId!:number;
   showModal=false;
   copied=false;
   voucherCode:string="";
@@ -56,7 +57,7 @@ export class RewardDetailsComponent implements OnInit {
     if(!this.userId){
       this.router.navigate(["/login"])
     }
-    this.service.redeem(parseInt(this.rewardId),parseInt(this.userId)).subscribe({
+    this.service.redeem(parseInt(this.rewardId),this.userId).subscribe({
       next:(response)=>{
         this.voucherCode = response.voucher
         this.showModal = !this.showModal

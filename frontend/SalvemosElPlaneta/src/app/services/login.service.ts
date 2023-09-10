@@ -6,13 +6,14 @@ import { LoginRequest } from '../models/login-request';
 import { BehaviorSubject, Observable, catchError, switchMap, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import jwt_decode from 'jwt-decode';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null)
+  private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null)
   url = environment.authUrl
 
   constructor(
@@ -30,7 +31,7 @@ export class LoginService {
         const username = decoded[usernameKey];
   
         this.getUserByUsername(username).subscribe({
-          next: (user: any) => {
+          next: (user: User) => {
             this.setCurrentUser(user);
           },
           error: (err: any) => {
@@ -41,7 +42,7 @@ export class LoginService {
       }
     }
 
-  setCurrentUser(user:any){
+  setCurrentUser(user:User | null){
     this.currentUserSubject.next(user);
   }
 
@@ -61,7 +62,7 @@ export class LoginService {
         const decoded: any = jwt_decode(res.token);
         return this.getUserByUsername(decoded.sub);
       }),
-      tap((user: any) => {
+      tap((user: User) => {
         this.setCurrentUser(user);
       }),
       catchError((err: any) => {
@@ -77,6 +78,6 @@ export class LoginService {
 
   logout(){
     this.cookie.deleteAll();
-    this.setCurrentUser({});
+    this.setCurrentUser(null);
   }
 }

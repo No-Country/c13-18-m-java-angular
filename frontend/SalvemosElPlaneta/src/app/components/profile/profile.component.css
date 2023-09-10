@@ -1,0 +1,43 @@
+.profile {
+  border: 2px solid #006a67;
+  border-radius: 15px;
+  padding: 0px 15px 25px 15px;
+  
+}
+
+.profile-info {
+  max-width: 80vw;
+  margin-top: 2rem;
+  margin-left: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.content {
+  position: relative;
+  padding: 10px;
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+
+.act-title {
+  margin-left: 2.5rem;
+}
+
+.edit-mode{
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 25px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  padding: .5rem 1rem;
+}
+
+.is-selected {
+  border-bottom: 1px solid #006a67;
+}
