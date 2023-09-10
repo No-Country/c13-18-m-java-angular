@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { delay } from 'rxjs';
 import { RewardDTO } from 'src/app/models/reward-dto';
 import { User } from 'src/app/models/user';
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { LoginService } from 'src/app/services/login.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-catalogue',
@@ -18,7 +18,7 @@ export class CatalogueComponent implements OnInit{
   itemsPerPage:number = 4;
   rewardsArray:RewardDTO[]=[]
   isLoading=false;
-  constructor(private service:CatalogueService,private authService:LoginService){}
+  constructor(private service:CatalogueService,private authService:LoginService,private location: Location){}
   ngOnInit(): void {
 
     this.getRewards();
@@ -67,6 +67,10 @@ export class CatalogueComponent implements OnInit{
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
     }
+  }
+
+  back(): void {
+    this.location.back()
   }
 
 }
