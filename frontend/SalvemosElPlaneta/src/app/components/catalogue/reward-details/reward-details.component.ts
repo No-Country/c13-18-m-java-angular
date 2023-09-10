@@ -3,10 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RewardDTO } from 'src/app/models/reward-dto';
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { LoginService } from 'src/app/services/login.service';
-import {Clipboard} from '@angular/cdk/clipboard';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-
+import { Location } from '@angular/common'
 @Component({
   selector: 'app-reward-details',
   templateUrl: './reward-details.component.html',
@@ -26,7 +25,8 @@ export class RewardDetailsComponent implements OnInit {
     private actRoute:ActivatedRoute,
     private service:CatalogueService,
     private authService:LoginService,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private location: Location
   ){}
   router = inject(Router)
   ngOnInit(): void {
@@ -73,6 +73,7 @@ export class RewardDetailsComponent implements OnInit {
     });
   }
 
+  
 
   copyCode(): void {
     navigator.clipboard.writeText(this.voucherCode).then(() => {
@@ -99,5 +100,7 @@ export class RewardDetailsComponent implements OnInit {
   closeDialog():void{
     this.router.navigate(['/catalogo']);
   }
-
+  back(): void {
+    this.location.back()
+  }
 }

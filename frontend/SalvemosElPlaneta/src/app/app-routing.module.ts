@@ -32,7 +32,6 @@ const routes: Routes = [
   {path: 'restablecer', component: ResetpassComponent},
   {path: 'token/confirm-reset', component: NewPassComponent},
   {path: 'token/confirm-mail/:token', component: ConfirmMailComponent},
-  {path: 'dialog',component:DialogComponent}
   
 ];
 

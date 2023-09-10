@@ -21,8 +21,8 @@ export class RedeemCodeService {
     return this.http.post<RedeemCode>(this.url + 'redeem', request);
   }
 
-  validateCode(code:string):Observable<PointsDetails>{
-    return this.http.post<PointsDetails>(this.url + 'details?code=' + code, null);
+  validateCode(code:string):Observable<PointsDetails[]>{
+    return this.http.get<PointsDetails[]>(this.url + 'details?code=' + code);
   }
 
   recyclable(request:Recyclables):Observable<any>{

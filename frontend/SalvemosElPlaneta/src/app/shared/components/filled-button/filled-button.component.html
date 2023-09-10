@@ -1,4 +1,5 @@
 <button [type]="type" class="button" [disabled]="disabled">
     {{label}}
+    <span *ngIf="loader" class="loader"></span>
 </button>
     
