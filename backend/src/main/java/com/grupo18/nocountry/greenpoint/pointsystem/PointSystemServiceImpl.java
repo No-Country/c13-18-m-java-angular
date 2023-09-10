@@ -124,7 +124,7 @@ public class PointSystemServiceImpl implements PointSystemService{
     }
 
     @Override
-    public List<RecycledItemDTO> getDetailsByCode(String code) {
+    public DetailsResponseDTO getDetailsByCode(String code) {
         RecyclableDetails details = detailsRepository.findByCodeAndRedeemedFalse(code).orElseThrow(
                 ()->new InvalidRecycleCode("El código es inválido o ya ha sido canjeado.")
         );
@@ -134,13 +134,17 @@ public class PointSystemServiceImpl implements PointSystemService{
             recycledItemDTOS.add(RecycledItemDTO
                     .builder()
                             .recyclableType(ri.getRecyclable().getRecyclableType())
-                            .pointsEarned(ri.getRecyclableDetails().getTotalPoints())
+                            .pointsEarned(ri.getRecyclable().getPoints()*(ri.getGrams()/100))
                             .totalGrams(ri.getGrams())
+
 
                     .build());
         }
 
-        return recycledItemDTOS;
+        return DetailsResponseDTO.builder()
+                .recycledItems(recycledItemDTOS)
+                .totalPoints(details.getTotalPoints())
+                .build();
     }
 
 

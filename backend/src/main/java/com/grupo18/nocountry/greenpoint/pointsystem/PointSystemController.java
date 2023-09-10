@@ -43,7 +43,7 @@ public class PointSystemController {
     }
 
     @GetMapping("/details")
-    public ResponseEntity<List<RecycledItemDTO>> getReciclyngDetails(@RequestParam String code ) {
+    public ResponseEntity<DetailsResponseDTO> getReciclyngDetails(@RequestParam String code ) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getDetailsByCode(code));
     }
 }
