@@ -2,7 +2,8 @@
   <div class="container">
     <div class="row">
       <div class="columna col-12 col-md-7">
-        <h3>Gana el planeta, ganás vos</h3>
+        <h3>Gana el planeta,</h3>
+           <h3>ganás vos</h3>
         <img class="land-img" src="/assets/Images/gana-el-planeta-ganas-vos.png" alt="Persona reciclando">
       </div>
       <div class="columna-boton col-12 col-md-5 align-items-center justify-content-center gap-4">
@@ -30,17 +31,12 @@
       </div>
     </div>
   </div>
-  <h3 class="seccion-titulo m-3">¡Empezá ahora!</h3>
-  <div class="container">
+<div class="container">
     <div class="row">
-      <div class="columna col-12 col-md-6">
-        <img class="land-img" src="/assets/Images/sumate-a-esta-movida.jpg" alt="Persona reciclando">
-      </div>
-      <div class="columna-boton col-12 col-md-6 align-items-center justify-content-center gap-4">
-        <app-primary-button type="button" label="Ingresar a mi cuenta" routerLink="/login" class="buttons"></app-primary-button>
-        <app-primary-button type="button" label="Crear cuenta" routerLink="/registro" class="buttons"></app-primary-button>
-        <a class="entry-link" routerLink="/home">Ingresar sin iniciar sesión</a>
+      <div class="main-footer col-12 col-md-6 text-center mx-auto d-flex flex-column align-items-center justify-content-center">
+        <h3 class="seccion-titulo m-3 ">¡Empezá ahora!</h3>
+        <button class="top-button" (click)="backToTop()" >Volver arriba ↑</button>
       </div>
     </div>
-  </div>
+  </div> 
 </section>

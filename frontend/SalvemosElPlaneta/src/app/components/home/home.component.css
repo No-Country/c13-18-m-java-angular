@@ -1,3 +1,17 @@
 .buttons{
     width: 50%;
 }
+
+.main-footer{
+    height: 400px;
+
+}
+
+.top-button{
+    background-color: transparent;
+    border: none;
+    vertical-align: bottom;
+    text-align: center;
+    text-decoration: underline;
+    
+}

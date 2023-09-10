@@ -1,6 +1,6 @@
 <section class="main">
   <h1 class="m-5" *ngIf="!isLogged">Bienvenido/a a Green Point</h1>
-  <h1 *ngIf="user!==null" class="m-5">{{isLogged ? 'Hola ' + (user.firstname | titlecase):''}}</h1>
+  <h1 *ngIf="user" class="m-5">{{isLogged ? 'Hola ' + (user.firstname | titlecase):''}}</h1>
   <div class="container">
     <div class="row icons">
       <article class="icono" routerLink="/recy-points">
@@ -25,7 +25,7 @@
     <a routerLink="/registro">registrate gratis</a> o <a routerLink="/login">iniciá sesión</a>.</p>
     <a routerLink="/about-info">Ver cómo funciona.</a>
   </div>
-  <div class="row user-info" *ngIf="isLogged">
+  <div class="row user-info" *ngIf="isLogged && user">
     <h4>Tus puntos</h4>
     <p class="user-points">{{user.points}}</p>
   </div>
