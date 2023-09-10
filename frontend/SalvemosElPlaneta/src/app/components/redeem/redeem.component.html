@@ -1,11 +1,11 @@
 <section class="container mx-auto">
 
-  <h3>Sumá tus puntos</h3>
+  <h1>Sumá tus puntos</h1>
   <div class="content">
   <div class="code-container">
     <form [formGroup]="formRedeemCode" (ngSubmit)="submit()" class="form">
       <div class="left-col mb-3 ">
-        <label for="text" class="form-label w-100"><b>ingresá el código</b></label>
+        <label for="text" class="form-label w-100"><h3>Ingresá el código</h3></label>
         <div class="redeemCode">
           <div class="input-container">
           <input type="text" class="form-control code-input" formControlName="code" placeholder="Código" 
@@ -26,7 +26,8 @@
         </div>
         <p *ngIf="code?.invalid && code?.touched" class="text-danger">El formato del código no es válido. Debe contener 8 caracteres.</p>
       </div>
-        <div class="table-container left-col" *ngIf="details && details.length">
+        <div class="table-container left-col" *ngIf="details && details.recycledItems.length">
+          <h3>Detalles</h3>
           <table class="table table-sm">
             <thead>
               <th>
@@ -40,7 +41,7 @@
               </th>
             </thead>
             <tbody>
-              <tr *ngFor="let detail of details">
+              <tr *ngFor="let detail of details.recycledItems">
                 <td>
                   {{detail.recyclableType}}
                 </td>
@@ -50,26 +51,24 @@
                 <td>
                   {{detail.pointsEarned}}
                 </td>
-
               </tr>
               <tr>
                 
                 <td class="fw-bold">Total</td>
                 <td></td>
-                <td class="fw-bold">{{totalPoints}}</td>
+                <td class="fw-bold">{{details.totalPoints}}</td>
               </tr>
             </tbody>
           </table>
 
         </div>
     </form>
-    <button (click)="show=!show">asasddsa</button>
     <app-dialog *ngIf="show">
       <div class="dialog-content">
         <div class="message-box">
           <h2>Felicidades! </h2>
           <div>
-          <h4>Sumaste {{totalPoints}} green points</h4>
+          <h4>Sumaste {{details.totalPoints}} green points</h4>
         </div>
         </div>
       

@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { of, switchMap } from 'rxjs';
-import { PointsDetails } from 'src/app/models/points-details';
+import { CodeDetails } from 'src/app/models/code-details';
+import { RecycledItemDetail } from 'src/app/models/points-details';
 import { RedeemCode } from 'src/app/models/redeem-code';
 import { LoginService } from 'src/app/services/login.service';
 import { RedeemCodeService } from 'src/app/services/redeem-code.service';
@@ -19,9 +20,9 @@ export class RedeemComponent implements OnInit{
   formRedeemCode!:FormGroup
   user!:any;
   isValid:boolean=false 
-  details!:PointsDetails[];
+  details!:CodeDetails;
   isLoading=false;
-  totalPoints=0;
+  show=false;
   constructor(
     private fb:FormBuilder,
     private loginservice:LoginService,
@@ -56,49 +57,28 @@ export class RedeemComponent implements OnInit{
     this.isLoading=true;
     this.redeemCode
     .validateCode(this.formRedeemCode.get('code')?.value)
-    .pipe(
-      switchMap((resp) => {
-        const groupedPointsDetails: { [key: string]: { pointsEarned: number; totalGrams: number } } = {};
-
-        resp.forEach((item) => {
-          this.totalPoints += item.pointsEarned;
-          const { recyclableType, pointsEarned, totalGrams } = item;
-          if (!groupedPointsDetails[recyclableType]) {
-            groupedPointsDetails[recyclableType] = { pointsEarned, totalGrams };
-          } else {
-            groupedPointsDetails[recyclableType].pointsEarned += pointsEarned;
-            groupedPointsDetails[recyclableType].totalGrams += totalGrams;
-          }
-        });
-        return of(groupedPointsDetails);
-      })
-    )
     .subscribe({
-      
-      next:(result:any) => {
-      this.details = Object.keys(result).map((key) => ({
-        recyclableType: key,
-        pointsEarned: result[key].pointsEarned,
-        totalGrams: result[key].totalGrams,
-      }));
-      this.isLoading=false
-      this.isValid=true;
-    },error:(err:HttpErrorResponse)=>{
-      this.toastr.error(err.error.message,"",{
-        positionClass:'toast-top-center',
-        progressBar:true
-      });
-      this.isLoading=false;
-    }
-  }
-    );
-}
+      next:(details:CodeDetails)=>{
+        this.details = details
+        this.isLoading=false
+        this.isValid=true;
+      },
+      error:(err:HttpErrorResponse)=>{
+         this.toastr.error(err.error.message,"",{
+           positionClass:'toast-top-center',
+           progressBar:true
+         });
+         this.isLoading=false;
+       }
+     }
+       );
+     }
+
 onInputChange() {
   this.isValid = false;
-  this.totalPoints=0;
   this.formRedeemCode.get('code')?.markAsUntouched();
-  if (this.details && this.details.length) {
-    this.details.length = 0;
+  if (this.details && this.details.recycledItems.length) {
+    this.details.recycledItems.length = 0;
   }
 }
 
@@ -114,6 +94,7 @@ onInputChange() {
       code: this.code?.value
     }
     this.redeemCode.redeemCode(redeemCodeRequest).subscribe({
+      next:()=>{this.show=true},
       error:(err:HttpErrorResponse)=>{
         this.toastr.error(err.error.message,"",{
           positionClass:'toast-top-center',
@@ -122,15 +103,14 @@ onInputChange() {
       },
       complete:()=>{
         this.isLoading=false;
+        
       }
     })
   }
-  show=false;
-  showModal():void{
-    this.show=true;
-  }
+
+
 
   closeDialog(){
-    this.router.navigate(["/home"])
+    location.reload()
   }
 }

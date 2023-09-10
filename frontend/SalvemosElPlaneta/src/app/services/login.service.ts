@@ -14,12 +14,13 @@ import { User } from '../models/user';
 export class LoginService {
 
   private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null)
+  private userPointsSubject = new BehaviorSubject<number>(0);
   url = environment.authUrl
+
 
   constructor(
     private http: HttpClient,
-    private cookie: CookieService,
-    private router: Router) {}
+    private cookie: CookieService) {}
 
     initializeCurrentUser(): void {
       const tokenKey = 'token';
@@ -33,8 +34,9 @@ export class LoginService {
         this.getUserByUsername(username).subscribe({
           next: (user: User) => {
             this.setCurrentUser(user);
+            this.setUserPoints(user.points)
           },
-          error: (err: any) => {
+          error: () => {
   
             this.cookie.deleteAll();
           }
@@ -48,6 +50,13 @@ export class LoginService {
 
   getCurrentUser(){
     return this.currentUserSubject.asObservable();
+  }
+  setUserPoints(points: number): void {
+    this.userPointsSubject.next(points);
+  }
+
+  getUserPoints(): Observable<number> {
+    return this.userPointsSubject.asObservable();
   }
 
   isLogged():boolean{
@@ -64,8 +73,9 @@ export class LoginService {
       }),
       tap((user: User) => {
         this.setCurrentUser(user);
+        this.setUserPoints(user.points)
       }),
-      catchError((err: any) => {
+      catchError(() => {
         this.cookie.delete('token', '/');
         return throwError(()=> new Error('Usuario o contraseña incorrectos.'));
       })

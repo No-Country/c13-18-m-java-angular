@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -6,25 +8,37 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit,OnDestroy {
 
   isLogged!:boolean;
-  user!:any;
+  user!:User;
+  userPoints$!: Observable<number>;
   constructor(
     private authService:LoginService,
     ){}
-
-
-  ngOnInit():void{
-    this.authService.getCurrentUser().subscribe({
-      next:(user)=> {
-        if(user){
-
-          this.user = user
-        }
+    
+    
+    ngOnInit():void{
+      this.authService.getCurrentUser().subscribe({
+        next:(user)=> {
+          if(user){
+            this.user = user
+            this.isLogged=true;
+          }
+          
         
+          
       }
+      
     });
-    this.isLogged = this.authService.isLogged();
+    
+    
+    this.userPoints$ = this.authService.getUserPoints();
+    
+    
   }
+  ngOnDestroy(): void {
+    
+  }
+  
 }
