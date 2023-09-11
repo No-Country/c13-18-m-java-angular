@@ -1,0 +1,30 @@
+[
+    {   
+        "question": "¿Qué es Green Point y cómo funciona?",
+        "answer": "Green Point es una web-app que:\n- Te informa acerca de los puntos de reciclaje en tu ciudad.\n- Te da tips de reciclaje.\n- Te permite sumar puntos y canjearlos por premios."
+    },
+    {
+        "question": "¿Es necesario descargar e instalar la aplicación de Green Point?",
+        "answer": "No necesitás descargar Green Point, solamente tenés que acceder a nuestra web. Podés hacerlo desde un smartphone o computadora. Sólo necesitas conexión a internet."
+    },
+    {
+        "question": "¿Green Point es gratuito?",
+        "answer": "Sí, es gratuito."
+    },
+    {
+        "question": "¿Qué tipo de información y recursos proporciona Green Point sobre el reciclaje?",
+        "answer": "La información es acerca de qué materiales son reciclables y cuáles son las mejores técnicas para hacerlo."
+    },
+    {
+        "question": "¿Hay algún límite en la cantidad de puntos que puedo acumular o canjear?",
+        "answer": "No, no hay límites en la cantidad de puntos que podés acumular o canjear."
+    },
+    {
+        "question": "¿Qué hacer si tengo problemas técnicos con la aplicación?",
+        "answer": "En caso de problemas técnicos podés acceder a nuestro soporte."
+    },
+    {
+        "question": "¿Green Point trabaja con organizaciones o empresas relacionadas con el reciclaje?",
+        "answer": "Sí, Green Point trabaja con distintas organizaciones para que las personas usuarias puedan reciclar fácilmente y acceder a premios."
+    }
+]
