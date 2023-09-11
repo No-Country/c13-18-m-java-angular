@@ -5,16 +5,15 @@
       <thead>
         <tr>
           <th scope="col">Dirección</th>
-          <th scope="col">Horario de Apertura</th>
-          <th scope="col">Horario de Cierre</th>
+          <th scope="col">Horario</th>
           <th scope="col">Comuna</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let RecyclingPoint of list">
-          <td>{{RecyclingPoint.address}}</td>
-          <td>{{RecyclingPoint.openingTime}}</td>
-          <td>{{RecyclingPoint.closingTime}}</td>
+        <tr *ngFor="let recyclingPoint of list">
+          <td>{{recyclingPoint.address}}</td>
+          <td>{{formatTime(recyclingPoint.openingTime)}} hasta {{formatTime(recyclingPoint.closingTime)}}</td>
+          <td> {{recyclingPoint.comuna}} </td>
         </tr>
       </tbody>
     </table>

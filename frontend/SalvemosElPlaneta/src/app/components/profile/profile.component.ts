@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userId!:number;
   formProfile!:FormGroup
   profileRequest!:ProfileRequest
-  tabActive = 'datos'
+  tabActive = 'reciclajes'
 
   constructor(
     private authService:LoginService,

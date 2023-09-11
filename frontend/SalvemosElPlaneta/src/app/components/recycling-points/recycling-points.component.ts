@@ -29,4 +29,9 @@ export class RecyclingPointsComponent implements OnInit {
     });
   }
 
+  formatTime(time:string):string{
+    const tf = time.split(":")
+    return tf[0].concat(":"+tf[1]);
+  }
+
 }

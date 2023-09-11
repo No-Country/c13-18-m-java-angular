@@ -1,1 +1,40 @@
-<p>points-historial works!</p>
+<section class="container">
+  <h3 class="my-3">Historial de Premios</h3>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Foto</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Fecha y hora</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of transactions; index as i">
+          <td> {{i+1}}</td>
+          <td> <img class="" width="48" [src]="data.reward.photo" [alt]="data.reward.description"></td>
+          <td> {{data.reward.name}} </td>
+          <td> {{data.reward.price}} </td>
+          <td> {{data.timestamp|date:'medium':'es-AR'}} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <button class="page-link" [ngClass]="{'disabled':currentPage < 1}" aria-label="Previous" [disabled]="currentPage < 1" (click)="prevPage()">
+          <span aria-hidden="true">&laquo;</span>
+        </button>
+      </li>
+      <li class="page-item" *ngFor="let page of totalPages; index as i"><a class="page-link" (click)="pagination(i)">{{i+1}}</a></li>
+      <li class="page-item">
+        <button class="page-link" [ngClass]="{'disabled':totalPages && currentPage === (totalPages.length-1)}" aria-label="Next" [disabled]="totalPages && currentPage === (totalPages.length-1)" (click)="nextPage()">
+          <span aria-hidden="true">&raquo;</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</section>
