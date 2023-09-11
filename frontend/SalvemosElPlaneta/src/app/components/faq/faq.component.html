@@ -1,15 +1,17 @@
-<section>
-  <div class="container-fluid d-flex justify-content-center">
-    <div class="btn-group mt-5">
-      <button class="btn btn-secondary dropdown-toggle questions" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        ¿Qué es Green Point y cómo funciona?
+<section class="container mx-auto">
+  <h1>Preguntas frecuentes</h1>
+  <div class="container-fluid d-flex flex-column justify-content-center ">
+    <div *ngFor="let f of faq;index as i">
+    <div class="btn-group mt-2">
+      <button class="question w-100" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#'+i" aria-expanded="false" aria-controls="collapseExample">
+        {{f.question}} 
       </button>
-      <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-        <span class="visually-hidden">Toggle Dropdown</span>
-      </button>
-      <ul class="dropdown-menu">
-        <li>Respuesta</li>
-      </ul>
     </div>
+    <div class="collapse" id="{{i}}">
+      <div class="card card-body">
+        <p [innerHTML]="formatStr(f.answer)"></p>
+      </div>
+    </div>
+  </div>
   </div>
 </section>

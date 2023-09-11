@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { LoginRequest } from 'src/app/models/login-request';
 import { LoaderService } from 'src/app/services/loader.service';
@@ -21,7 +23,7 @@ export class LoginComponent {
     private fb:FormBuilder,
     private loginservice: LoginService,
     private routes: Router,
-    private loaderService:LoaderService
+    private toastr:ToastrService
   ) {
     this.crearForm();
   }
@@ -52,12 +54,17 @@ export class LoginComponent {
     this.isLoading=true;
     const loginRequest:LoginRequest={username: this.formLogin.get('email')?.value, password: this.formLogin.get('password')?.value}
     this.loginservice.login(loginRequest).subscribe({
-      next:(resp)=>{
+      next:()=>{
         this.isLoading=!this.isLoading
         this.routes.navigate(['/home']);
       },
-      error:()=>{
+      error:(err:HttpErrorResponse)=>{
         this.isLoading=!this.isLoading
+        this.toastr.error(err.toString(),"",{
+          progressBar:true,
+          timeOut:1500
+
+        });
       },
       complete:()=>{
         this.isLoading=!this.isLoading
