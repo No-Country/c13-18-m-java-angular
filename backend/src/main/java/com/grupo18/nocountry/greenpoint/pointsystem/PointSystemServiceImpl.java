@@ -34,6 +34,7 @@ public class PointSystemServiceImpl implements PointSystemService{
     private final ModelMapper mapper;
 
 
+
     @Override
     public RecycleResponse recycle(RecycleRequest request) {
         List<RecycledItem> recycledItems = new ArrayList<>();
@@ -128,13 +129,15 @@ public class PointSystemServiceImpl implements PointSystemService{
         RecyclableDetails details = detailsRepository.findByCodeAndRedeemedFalse(code).orElseThrow(
                 ()->new InvalidRecycleCode("El código es inválido o ya ha sido canjeado.")
         );
+        int totalPoints = 0;
         List<RecycledItemDTO> recycledItemDTOS = new ArrayList<>();
         List<RecycledItem> recycledItems = recycledItemRepository.findAllByRecyclableDetailsId(details.getId());
         for (RecycledItem ri : recycledItems) {
+            totalPoints = (int) (ri.getRecyclable().getPoints()*Math.round((double)ri.getGrams()/100));
             recycledItemDTOS.add(RecycledItemDTO
                     .builder()
                             .recyclableType(ri.getRecyclable().getRecyclableType())
-                            .pointsEarned(ri.getRecyclable().getPoints()*(ri.getGrams()/100))
+                            .pointsEarned(totalPoints)
                             .totalGrams(ri.getGrams())
 
 
