@@ -1,6 +1,16 @@
+.container{
+  width: 50%;
+  text-align: center;
+  margin: 1rem 0;
+}
 .questions {
   width: 80vw;
   display: block;
+}
+
+
+.btn-group{
+  width: 100%;
 }
 
 .question{
@@ -14,4 +24,13 @@
 }
 .question:hover{
   background-color: #038d88;
+}
+
+@media (max-width:728px){
+
+  .container{
+    width: 90%;
+   
+    
+  }
 }

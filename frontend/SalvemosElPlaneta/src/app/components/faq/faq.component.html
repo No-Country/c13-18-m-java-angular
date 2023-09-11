@@ -1,8 +1,8 @@
-<section class="container w-50 mx-auto">
+<section class="container mx-auto">
   <h1>Preguntas frecuentes</h1>
   <div class="container-fluid d-flex flex-column justify-content-center ">
     <div *ngFor="let f of faq;index as i">
-    <div class="btn-group mt-2 w-100">
+    <div class="btn-group mt-2">
       <button class="question w-100" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#'+i" aria-expanded="false" aria-controls="collapseExample">
         {{f.question}} 
       </button>
