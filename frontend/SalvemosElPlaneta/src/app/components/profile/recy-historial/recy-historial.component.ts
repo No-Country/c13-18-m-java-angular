@@ -40,6 +40,10 @@ export class RecyHistorialComponent implements OnInit{
     });
   }
 
+  numPerPage(){
+    
+  }
+
   pagination(currentPage:number){
     this.currentPage = currentPage;
     this.getRecyTransactions(this.userId,currentPage,this.pageSize);
