@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    flex-wrap: nowrap;
+
+}
+
+.barra {
+    max-width: 40%;
+}
+
+.navbar-toggler svg {
+    width: 30px;
+    fill: #fff;
+
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.dropdown-menu{
+    color: #FAFDFB;
+    border: none;
+}
+.dropdown-menu .dropdown-item{
+    color: #FAFDFB;
+}

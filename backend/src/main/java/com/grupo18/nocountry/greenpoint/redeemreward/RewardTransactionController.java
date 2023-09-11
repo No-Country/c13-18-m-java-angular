@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,4 +19,9 @@ public class RewardTransactionController {
     public ResponseEntity<?> getAll(Pageable pageable){
         return ResponseEntity.ok().body(service.getAll(pageable));
     }
+    @GetMapping("/user/{id}")
+    public ResponseEntity<?> getAllByUserId(Pageable pageable, @PathVariable Long id){
+        return ResponseEntity.ok().body(service.getAllByUserId(pageable,id));
+    }
+
 }

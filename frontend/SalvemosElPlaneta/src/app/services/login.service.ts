@@ -6,19 +6,21 @@ import { LoginRequest } from '../models/login-request';
 import { BehaviorSubject, Observable, catchError, switchMap, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import jwt_decode from 'jwt-decode';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null)
+  private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null)
+  private userPointsSubject = new BehaviorSubject<number>(0);
   url = environment.authUrl
+
 
   constructor(
     private http: HttpClient,
-    private cookie: CookieService,
-    private router: Router) {}
+    private cookie: CookieService) {}
 
     initializeCurrentUser(): void {
       const tokenKey = 'token';
@@ -30,10 +32,11 @@ export class LoginService {
         const username = decoded[usernameKey];
   
         this.getUserByUsername(username).subscribe({
-          next: (user: any) => {
+          next: (user: User) => {
             this.setCurrentUser(user);
+            this.setUserPoints(user.points)
           },
-          error: (err: any) => {
+          error: () => {
   
             this.cookie.deleteAll();
           }
@@ -41,12 +44,19 @@ export class LoginService {
       }
     }
 
-  setCurrentUser(user:any){
+  setCurrentUser(user:User | null){
     this.currentUserSubject.next(user);
   }
 
   getCurrentUser(){
     return this.currentUserSubject.asObservable();
+  }
+  setUserPoints(points: number): void {
+    this.userPointsSubject.next(points);
+  }
+
+  getUserPoints(): Observable<number> {
+    return this.userPointsSubject.asObservable();
   }
 
   isLogged():boolean{
@@ -61,10 +71,11 @@ export class LoginService {
         const decoded: any = jwt_decode(res.token);
         return this.getUserByUsername(decoded.sub);
       }),
-      tap((user: any) => {
+      tap((user: User) => {
         this.setCurrentUser(user);
+        this.setUserPoints(user.points)
       }),
-      catchError((err: any) => {
+      catchError(() => {
         this.cookie.delete('token', '/');
         return throwError(()=> new Error('Usuario o contraseña incorrectos.'));
       })
@@ -77,6 +88,6 @@ export class LoginService {
 
   logout(){
     this.cookie.deleteAll();
-    this.setCurrentUser({});
+    this.setCurrentUser(null);
   }
 }

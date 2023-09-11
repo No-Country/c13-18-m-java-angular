@@ -19,14 +19,14 @@ public class PointSystemController {
 
 
     @PostMapping("/recycle")
-    public ResponseEntity<RecycleResponse> recycle(@Valid @RequestBody RecycleRequest request) throws Exception{
+    public ResponseEntity<RecycleResponse> recycle(@Valid @RequestBody RecycleRequest request){
 
         return ResponseEntity.status(HttpStatus.CREATED).body(service.recycle(request));
 
     }
 
     @PostMapping("/redeem")
-    public ResponseEntity<?> recycle(@RequestBody RedeemRequest request) throws Exception{
+    public ResponseEntity<?> recycle(@RequestBody RedeemRequest request){
         service.redeem(request);
         return new ResponseEntity<>(HttpStatus.OK);
 
@@ -43,7 +43,7 @@ public class PointSystemController {
     }
 
     @GetMapping("/details")
-    public ResponseEntity<List<RecycledItemDTO>> getReciclyngDetails(@RequestParam String code ) {
+    public ResponseEntity<DetailsResponseDTO> getReciclyngDetails(@RequestParam String code ) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getDetailsByCode(code));
     }
 }

@@ -7,4 +7,19 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+
+
+ backToTop() {
+  window.scroll({ 
+    top: 0, 
+    left: 0, 
+    behavior: 'smooth' 
+  });
 }
+
+
+}
+
+
+
+

@@ -9,5 +9,6 @@ export class FilledButtonComponent {
   @Input()label: String ="";
   @Input()type: String ="";
   @Input()disabled: boolean =false;
+  @Input()loader:boolean=false;
 
 }

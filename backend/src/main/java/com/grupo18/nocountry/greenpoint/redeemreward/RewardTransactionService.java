@@ -7,4 +7,5 @@ public interface RewardTransactionService {
     void save(RewardTransaction rewardTransaction);
 
     Page<RewardTransactionResponse> getAll(Pageable pageable);
+    Page<RewardTransactionResponse> getAllByUserId(Pageable pageable,Long id);
 }

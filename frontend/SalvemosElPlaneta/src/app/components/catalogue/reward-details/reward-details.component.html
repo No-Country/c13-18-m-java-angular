@@ -1,9 +1,10 @@
-<a role="button" routerLink="/catalogo" class="back-a"><span class="">←</span> Volver al catálogo</a>
+<a role="button" (click)="back()" class="text-black m-3"><span class="fw-bold">←</span> Volver</a>
 <section *ngIf="reward" class="details">
   <div class="m-5">
     <div class="">
       <div class="details-container">
       <article class="col-left">
+        <!-- <img [src]="reward.photo" [alt]="reward.description"> -->
         <img [src]="reward.photo" [alt]="reward.description">
       </article>
       <article class="col-right">
@@ -15,8 +16,9 @@
       </div>
         <div class="details-footer">
         <h4>{{reward.price}} Green Points</h4>
-        <app-filled-button type="button" (click)="redeemReward()" label="Canjear"></app-filled-button>
+        <app-filled-button type="button" (click)="redeemReward()" label="Canjear" [disabled]="reward.inventory!.stock<=0"></app-filled-button>
       </div>
+      <p class="reward_stock m-0">{{reward.inventory?.stock}} disponibles!</p>    
     </article>
     </div>
   </div>

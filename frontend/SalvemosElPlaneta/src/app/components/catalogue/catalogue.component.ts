@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { delay } from 'rxjs';
 import { RewardDTO } from 'src/app/models/reward-dto';
+import { User } from 'src/app/models/user';
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { LoginService } from 'src/app/services/login.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-catalogue',
@@ -12,18 +13,20 @@ import { LoginService } from 'src/app/services/login.service';
 export class CatalogueComponent implements OnInit{
   
   rewards!:RewardDTO[];
-  currentUser!:any;
+  currentUser!:User;
   currentPage=1;
   itemsPerPage:number = 4;
   rewardsArray:RewardDTO[]=[]
   isLoading=false;
-  constructor(private service:CatalogueService,private authService:LoginService){}
+  constructor(private service:CatalogueService,private authService:LoginService,private location: Location){}
   ngOnInit(): void {
 
     this.getRewards();
     this.authService.getCurrentUser().subscribe({
       next:(user)=>{
-        this.currentUser = user
+        if (user) {
+          this.currentUser = user
+        }
       }
     });
 
@@ -55,11 +58,6 @@ export class CatalogueComponent implements OnInit{
     return this.rewardsArray.slice(startIndex, endIndex);
   }
 
-  handleRedeem(data:RewardDTO){
-    console.log(data.id)
-    // this.redeemReward(data.id,this.currentUser.id);
-  }
-
   prevPage():void{
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -71,19 +69,8 @@ export class CatalogueComponent implements OnInit{
     }
   }
 
-  redeemReward(rewardId:number,userId:number){
-    this.service.redeem(rewardId,userId).subscribe({
-      next:(response:any)=>{
-        console.log("canjeado")
-        
-      },
-      error:(err:any)=>{
-        console.log(err)
-      },
-      complete:()=>{
-        this.getRewards();
-      }
-    });
+  back(): void {
+    this.location.back()
   }
 
 }

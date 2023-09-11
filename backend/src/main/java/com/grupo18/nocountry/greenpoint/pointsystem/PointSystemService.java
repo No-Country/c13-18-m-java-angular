@@ -9,7 +9,7 @@ public interface PointSystemService {
     void redeem(RedeemRequest request);
     Page<TransactionHistory> getUserTransactionHistory(Pageable pageable, Long id);
     Page<TransactionHistory> getAllTransactions(Pageable pageable);
-    List<RecycledItemDTO> getDetailsByCode(String code);
+    DetailsResponseDTO getDetailsByCode(String code);
 
 
 }

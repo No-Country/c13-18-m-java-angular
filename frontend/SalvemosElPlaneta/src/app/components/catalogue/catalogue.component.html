@@ -1,3 +1,4 @@
+<a (click)="back()" class="text-black m-3"><span class="fw-bold">←</span> Volver</a>
 <section class="reward_container" *ngIf="!isLoading">
 
     <header class="my-5">
@@ -7,7 +8,7 @@
         <div class="row g-3 ">
             <ng-container *ngIf="getItemsForCurrentPage().length>0">
                 <app-reward-card *ngFor="let reward of getItemsForCurrentPage()" [reward]="reward" [currentUser]="currentUser"
-                (redeem)="handleRedeem($event)" class="col-12 col-md-3 rewardss"></app-reward-card>
+                class="col-12 col-md-4 col-lg-3 rewardss"></app-reward-card>
             </ng-container>
         </div>
     </div>
@@ -17,4 +18,5 @@
     <button (click)="prevPage()" [disabled]="currentPage === 1" [class.opacity-5]="currentPage === 1" class="btn btn-light">Anterior</button>
     <span>{{ currentPage }} / {{ totalPages }}</span>
     <button (click)="nextPage()" [disabled]="currentPage === totalPages" [class.opacity-5]="currentPage===totalPages" class="btn btn-light">Siguiente</button>
-</div> 
+</div>
+

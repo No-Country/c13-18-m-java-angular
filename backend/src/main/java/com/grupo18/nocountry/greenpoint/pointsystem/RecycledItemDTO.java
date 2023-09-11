@@ -14,5 +14,4 @@ public class RecycledItemDTO {
     private RecyclableType recyclableType;
     private int pointsEarned;
     private int totalGrams;
-
 }

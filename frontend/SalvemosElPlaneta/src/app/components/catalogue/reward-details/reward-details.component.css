@@ -14,6 +14,11 @@
 .col-left{
     width: 50%;
     height: 100%;
+    margin: auto;
+}
+.col-left img{
+    object-fit: contain;
+    max-width: 600px;
 }
 .col-right{
     width: 40%;
@@ -123,5 +128,19 @@ img{
     .details-container{
         margin: auto;
         flex-wrap: wrap;
+    }
+    .input-div{
+        height: auto;
+    }
+    .code-input{
+        width: 100%;
+        font-size: 1rem;
+    }
+    .dialog-content{
+        display: flex;
+        margin: 0 auto;
+    }
+    .copy-btn{
+        font-size: .4rem;
     }
 }

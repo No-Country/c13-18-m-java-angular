@@ -34,6 +34,7 @@ public class PointSystemServiceImpl implements PointSystemService{
     private final ModelMapper mapper;
 
 
+
     @Override
     public RecycleResponse recycle(RecycleRequest request) {
         List<RecycledItem> recycledItems = new ArrayList<>();
@@ -87,7 +88,7 @@ public class PointSystemServiceImpl implements PointSystemService{
 
     @Override
     public Page<TransactionHistory> getUserTransactionHistory(Pageable pageable, Long id){
-        List<RecyclingTransaction> transactions = transactionRepository.findAllByUserId(id);
+        Page<RecyclingTransaction> transactions = transactionRepository.findAllByUserId(pageable,id);
         List<TransactionHistory> transactionHistories = new ArrayList<>();
         if(!transactions.isEmpty()){
         for (RecyclingTransaction transaction : transactions) {
@@ -102,12 +103,13 @@ public class PointSystemServiceImpl implements PointSystemService{
         }
         }
 
-        return new PageImpl<>(transactionHistories,pageable,transactionHistories.size());
+        return new PageImpl<>(transactionHistories,pageable,transactions.getTotalElements());
     }
     @Override
     public Page<TransactionHistory> getAllTransactions(Pageable pageable){
+        Page<RecyclingTransaction> transactions =  transactionRepository.findAll(pageable);
         List<TransactionHistory> transactionHistories = new ArrayList<>();
-            for (RecyclingTransaction transaction : transactionRepository.findAll(pageable)) {
+            for (RecyclingTransaction transaction : transactions) {
                 RecyclableDetails details = transaction.getRecyclableDetails();
                 transactionHistories.add(TransactionHistory
                         .builder()
@@ -119,27 +121,33 @@ public class PointSystemServiceImpl implements PointSystemService{
             }
 
 
-        return new PageImpl<>(transactionHistories,pageable,transactionHistories.size());
+        return new PageImpl<>(transactionHistories,pageable,transactions.getTotalElements());
     }
 
     @Override
-    public List<RecycledItemDTO> getDetailsByCode(String code) {
+    public DetailsResponseDTO getDetailsByCode(String code) {
         RecyclableDetails details = detailsRepository.findByCodeAndRedeemedFalse(code).orElseThrow(
                 ()->new InvalidRecycleCode("El código es inválido o ya ha sido canjeado.")
         );
+        int totalPoints = 0;
         List<RecycledItemDTO> recycledItemDTOS = new ArrayList<>();
         List<RecycledItem> recycledItems = recycledItemRepository.findAllByRecyclableDetailsId(details.getId());
         for (RecycledItem ri : recycledItems) {
+            totalPoints = (int) (ri.getRecyclable().getPoints()*Math.round((double)ri.getGrams()/100));
             recycledItemDTOS.add(RecycledItemDTO
                     .builder()
                             .recyclableType(ri.getRecyclable().getRecyclableType())
-                            .pointsEarned(ri.getRecyclableDetails().getTotalPoints())
+                            .pointsEarned(totalPoints)
                             .totalGrams(ri.getGrams())
+
 
                     .build());
         }
 
-        return recycledItemDTOS;
+        return DetailsResponseDTO.builder()
+                .recycledItems(recycledItemDTOS)
+                .totalPoints(details.getTotalPoints())
+                .build();
     }
 
 

@@ -1,3 +1,23 @@
-<section>
-  <h3>Puntos de Reciclaje</h3>
+<section class="container">
+  <h3 class="my-3">Puntos de Reciclaje</h3>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Dirección</th>
+          <th scope="col">Horario de Apertura</th>
+          <th scope="col">Horario de Cierre</th>
+          <th scope="col">Comuna</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let RecyclingPoint of list">
+          <td>{{RecyclingPoint.address}}</td>
+          <td>{{RecyclingPoint.openingTime}}</td>
+          <td>{{RecyclingPoint.closingTime}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-primary-button type="button" label="Volver al menú principal" routerLink="/home" class="buttons"></app-primary-button>
 </section>
