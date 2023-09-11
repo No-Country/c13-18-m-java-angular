@@ -2,7 +2,6 @@
 
     margin-top: 2rem;
  }
- 
  .img-thumbnail {
      transition: transform 0.3s ease-in-out;
      height: 240px;
@@ -38,7 +37,7 @@
      padding-bottom: .4rem ;
      font-size: 14px;
      font-weight: 500;
-     color: #ffffff;
+     color: #FAFBFD;
      vertical-align: bottom;
  }
  
@@ -60,10 +59,29 @@
  .title_reward{
      height: 50%;
      display: flex;
+     flex-direction: column;
      gap: .4rem;
      justify-content: space-between;
      align-items: center;
  }
  .reward_stock{
      font-size: 14px;
+ }
+
+ .description{
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+                line-clamp: 2; 
+        -webkit-box-orient: vertical;
+ }
+
+ .reward-btn{
+    background-color: #006A66;
+    border: none;
+    color: #FAFBFD;
+    padding: .3rem 2rem;
+    border-radius:12px;
+    margin: .5rem 0;
+    width: 100%;
  }

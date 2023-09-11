@@ -2,3 +2,16 @@
   width: 80vw;
   display: block;
 }
+
+.question{
+  background-color: #006A66;
+  color: #FAFDFB;
+  border: none;
+  padding: 1rem 2rem;
+  width: auto;
+  margin: 0;
+  border-radius: 12px;
+}
+.question:hover{
+  background-color: #038d88;
+}

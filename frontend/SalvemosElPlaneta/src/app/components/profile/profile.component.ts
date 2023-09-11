@@ -45,11 +45,25 @@ export class ProfileComponent implements OnInit, OnDestroy {
       next:(user)=> {
         if (user) {
           this.user = user
-          this.crearForm(this.user)
           this.userId = user.id
         };
       }
     });
+  }
+  updateUser(){
+    this.authService.getCurrentUser().subscribe({
+      next:(user)=> {
+        if (user) {
+          this.user = user
+        };
+      }
+    });
+    this.formProfile.patchValue({
+      firstname:this.user.firstname,
+      lastname:this.user.lastname,
+      country:this.user.country
+    })
+
   }
   
   
@@ -101,14 +115,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
    this.profileRequest= {lastname: this.formProfile.get('lastname')?.value, firstname: this.formProfile.get('firstname')?.value, country: this.formProfile.get('country')?.value}
    this.profService.userModif(this.userId , this.profileRequest).subscribe({
     next:()=>{
-      
     },
     error:()=>{
 
     },
     complete:()=>{
-      this.isEditMode = false
-      this.getUser();
+      this.updateUser()
+      // this.isEditMode = false
+
     }
    })
   }
