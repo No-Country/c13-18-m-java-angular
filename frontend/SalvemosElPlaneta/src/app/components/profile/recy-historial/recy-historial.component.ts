@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
-import { LoginService } from 'src/app/services/login.service';
+import { RecyTransaction } from 'src/app/models/recy-transaction';
 import { RecyTransactionsService } from 'src/app/services/recy-transactions.service';
 
 @Component({
@@ -10,30 +9,27 @@ import { RecyTransactionsService } from 'src/app/services/recy-transactions.serv
 })
 export class RecyHistorialComponent implements OnInit{
 
-  user!:User;
-  userId!:number;
+  recycles!:RecyTransaction[];
+  @Input()userId!:number;
+  currentPage:number = 0;
+  page:any ;
+  totalPages!:number[]
+  pageSize:number = 2
 
   constructor (
-    private authService:LoginService,
     private recyHistServ:RecyTransactionsService
-
   ) {}
 
   ngOnInit(): void {
-    this.authService.getCurrentUser().subscribe({
-      next:(user)=> {
-        if (user) {
-          this.user = user
-          this.userId = user.id
-        };
-      }
-    });
+    this.getRecyTransactions(this.userId);
   }
 
-  getRecyTransactions(){
-    this.recyHistServ.recyTransactionByUser(this.userId).subscribe({
+  getRecyTransactions(userId:number,page:number=0,size:number=2){
+    this.recyHistServ.recyTransactionByUser(userId,page,size).subscribe({
       next:(resp)=>{
-        console.log(resp);
+        this.page = resp;
+        this.recycles = resp.content;
+        this.totalPages = Array(resp.totalPages).fill(0);
       },
       error:()=>{
 
@@ -42,6 +38,23 @@ export class RecyHistorialComponent implements OnInit{
         
       }
     });
+  }
+
+  pagination(currentPage:number){
+    this.currentPage = currentPage;
+    this.getRecyTransactions(this.userId,currentPage,this.pageSize);
+  }
+
+  prevPage(){
+    this.currentPage = this.currentPage > 0? --this.currentPage: this.currentPage = 0;
+    console.log(this.currentPage);
+    this.pagination(this.currentPage);
+  }
+
+  nextPage(){
+    this.currentPage = this.currentPage < (this.totalPages.length-1)? ++this.currentPage: this.currentPage = (this.totalPages.length-1);
+    console.log(this.currentPage);
+    this.pagination(this.currentPage);
   }
 
 }

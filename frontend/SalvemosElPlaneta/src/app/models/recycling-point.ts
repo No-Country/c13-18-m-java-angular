@@ -3,4 +3,5 @@ export interface RecyclingPoint {
     address: string,
     openingTime: string,
     closingTime: string
+
 }
