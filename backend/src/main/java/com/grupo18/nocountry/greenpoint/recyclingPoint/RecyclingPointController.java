@@ -47,7 +47,8 @@ public class RecyclingPointController {
                     example = "{\"address\":\"123 Main St\"," +
                             "\"comuna\": 5," +
                             "\"openingTime\":\"09:00\"," +
-                            "\"closingTime\":\"17:00\"}"
+                            "\"closingTime\":\"17:00\"," +
+                            "\"openDays\":[\"Lunes\", \"Miércoles\"]}"
             )
             RecyclingPoint recyclingPoint) {
         try {
@@ -76,11 +77,9 @@ public class RecyclingPointController {
                                                           example = "{\"address\":\"123 Main St\"," +
                                                                   "\"comuna\": 5," +
                                                                   "\"openingTime\":\"09:00\"," +
-                                                                  "\"closingTime\":\"17:00\"}"
-                                                  ) RecyclingPoint recyclingPoint)
-
-    {
-
+                                                                  "\"closingTime\":\"17:00\"," +
+                                                                  "\"openDays\":[\"Lunes\", \"Miércoles\"]}"
+                                                  ) RecyclingPoint recyclingPoint) {
         try {
             recyclingPoint.setId(id);
             recyclingService.modifyRecyclingPoint(recyclingPoint);

@@ -8,6 +8,7 @@ import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalTime;
+import java.util.Set;
 
 
 @Data
@@ -38,4 +39,11 @@ public class RecyclingPoint {
     @Column(name = "closing_time")
     @NotNull
     private LocalTime closingTime;
+
+    @ElementCollection(targetClass = DAYS_OF_THE_WEEK.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "RecyclingPoint_Days", joinColumns = @JoinColumn(name = "recycling_point_id"))
+    @Column(name = "day")
+    private Set<DAYS_OF_THE_WEEK> openDays;
+
 }
