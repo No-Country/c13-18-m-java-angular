@@ -14,17 +14,20 @@ export class PointsHistorialComponent implements OnInit {
   currentPage:number = 0;
   page:any ;
   totalPages!:number[]
-  pageSize:number = 2
+  pageSize:number = 5
+  sizes = [5,10,15,20]
+  isIncorrect = false
+  totalElements!:number
 
   constructor(
     private rewardTransServ:RewardTransactionsService,
   ){}
 
   ngOnInit(): void {
-    this.getTransactions(this.userId);
+    this.getTransactions(this.userId,this.currentPage,this.pageSize);
   }
 
-  getTransactions(userId:number,page:number=0,size:number=2){
+  getTransactions(userId:number,page:number,size:number){
     this.rewardTransServ.transactionByUser(userId,page,size).subscribe({
       next:(resp)=>{
         this.page = resp
@@ -41,20 +44,31 @@ export class PointsHistorialComponent implements OnInit {
     
   }
 
+  setSize(size:number){
+    if (this.page){
+      if (size > this.page.totalElements) {
+        this.pageSize = this.page.totalElements;
+        this.isIncorrect = true;
+      } else {
+        this.pageSize = size;
+        this.isIncorrect = false;
+      }
+    this.getTransactions(this.userId,this.currentPage,this.pageSize);
+    }
+  }
+
   pagination(currentPage:number){
     this.currentPage = currentPage;
-    this.getTransactions(this.userId,currentPage,this.pageSize);
+    this.getTransactions(this.userId,this.currentPage,this.pageSize);
   }
 
   prevPage(){
     this.currentPage = this.currentPage > 0? --this.currentPage: this.currentPage = 0;
-    console.log(this.currentPage);
     this.pagination(this.currentPage);
   }
 
   nextPage(){
     this.currentPage = this.currentPage < (this.totalPages.length-1)? ++this.currentPage: this.currentPage = (this.totalPages.length-1);
-    console.log(this.currentPage);
     this.pagination(this.currentPage);
   }
 

@@ -1,5 +1,12 @@
 <section class="container">
   <h3 class="my-3">Historial de Premios</h3>
+  <div class="container-fluid d-flex select justify-content-end">
+    <h6 class="select-title">Registros por página:</h6>
+    <select class="form-select" [(ngModel)]="pageSize" (ngModelChange)="setSize($event)" aria-label="Default select example">
+      <option *ngFor="let size of sizes" [value]="size">{{size}}</option>
+      <option *ngIf="isIncorrect" [value]="pageSize">{{pageSize}}</option>
+    </select>
+  </div>
   <div>
     <table class="table">
       <thead>

@@ -14,7 +14,7 @@ export class RecyTransactionsService {
     private http:HttpClient
   ) {}
 
-  recyTransactionByUser(id:number,page:number=0,size:number=5):Observable<any>{
+  recyTransactionByUser(id:number,page:number,size:number):Observable<any>{
     return this.http.get(`${this.baseUrl}transactions/user/${id}?page=${page}&size=${size}`);
   }
 }
