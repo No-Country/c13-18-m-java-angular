@@ -1,0 +1,54 @@
+<h1 class="text-center my-5">Articulos sobre reciclaje</h1>
+<div class="div-tags container  w-100">
+    <div class="tag-icons ">
+        <div class="tag-box" (click)="selectTag('papel')" [class.selected]="selectedTag.includes('papel')">
+            <img class="tag-icon" src="/assets/Images/papel.png" alt="papel">
+            <span>Papel</span>
+        </div>
+        <div class="tag-box" (click)="selectTag('lata')" [class.selected]="selectedTag.includes('lata')">
+            <img class="tag-icon"
+                src="/assets/Images/lata-de-refresco.png" alt="lata-de-refresco">
+            <span>Lata</span>
+        </div>
+        <div class="tag-box" (click)="selectTag('organico')" [class.selected]="selectedTag.includes('organico')"> 
+            <img class="tag-icon" src="/assets/Images/comida.png"
+                alt="comida">
+                <span>Organicos</span>
+            </div>
+        <div class="tag-box" (click)="selectTag('carton')" [class.selected]="selectedTag.includes('carton')">
+            <img class="tag-icon" src="/assets/Images/caja-de-carton.png"
+                alt="caja-de-carton">
+                <span>Carton</span>
+            </div>
+        <div class="tag-box" (click)="selectTag('vidrio')" [class.selected]="selectedTag.includes('vidrio')">
+            <img class="tag-icon"
+                src="/assets/Images/botella-de-vidrio.png" alt="botella-de-vidrio">
+                <span>Vidrio</span>
+            </div>
+        <div class="tag-box" (click)="selectTag('plastico')" [class.selected]="selectedTag.includes('plastico')">
+            <img class="tag-icon"
+                src="/assets/Images/botella-de-plastico.png" alt="botella-de-plastico">
+                <span>Plástico</span>
+            </div>
+        <div class="tag-box" (click)="selectTag('metal')" [class.selected]="selectedTag.includes('metal')">
+            <img class="tag-icon" src="/assets/Images/tornillo.png"
+                alt="tornillo">
+                <span>Metal</span>
+            </div>
+        <div class="tag-box" (click)="selectTag('madera')" [class.selected]="selectedTag.includes('madera')">
+            <img class="tag-icon" src="/assets/Images/tabla-de-madera.png" alt="tabla-de-madera">
+            <span>Madera</span>
+        </div>
+
+    </div>
+</div>
+<div class="cards container mx-auto ">
+    <app-article-card class="card" *ngFor="let post of filteredArticles" [post]="post" />
+    <ng-container *ngIf="filteredArticles">
+        <div *ngIf="!filteredArticles.length" class="my-5">
+            <img src="/assets/Images/no-results.svg" alt="">
+            <p class="text-center">No se encontraron resultados.</p>    
+        </div>
+
+    </ng-container>
+</div>

@@ -1,0 +1,11 @@
+<article>
+    <h3>{{post.title}}</h3>
+    <hr>
+    <div>
+        <p class="text">{{formatContent(post.content)}}</p>
+    </div>
+    <div class="article-footer">
+    <span><i>tag: </i>{{post.tag | titlecase}}</span>
+    <button>Seguir leyendo</button>
+    </div>
+</article>

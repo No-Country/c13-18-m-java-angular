@@ -18,6 +18,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { DialogComponent } from './shared/components/dialog/dialog.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { GreenPointInfoComponent } from './components/green-point-info/green-point-info.component';
+import { RecyclingInfoComponent } from './components/recycling-info/recycling-info.component';
 
 const routes: Routes = [
   
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'restablecer', component: ResetpassComponent},
   {path: 'FAQ', component: FaqComponent},
   {path: 'green-point', component: GreenPointInfoComponent},
+  {path: 'consejos', component: RecyclingInfoComponent},
   {path: 'token/confirm-reset', component: NewPassComponent},
   {path: 'token/confirm-mail/:token', component: ConfirmMailComponent},
   

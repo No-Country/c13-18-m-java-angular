@@ -1,8 +1,9 @@
 <section class="main">
   <h1 class="m-5" *ngIf="!isLogged">Bienvenido/a a Green Point</h1>
   <h1 *ngIf="user" class="container my-4 ">{{isLogged ? 'Hola ' + (user.firstname | titlecase):''}}</h1>
-  <div class="container">
-    <div class="row icons">
+  <div class="container main-container">
+    <div class="row gap-5">
+      <div class="icons">
       <article class="icono" routerLink="/recy-points">
         <img class="main-icons" src="/assets/Images/icono-container.png" alt="puntos de reciclaje">
         
@@ -10,34 +11,35 @@
           <h4>Puntos de reciclaje</h4>
         </div>
       </article>
-      <article class="icono">
+      <article class="icono" routerLink="/consejos">
         <img class="main-icons" src="/assets/Images/icono-botella.png" alt="Consejos">
         <div>
           <h4>Consejos</h4>
         </div>
       </article>
     </div>
-  </div>
-  <div class="container points-container">
-    <div class="row" *ngIf="!isLogged">
-    <h4>Tus puntos</h4>
-    <p>Todavía no hay puntos,
-    <a routerLink="/registro">registrate gratis</a> o <a routerLink="/login">iniciá sesión</a>.</p>
-    <a routerLink="/about-info">Ver cómo funciona.</a>
-  </div>
-  <div class="row user-info" *ngIf="isLogged && user">
-    <h4>Tus puntos</h4>
-    <p class="user-points">{{userPoints$ | async}}</p>
-  </div>
-  </div>
-  <div class="container">
-    <div class="row buttons">
-
-        <app-filled-button class="filled-button" routerLink="/canjear" label="Sumar puntos" type="button" [disabled]="!isLogged"></app-filled-button>
-
-
-        <app-filled-button class="filled-button" routerLink="/catalogo" label="Ver catálogo" type="button"></app-filled-button>
-
+    <div class="row points-container">
+      <div class="row" *ngIf="!isLogged">
+      <h4>Tus puntos</h4>
+      <p>Todavía no hay puntos,
+      <a routerLink="/registro">registrate gratis</a> o <a routerLink="/login">iniciá sesión</a>.</p>
+      <a routerLink="/about-info">Ver cómo funciona.</a>
     </div>
-  </div>
+    <div class="user-info" *ngIf="isLogged && user">
+      <h4>Tus puntos</h4>
+      <p class="user-points">{{userPoints$ | async}}</p>
+    </div>
+    </div>
+    <div class="container">
+      <div class="row buttons">
+  
+          <app-filled-button class="filled-button" routerLink="/canjear" label="Sumar puntos" type="button" [disabled]="!isLogged"></app-filled-button>
+  
+  
+          <app-filled-button class="filled-button" routerLink="/catalogo" label="Ver catálogo" type="button"></app-filled-button>
+  
+      </div>
+    </div>
+    </div>
+    </div>
 </section>
