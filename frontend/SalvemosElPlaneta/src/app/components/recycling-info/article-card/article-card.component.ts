@@ -14,4 +14,9 @@ export class ArticleCardComponent {
     const paragraphs = str.split('\n')
     return paragraphs[0];
   }
+
+
+  slugTitle(str:string):string{
+    return str.replaceAll(" ","-").replaceAll(":","-").toLowerCase()
+  }
 }

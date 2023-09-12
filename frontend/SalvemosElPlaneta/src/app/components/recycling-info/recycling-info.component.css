@@ -1,3 +1,6 @@
+h1{
+    font-family: 'overlock','cursiva';
+}
 .tag-icons {
     display: flex;
     flex-direction: row;
@@ -39,7 +42,7 @@
 .cards{
     
     width: 40%;
-    
+    transition: .5s all;
 }
 
 .card{

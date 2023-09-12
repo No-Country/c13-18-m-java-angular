@@ -37,6 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { RecyclingInfoComponent } from './components/recycling-info/recycling-info.component';
 import { ArticleCardComponent } from './components/recycling-info/article-card/article-card.component';
+import { RecyclingInfoDetailComponent } from './components/recycling-info/recycling-info-detail/recycling-info-detail.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ArticleCardComponent } from './components/recycling-info/article-card/a
     GreenPointInfoComponent,
     RecyclingInfoComponent,
     ArticleCardComponent,
+    RecyclingInfoDetailComponent,
     
   ],
   imports: [

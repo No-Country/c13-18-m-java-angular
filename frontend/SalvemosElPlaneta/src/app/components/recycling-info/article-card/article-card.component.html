@@ -6,6 +6,6 @@
     </div>
     <div class="article-footer">
     <span><i>tag: </i>{{post.tag | titlecase}}</span>
-    <button>Seguir leyendo</button>
+    <button [routerLink]="[post.tag.toLowerCase(), slugTitle(post.title),post.id]">Seguir leyendo</button>
     </div>
 </article>
