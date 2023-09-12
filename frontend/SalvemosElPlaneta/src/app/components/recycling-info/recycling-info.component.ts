@@ -45,7 +45,6 @@ export class RecyclingInfoComponent implements OnInit,OnDestroy {
       this.selectedTag.push(tag);
     }
   
-    console.log(this.selectedTag);
     this.filteredArticles = this.filterArticles(this.recyclingInfo);
     return this.selectedTag.includes(tag);
   }

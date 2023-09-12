@@ -48,13 +48,11 @@ export class PointsHistorialComponent implements OnInit {
 
   prevPage(){
     this.currentPage = this.currentPage > 0? --this.currentPage: this.currentPage = 0;
-    console.log(this.currentPage);
     this.pagination(this.currentPage);
   }
 
   nextPage(){
     this.currentPage = this.currentPage < (this.totalPages.length-1)? ++this.currentPage: this.currentPage = (this.totalPages.length-1);
-    console.log(this.currentPage);
     this.pagination(this.currentPage);
   }
 
