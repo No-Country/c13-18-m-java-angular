@@ -44,8 +44,10 @@ export class RecyclingInfoComponent implements OnInit,OnDestroy {
     } else {
       this.selectedTag.push(tag);
     }
-  
-    this.filteredArticles = this.filterArticles(this.recyclingInfo);
+    if(this.recyclingInfo){
+
+      this.filteredArticles = this.filterArticles(this.recyclingInfo);
+    }
     return this.selectedTag.includes(tag);
   }
 

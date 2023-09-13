@@ -30,7 +30,7 @@ export class RegisterComponent {
   crearForm (){
     this.formRegister = this.formbuilder.group(
       {
-        email:['',[Validators.required,Validators.email]],
+        email:['',[Validators.required,Validators.email,Validators.pattern(/^([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/)]],
         username:['',[Validators.required,Validators.minLength(2)]],
         password1: ['',[Validators.required,Validators.minLength(8)]],
         password2: ['',[Validators.required,Validators.minLength(8)]]
