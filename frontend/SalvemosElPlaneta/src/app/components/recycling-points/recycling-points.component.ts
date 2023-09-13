@@ -17,7 +17,6 @@ export class RecyclingPointsComponent implements OnInit {
   ngOnInit(): void {
     this.recyServ.points().subscribe({
       next:(resp)=>{
-        console.log(resp);
         this.list = resp;
       },
       error:()=>{
