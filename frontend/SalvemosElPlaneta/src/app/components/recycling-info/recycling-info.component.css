@@ -51,7 +51,16 @@ h1{
     margin: 1rem;
     background-color: #FAFDFB;
 }
-
+.no-results{
+    width: 80%;
+    margin: auto;
+}
+.no-results-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 @media (max-width:868px){
 

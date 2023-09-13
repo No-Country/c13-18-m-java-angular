@@ -45,8 +45,8 @@
 <div class="cards container mx-auto ">
     <app-article-card class="card" *ngFor="let post of filteredArticles" [post]="post" />
     <ng-container *ngIf="filteredArticles">
-        <div *ngIf="!filteredArticles.length" class="my-5">
-            <img src="/assets/Images/no-results.svg" alt="">
+        <div *ngIf="!filteredArticles.length" class="my-5 no-results-div">
+            <img src="/assets/Images/no-results.webp" alt="no hay resultados" class="no-results">
             <p class="text-center">No se encontraron resultados.</p>    
         </div>
 
