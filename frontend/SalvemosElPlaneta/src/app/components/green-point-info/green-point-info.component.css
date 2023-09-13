@@ -1,0 +1,30 @@
+h1{
+    font-family: 'overlock','cursiva';
+    margin-bottom: 2.5rem;
+}
+
+.container{
+    width: 80%;
+    margin: 4rem auto;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    width: 75%;
+    margin: 2rem auto;
+}
+
+
+@media (max-width:720px){
+    
+    .container{
+        width: 90%;
+    }
+    .content{
+        width: 90%;
+    }
+
+}
