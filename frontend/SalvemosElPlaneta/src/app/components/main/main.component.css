@@ -7,6 +7,7 @@
     align-items: center;
     margin: auto;
 }
+
 .icono{
     width: 40%;
     color: #FF914D;
@@ -14,9 +15,9 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin: 2rem 0;
+    margin: 0;
     cursor: pointer;
 
 
@@ -55,9 +56,8 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    align-items: flex-start;
     justify-content: center;
-    margin: 2rem auto;
+    margin: auto;
 }
 
 .points-container a{
@@ -78,19 +78,22 @@ h4{
 }
 
 
-@media screen and (min-width: 728px) {
-    .icons{
-        width: 80%;
+@media screen and (min-width: 1100px) {
+    .main-container{
+        width: 50%;
     }
     .icono{
-        width: 25%;
-        margin: 2rem auto;
+        width: 40%;
+        margin: 2rem 0;
     }
     .main-icons{
         border: 5px solid #FF914D;
         border-radius: 24px;
         width: 100%;
+        height: 100%;
+        padding: 1rem 4rem;
     }
+
     h4{
         font-size: 2rem;
     }

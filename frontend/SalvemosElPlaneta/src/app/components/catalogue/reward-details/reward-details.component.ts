@@ -99,6 +99,7 @@ export class RewardDetailsComponent implements OnInit {
     });
   }
   closeDialog():void{
+    location.reload()
     this.router.navigate(['/catalogo']);
   }
   back(): void {
