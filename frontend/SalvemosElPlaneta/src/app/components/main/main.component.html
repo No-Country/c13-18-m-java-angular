@@ -4,7 +4,7 @@
   <div class="container main-container">
     <div class="row gap-5">
       <div class="icons">
-      <article class="icono" routerLink="/recy-points">
+      <article class="icono" routerLink="/puntos-de-reciclaje">
         <img class="main-icons" src="/assets/Images/icono-container.png" alt="puntos de reciclaje">
         
         <div>
@@ -22,7 +22,7 @@
       <div class="row" *ngIf="!isLogged">
       <h4>Tus puntos</h4>
       <p>Todavía no hay puntos,
-      <a routerLink="/registro">registrate gratis</a> o <a routerLink="/login">iniciá sesión</a>.</p>
+      <a routerLink="/registro">registrate gratis</a> o <a routerLink="/iniciar-sesion">iniciá sesión</a>.</p>
       <a routerLink="/about-info">Ver cómo funciona.</a>
     </div>
     <div class="user-info" *ngIf="isLogged && user">
