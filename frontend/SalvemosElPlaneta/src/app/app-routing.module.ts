@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'registro', component: RegisterComponent, canActivate: [LoggedGuard]},
   {path: 'home', component: MainComponent},
   {path: 'perfil', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'about-info', component: AboutInfoComponent},
+  {path: 'nosotros', component: AboutInfoComponent},
   {path: 'puntos-de-reciclaje', component: RecyclingPointsComponent},
   {path: 'canjear', component: RedeemComponent, canActivate: [AuthGuard]},
   {path: 'catalogo', component: CatalogueComponent},
