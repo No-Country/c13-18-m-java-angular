@@ -14,22 +14,27 @@ export class RecyHistorialComponent implements OnInit{
   currentPage:number = 0;
   page:any ;
   totalPages!:number[]
-  pageSize:number = 2
+  pageSize:number = 5
+  sizes = [5,10,15,20]
+  isIncorrect = false
+  totalElements!:number
+
 
   constructor (
     private recyHistServ:RecyTransactionsService
   ) {}
 
   ngOnInit(): void {
-    this.getRecyTransactions(this.userId);
+    this.getRecyTransactions(this.userId,this.currentPage,this.pageSize);
   }
 
-  getRecyTransactions(userId:number,page:number=0,size:number=2){
+  getRecyTransactions(userId:number,page:number,size:number){
     this.recyHistServ.recyTransactionByUser(userId,page,size).subscribe({
       next:(resp)=>{
         this.page = resp;
         this.recycles = resp.content;
         this.totalPages = Array(resp.totalPages).fill(0);
+        this.totalElements = resp.totalElements;
       },
       error:()=>{
 
@@ -40,13 +45,22 @@ export class RecyHistorialComponent implements OnInit{
     });
   }
 
-  numPerPage(){
-    
+  setSize(size:number){
+    if (this.page){
+      if (size > this.page.totalElements) {
+        this.pageSize = this.page.totalElements;
+        this.isIncorrect = true;
+      } else {
+        this.pageSize = size;
+        this.isIncorrect = false;
+      }
+    this.getRecyTransactions(this.userId,this.currentPage,this.pageSize);
+    }
   }
 
   pagination(currentPage:number){
     this.currentPage = currentPage;
-    this.getRecyTransactions(this.userId,currentPage,this.pageSize);
+    this.getRecyTransactions(this.userId,this.currentPage,this.pageSize);
   }
 
   prevPage(){

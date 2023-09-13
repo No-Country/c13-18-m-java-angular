@@ -24,12 +24,12 @@ import { RecyclingInfoDetailComponent } from './components/recycling-info/recycl
 const routes: Routes = [
   
   {path: '', component: HomeComponent},
-  {path: 'login', component: LoginComponent, canActivate: [LoggedGuard]},
+  {path: 'iniciar-sesion', component: LoginComponent, canActivate: [LoggedGuard]},
   {path: 'registro', component: RegisterComponent, canActivate: [LoggedGuard]},
   {path: 'home', component: MainComponent},
   {path: 'perfil', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'about-info', component: AboutInfoComponent},
-  {path: 'recy-points', component: RecyclingPointsComponent},
+  {path: 'nosotros', component: AboutInfoComponent},
+  {path: 'puntos-de-reciclaje', component: RecyclingPointsComponent},
   {path: 'canjear', component: RedeemComponent, canActivate: [AuthGuard]},
   {path: 'catalogo', component: CatalogueComponent},
   {path: 'premio/:id', component: RewardDetailsComponent},
