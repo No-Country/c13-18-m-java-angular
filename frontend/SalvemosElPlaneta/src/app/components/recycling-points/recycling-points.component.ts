@@ -10,7 +10,8 @@ import { RecyPointsService } from 'src/app/services/recy-points.service';
 })
 export class RecyclingPointsComponent implements OnInit {
 
-  list!:RecyclingPoint[];
+  filteredRecyPoints!:RecyclingPoint[];
+  recyPoints!:RecyclingPoint[];
   nameFilter!:string
 
   constructor(
@@ -20,13 +21,8 @@ export class RecyclingPointsComponent implements OnInit {
   ngOnInit(): void {
     this.recyServ.points().subscribe({
       next:(resp)=>{
-        this.list = resp;
-      },
-      error:()=>{
-
-      },
-      complete:()=>{
-
+        this.filteredRecyPoints = resp;
+        this.recyPoints = resp;
       }
     });
   }
@@ -37,7 +33,10 @@ export class RecyclingPointsComponent implements OnInit {
   }
 
   nameSearch(q:string){
-    this.list = this.list.filter(
+    if (!q.length) {
+      this.filteredRecyPoints = this.recyPoints;
+    }
+    this.filteredRecyPoints = this.filteredRecyPoints.filter(
       (point:RecyclingPoint) =>point.address.toLowerCase().includes(q.toLowerCase())||
                     point.openingTime.toLowerCase().includes(q.toLowerCase())||
                     point.closingTime.toLowerCase().includes(q.toLowerCase())||
