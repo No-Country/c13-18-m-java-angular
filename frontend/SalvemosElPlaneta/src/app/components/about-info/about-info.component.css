@@ -3,7 +3,7 @@
 }
 
 .intro {
-    width: 100%;
+    width: 90%;
     padding: 20px;
     margin: 20px 0px;
 }
@@ -61,7 +61,7 @@ article {
     border: 3px solid #006a66;
     border-radius: 50px;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     text-align: center;
     justify-content: center;
     justify-self: center;
@@ -97,7 +97,7 @@ article {
     border: 3px solid #006a66;
     border-radius: 50px;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     text-align: center;
     justify-content: center;
     justify-self: center;
@@ -133,7 +133,7 @@ article {
     border: 3px solid #006a66;
     border-radius: 50px;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     text-align: center;
     justify-content: center;
     justify-self: center;
@@ -169,7 +169,7 @@ article {
     border: 3px solid #006a66;
     border-radius: 50px;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     text-align: center;
     justify-content: center;
     justify-self: center;
@@ -205,7 +205,7 @@ article {
     border: 3px solid #006a66;
     border-radius: 50px;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     text-align: center;
     justify-content: center;
     justify-self: center;
