@@ -1,0 +1,15 @@
+.form-select {
+    width: fit-content;
+    height: fit-content;
+    text-align: right;
+    margin-top: 7px;
+}
+
+.select-title {
+    margin: 16px;
+    align-items: center;
+}
+
+.disabled {
+    opacity: .5;
+}

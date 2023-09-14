@@ -1,0 +1,89 @@
+<section class="container mx-auto">
+
+  <h1>Sumá tus puntos</h1>
+  <div class="content">
+  <div class="code-container">
+    <form [formGroup]="formRedeemCode" (ngSubmit)="submit()" class="form">
+      <div class="left-col mb-3 ">
+        <label for="text" class="form-label w-100"><h3>Ingresá el código</h3></label>
+        <div class="redeemCode">
+          <div class="input-container">
+          <input type="text" class="form-control code-input" formControlName="code" placeholder="Código" 
+          >
+          <i *ngIf="isValid" class="bi bi-check2 check"></i>
+          </div>
+          <app-filled-button type="button" *ngIf="!isValid" (click)="validate()" [label]="isLoading ? '':'Validar'" 
+          class="filled-button"
+          [loader]="isLoading"
+          >
+            
+          </app-filled-button>
+          <app-filled-button [type]="isValid?'submit':'button'" *ngIf="isValid" label="Confirmar" 
+          class="filled-button"
+          >
+            
+          </app-filled-button>
+        </div>
+        <p *ngIf="code?.invalid && code?.touched" class="text-danger">El formato del código no es válido. Debe contener 8 caracteres.</p>
+      </div>
+        <div class="table-container left-col" *ngIf="details && details.recycledItems.length">
+          <h3>Detalles</h3>
+          <table class="table table-sm">
+            <thead>
+              <th>
+                Material
+              </th>
+              <th>
+                Cantidad (gr)
+              </th>
+              <th>
+                Puntos obtenidos
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let detail of details.recycledItems">
+                <td>
+                  {{detail.recyclableType}}
+                </td>
+                <td>
+                  {{detail.totalGrams}}
+                </td>
+                <td>
+                  {{detail.pointsEarned}}
+                </td>
+              </tr>
+              <tr>
+                
+                <td class="fw-bold">Total</td>
+                <td></td>
+                <td class="fw-bold">{{details.totalPoints}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+    </form>
+    <app-dialog *ngIf="show">
+      <div class="dialog-content">
+        <div class="message-box">
+          <h2>Felicidades! </h2>
+          <div>
+          <h4>Sumaste {{details.totalPoints}} green points</h4>
+        </div>
+        </div>
+      
+            <button class="dialog-button" (click)="closeDialog()">Cerrar</button>
+          
+          </div>
+
+    </app-dialog>
+  </div>
+  <div class="footer-content">
+  <div class="back-buttons my-5">
+    <app-filled-button type="button" routerLink="/home" label="Volver a la página principal"/>
+    <app-filled-button type="button" routerLink="/catalogo" label="Ver el catálogo"/>
+  </div>
+  <p>¿Tuviste algún problema? <a routerLink="" class="text-black">Contactanos</a>.</p>
+</div>
+</div>
+</section>

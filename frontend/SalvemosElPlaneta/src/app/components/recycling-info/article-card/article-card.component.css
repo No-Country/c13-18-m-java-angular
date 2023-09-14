@@ -1,0 +1,32 @@
+
+h3{
+    font-family: 'overlock','cursiva';
+}
+.text{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+
+}
+
+.article-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.article-footer button{
+    border: none;
+    padding: .5rem 1rem;
+    border-radius: 8px;
+}
+
+
+@media (max-width:400px){
+    button{
+        font-size: .8rem;
+        padding: .3rem .5rem;
+    }
+}

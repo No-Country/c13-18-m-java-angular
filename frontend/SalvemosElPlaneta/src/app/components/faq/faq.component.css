@@ -1,0 +1,36 @@
+.container{
+  width: 50%;
+  text-align: center;
+  margin: 1rem 0;
+}
+.questions {
+  width: 80vw;
+  display: block;
+}
+
+
+.btn-group{
+  width: 100%;
+}
+
+.question{
+  background-color: #006A66;
+  color: #FAFDFB;
+  border: none;
+  padding: 1rem 2rem;
+  width: auto;
+  margin: 0;
+  border-radius: 12px;
+}
+.question:hover{
+  background-color: #038d88;
+}
+
+@media (max-width:728px){
+
+  .container{
+    width: 90%;
+   
+    
+  }
+}

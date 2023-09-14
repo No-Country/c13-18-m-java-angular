@@ -1,0 +1,22 @@
+<section>
+    <h3 class="m-3 d-flex align-items-center justify-content-center">Restablecer contraseña</h3>
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        <form [formGroup]="formResetPass" (ngSubmit)="submit()"> 
+          <div class="mb-3">
+            <label for="InputPassword1" class="form-label"> Nueva Contraseña</label>
+            <input type="password" class="form-control" formControlName="password1" id="InputPassword1" [class.is-invalid]="Password" placeholder="Nueva contraseña">
+            <div>
+              <p *ngIf="Password" class="text-danger">La contraseña debe ser de 8 caracteres o más</p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="InputPassword2" class="form-label">Confirmar Contraseña</label>
+            <input type="password" class="form-control" formControlName="password2" id="InputPassword2" [class.is-invalid]="Password2" placeholder="Confirme contraseña">
+            <div>
+              <p *ngIf="Password2" class="text-danger">Las contraseñas deben ser iguales</p>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+  </section>

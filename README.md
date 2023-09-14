@@ -29,3 +29,4 @@ Green Point es una aplicación de reciclaje que busca abordar la necesidad inmed
 
 ### Video promocional 🔗:
 * [Proximamente](https://youtube.com)
+

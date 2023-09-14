@@ -1,0 +1,16 @@
+<div *ngIf="article" class="container  my-5">
+
+    <h1>{{article.title}}</h1>
+    <span class="tag"> #{{article.tag | lowercase}}</span>
+    <div class="content">
+    <p *ngFor="let p of formatContent(article.content)">
+
+        {{p}}
+    </p>
+        </div>
+
+        <button class="button" (click)="back()">
+            Volver al listado
+        </button>
+</div>
+

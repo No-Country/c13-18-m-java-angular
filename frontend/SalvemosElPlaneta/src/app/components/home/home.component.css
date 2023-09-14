@@ -1,0 +1,70 @@
+.buttons{
+    width: 50%;
+}
+
+.main-footer{
+    height: 400px;
+
+}
+
+.top-button{
+    background-color: transparent;
+    border: none;
+    vertical-align: bottom;
+    text-align: center;
+    text-decoration: underline;
+    
+}
+
+
+h3,h5{
+    font-family: 'Overlock', cursive;
+}
+h3{
+
+    font-size: 3rem;
+}
+h5{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+.beneficios .col-img{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.beneficios{
+    margin: 2rem 0;
+}
+.land-img.contenedor{
+    object-position: 0 60px;
+}
+
+@media (max-width:729px){
+    section{
+        padding-top: 1rem;
+        margin-bottom: 3rem;
+    }
+
+    .columna{
+        margin: 2rem 0;
+
+    }
+    h3{
+        font-size: 2rem;
+    }
+    .buttons{
+        width: 80%;
+    }
+    .land-img{
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    .col-img{
+        margin: auto;
+        width: 80%;
+    }
+}

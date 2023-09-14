@@ -1,0 +1,25 @@
+dialog::backdrop {
+    background: #006a672c;
+    backdrop-filter: blur(3px);
+  
+}
+
+dialog{
+  height: 60vh;
+  width: 70vw;
+  background-color: #FAFDFB;
+  color: #1d1d1d;
+  border: none;
+  border-radius: 12px;
+  text-align: center;
+}
+
+
+@media (max-width:728px){
+  dialog{
+    height: 40vh;
+    width: 80vw;
+  }
+
+}
+

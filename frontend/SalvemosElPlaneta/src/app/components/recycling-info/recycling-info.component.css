@@ -1,0 +1,87 @@
+h1{
+    font-family: 'overlock','cursiva';
+}
+.tag-icons {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: wrap;
+    width: 80%;
+    margin: 0 auto ;
+}
+.div-tags{
+    margin: 2rem auto;
+}
+.tag-box{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+    gap: .4rem;
+    border-bottom: 2px solid transparent;
+    
+}
+.tag-box.selected{
+    border-bottom-color: #FF914D;
+}
+
+.tag-box:hover{
+    border-bottom-color: #FF914D;
+    
+}
+.tag-box img{
+    padding: .4rem;
+    width: 48px;
+    object-fit: contain;
+}
+
+.cards{
+    
+    width: 40%;
+    transition: .5s all;
+}
+
+.card{
+    border: 1px solid #FF914D;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: #FAFDFB;
+}
+.no-results{
+    width: 80%;
+    margin: auto;
+}
+.no-results-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width:868px){
+
+    .tag-box{
+        width: 22%;
+        margin: 1rem 0;
+    }
+    .tag-box img{
+        margin: auto;
+        width: 26px;
+        padding: 0;
+        
+    }
+    .cards{
+    
+        width: 90%;
+        
+    }
+    
+    .tag-icon{
+        width: 24px;
+    }
+    
+}

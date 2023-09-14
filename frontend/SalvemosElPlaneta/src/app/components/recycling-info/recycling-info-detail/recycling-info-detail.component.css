@@ -1,0 +1,33 @@
+h1{
+    font-family: 'overlock','cursiva';
+}
+
+.container{
+    height: 100%;
+    width: 50%;
+    margin: auto;
+    transition: .5s all;
+
+}
+
+.tag{
+    border-radius: 24px;
+    background-color: #049691;
+    color: #FAFDFB;
+    padding: .1rem .6rem;
+}
+
+.content{
+    margin: 2rem 0;
+}
+.button{
+    border: none;
+    padding: .3rem .6rem;
+    border-radius: 6px;
+}
+
+@media (max-width:730px){
+    .container{
+        width: 90%;
+    }
+}

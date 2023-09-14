@@ -1,0 +1,26 @@
+<section class="container recy">
+  <h3 class="my-3">Puntos de Reciclaje</h3>
+  <form class="d-flex" role="search">
+    <input class="form-control me-2" [(ngModel)]="nameFilter" [ngModelOptions]="{standalone: true}" (ngModelChange)="nameSearch($event)" type="search"
+     placeholder="Filtrar por Dirección, Horario o Comuna" aria-label="Search">
+  </form>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Dirección</th>
+          <th scope="col">Horario</th>
+          <th scope="col">Comuna</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let recyclingPoint of list">
+          <td>{{recyclingPoint.address}}</td>
+          <td>{{formatTime(recyclingPoint.openingTime)}} hasta {{formatTime(recyclingPoint.closingTime)}}</td>
+          <td> {{recyclingPoint.comuna}} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-primary-button type="button" label="Volver al menú principal" routerLink="/home" class="buttons"></app-primary-button>
+</section>
