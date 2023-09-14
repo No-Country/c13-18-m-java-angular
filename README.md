@@ -25,7 +25,7 @@ Green Point es una aplicación de reciclaje que busca abordar la necesidad inmed
 
 
 ### Deploy 🔗:
-* [Link](http://190.124.144.225:80)
+* [Link](http://greenpoint.zanity.net/)
 
 ### Video promocional 🔗:
 * [Proximamente](https://youtube.com)
