@@ -2,6 +2,17 @@
     margin: 1.5rem;
 }
 
+.intro {
+    width: 100%;
+    padding: 20px;
+    margin: 20px 0px;
+}
+
+.intro-title {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
 article {
     margin-bottom: 20px;
 }
@@ -10,6 +21,12 @@ article {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    .space {
+        display: none;
+    }
 }
 
 .icons-social-nets a {
