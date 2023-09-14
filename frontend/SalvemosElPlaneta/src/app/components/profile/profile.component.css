@@ -30,6 +30,12 @@
   right: 0;
   top: 0;
   margin: 25px;
+  height: 50px;
+  width: 50px;
+}
+
+.edit-mode i {
+  font-size: 25px;
 }
 
 button {

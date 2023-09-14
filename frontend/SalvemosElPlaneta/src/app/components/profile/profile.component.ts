@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userId!:number;
   formProfile!:FormGroup
   profileRequest!:ProfileRequest
-  tabActive = 'reciclajes'
+  tabActive = 'datos'
 
   constructor(
     private authService:LoginService,
@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   updateUser(){
     this.authService.getCurrentUser().subscribe({
       next:(user)=> {
@@ -65,8 +66,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     })
 
   }
-  
-  
 
   crearForm(user:User){
     this.formProfile = this.fb.group(
@@ -120,7 +119,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     },
     complete:()=>{
-      this.updateUser()
+      this.updateUser();
+      location.reload();
       // this.isEditMode = false
 
     }
