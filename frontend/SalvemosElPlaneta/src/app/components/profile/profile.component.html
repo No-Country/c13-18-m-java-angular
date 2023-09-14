@@ -20,7 +20,7 @@
             <label for="" class="form-label">País</label>
             <input type="text" class="form-control profile-input" formControlName="country" id="country" [class.is-invalid]="Country"  placeholder="País">
           </div>
-          <button type="button" class="edit-mode" (click)="editMode()">Editar</button>
+          <button type="button" class="edit-mode" (click)="editMode()"><i class="bi bi-pencil-square"></i></button>
           <app-primary-button *ngIf="isEditMode" type="submit" label="Guardar Cambios" class="profile_button"></app-primary-button>
           <h4>Tus puntos: {{user.points}}</h4>
         </form>

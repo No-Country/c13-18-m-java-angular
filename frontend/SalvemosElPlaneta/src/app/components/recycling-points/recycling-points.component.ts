@@ -1,4 +1,6 @@
+import { query } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { RecyclingPoint } from 'src/app/models/recycling-point';
 import { RecyPointsService } from 'src/app/services/recy-points.service';
 
 @Component({
@@ -8,7 +10,8 @@ import { RecyPointsService } from 'src/app/services/recy-points.service';
 })
 export class RecyclingPointsComponent implements OnInit {
 
-  list:any=[];
+  list!:RecyclingPoint[];
+  nameFilter!:string
 
   constructor(
     private recyServ:RecyPointsService,
@@ -31,6 +34,15 @@ export class RecyclingPointsComponent implements OnInit {
   formatTime(time:string):string{
     const tf = time.split(":")
     return tf[0].concat(":"+tf[1]);
+  }
+
+  nameSearch(q:string){
+    this.list = this.list.filter(
+      (point:RecyclingPoint) =>point.address.toLowerCase().includes(q.toLowerCase())||
+                    point.openingTime.toLowerCase().includes(q.toLowerCase())||
+                    point.closingTime.toLowerCase().includes(q.toLowerCase())||
+                    point.comuna.toString().includes(q.toLowerCase())
+      );
   }
 
 }
