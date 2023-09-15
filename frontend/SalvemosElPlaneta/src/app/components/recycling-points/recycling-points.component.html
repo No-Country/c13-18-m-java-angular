@@ -13,14 +13,22 @@
           <th scope="col">Comuna</th>
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor="let recyclingPoint of list">
-          <td>{{recyclingPoint.address}}</td>
-          <td>{{formatTime(recyclingPoint.openingTime)}} hasta {{formatTime(recyclingPoint.closingTime)}}</td>
-          <td> {{recyclingPoint.comuna}} </td>
-        </tr>
-      </tbody>
+      
+        <tbody>
+          <tr *ngFor="let recyclingPoint of filteredRecyPoints">
+            <td>{{recyclingPoint.address}}</td>
+            <td>{{formatTime(recyclingPoint.openingTime)}} hasta {{formatTime(recyclingPoint.closingTime)}}</td>
+            <td> {{recyclingPoint.comuna}} </td>
+          </tr>
+        </tbody>
+        
     </table>
+    <ng-container *ngIf="filteredRecyPoints">
+      <div *ngIf="!filteredRecyPoints.length" class="notfind d-flex justify-content-center flex-column align-items-center">
+        <img  class="" src="/assets/Images/recy-points-notfinded.webp" alt="no hay resultados">
+        <p>No se encontraron puntos de reciclaje</p>
+      </div>
+    </ng-container>
   </div>
   <app-primary-button type="button" label="Volver al menú principal" routerLink="/home" class="buttons"></app-primary-button>
 </section>

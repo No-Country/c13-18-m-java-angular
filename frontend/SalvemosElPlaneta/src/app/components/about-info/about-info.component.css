@@ -2,6 +2,17 @@
     margin: 1.5rem;
 }
 
+.intro {
+    width: 90%;
+    padding: 20px;
+    margin: 20px 0px;
+}
+
+.intro-title {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
 article {
     margin-bottom: 20px;
 }
@@ -10,6 +21,12 @@ article {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    .space {
+        display: none;
+    }
 }
 
 .icons-social-nets a {
@@ -44,7 +61,7 @@ article {
     border: 3px solid #006a66;
     border-radius: 50px;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     text-align: center;
     justify-content: center;
     justify-self: center;
@@ -80,7 +97,7 @@ article {
     border: 3px solid #006a66;
     border-radius: 50px;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     text-align: center;
     justify-content: center;
     justify-self: center;
@@ -116,7 +133,7 @@ article {
     border: 3px solid #006a66;
     border-radius: 50px;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     text-align: center;
     justify-content: center;
     justify-self: center;
@@ -152,7 +169,7 @@ article {
     border: 3px solid #006a66;
     border-radius: 50px;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     text-align: center;
     justify-content: center;
     justify-self: center;
@@ -188,7 +205,7 @@ article {
     border: 3px solid #006a66;
     border-radius: 50px;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     text-align: center;
     justify-content: center;
     justify-self: center;
